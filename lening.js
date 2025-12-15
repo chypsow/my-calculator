@@ -122,7 +122,7 @@ function createHeader(tekst = "LENING AFLOSSINGSSCHEMA") {
     ]);
 }
 function createHeading() {
-    return el("div", { class: "heading" }, [
+    return el("div", { class: "heading no-print" }, [
         createBankName(),
         createImportExportButtons()
     ]);
@@ -134,7 +134,7 @@ function createBankName() {
     ]);
 }
 function createImportExportButtons() {
-    return el("div", { class: "import-export-buttons no-print" }, [
+    return el("div", { class: "import-export-buttons" }, [
         el("button", { id: "importBtn", text: "Importeren" }),
         el("button", { id: "exportBtn", text: "Exporteren" })
     ]);
@@ -385,6 +385,9 @@ function importData() {
             $("#renteType").value = data.renteType || "1";
             $("#startDatum").value = data.startDatum || "";
             updateSummary();
+            if (!DOM.app01.aflossingTable.hidden) {
+                generateSchedule();
+            }
         };
         reader.readAsText(file);
     };
