@@ -1,7 +1,8 @@
 import { DOM, $, $all, el } from './main.js';
 
-const fmtCurrency = new Intl.NumberFormat("nl-BE", { style: "currency", currency: "EUR", maximumFractionDigits: 2 });
-//const fmtNumber = (n, digits = 2) => Number.isFinite(n) ? n.toFixed(digits) : "0.00";
+const fmtCurrency = new Intl.NumberFormat("nl-BE", { style: "currency", currency: "EUR",maximumFractionDigits: 2 });
+const fmtDecimal = (digits = 2) => new Intl.NumberFormat("nl-BE", { style: "decimal", maximumFractionDigits: digits });
+//const fmtPercent = new Intl.NumberFormat("nl-BE", { style: "percent", maximumFractionDigits: 4 });
 
 export const renderApp = {
     0: () => renderApp01(),
@@ -86,6 +87,7 @@ export function renderApp01() {
 
     // Event listeners/* Events */
     DOM.app01.inputsNumber.forEach(inp => inp.addEventListener("input", () => {
+        inp.value = inp.value.replace(/\./g, ',');
         updateSummary();
         // regenerate table only if visible
         if (!DOM.app01.aflossingTable.hidden) generateSchedule();
@@ -159,7 +161,7 @@ function createLinksFieldset() {
 function createBedragInput() {
     return el("label", {
         html: `Te lenen bedrag (EUR):&nbsp;&nbsp;&nbsp;
-        <input type="number" id="teLenenBedrag" class="invoer">`
+        <input type="text" id="teLenenBedrag" class="invoer">`
     });
 }
 
@@ -167,7 +169,7 @@ function createRenteInput() {
     return el("div", { class: "label-select", html: `
         <label>
             Jaarlijkse rentevoet (%):&nbsp;&nbsp;&nbsp;
-            <input type="number" id="jkp" class="invoer">
+            <input type="text" id="jkp" class="invoer">
         </label>
         <select id="renteType" class="rente-type">
             <option value="1">Effectief</option>
@@ -179,7 +181,7 @@ function createRenteInput() {
 function createPeriodeInput() {
     return el("label", {
         html: `Lening periode (maand):&nbsp;&nbsp;&nbsp;
-        <input type="number" id="periode" class="invoer">`
+        <input type="text" id="periode" class="invoer">`
     });
 }
 
@@ -254,17 +256,17 @@ function updateSummary() {
     const { bedrag, jkp, periode, renteType: type } = inputs;
     const i = monthlyRate(jkp, type);
     const betaling = computePayment(bedrag, i, periode);
-    DOM.app01.pmtEl.value = fmtCurrency.format(+betaling.toFixed(2));
-    DOM.app01.renteEl.value = (i * 100).toFixed(4) + " %";
-    DOM.app01.periodeJaarEl.value = (periode / 12).toFixed(2) + " jaar";
+    DOM.app01.pmtEl.value = fmtCurrency.format(betaling);
+    DOM.app01.renteEl.value = fmtDecimal(4).format(i * 100) + " %";
+    DOM.app01.periodeJaarEl.value = fmtDecimal(1).format(periode / 12) + " jaar";
     DOM.app01.interestenEl.value = fmtCurrency.format((betaling * periode - bedrag));
     DOM.app01.aflossingBtn.disabled = false;
 }
 
 function parseInputs() {
-    const bedrag = parseFloat($("#teLenenBedrag").value);
-    const jkp = parseFloat($("#jkp").value);
-    const periode = parseInt($("#periode").value, 10);
+    const bedrag = parseFloat($("#teLenenBedrag").value.replace(',', '.'));
+    const jkp = parseFloat($("#jkp").value.replace(',', '.'));
+    const periode = parseInt($("#periode").value.replace(',', '.'), 10);
     if (!isFinite(bedrag) || !isFinite(jkp) || !isFinite(periode) || periode <= 0) return null;
     return { bedrag, jkp, periode, renteType: renteType.value };
 }
@@ -351,6 +353,7 @@ function generateSchedule() {
 function preparePrintOverview() {
     DOM.app01.leningOverzicht.innerHTML = "";
     const inputs = parseInputs();
+    console.log(inputs.jkp);
     const li = (text) => {
         const el = document.createElement("li");
         el.textContent = text;
@@ -358,7 +361,7 @@ function preparePrintOverview() {
     };
     li("Te lenen bedrag: " + fmtCurrency.format(inputs.bedrag));
     li("Maandelijkse aflossing: " + (DOM.app01.pmtEl.value || "-"));
-    li("JKP: " + (inputs.jkp || "-") + " %");
+    li("JKP: " + (inputs.jkp.toString().replace('.', ',') || "-") + " %");
     li("Periode: " + (inputs.periode || "-") + " maanden");
     li("Totaal interesten: " + (DOM.app01.interestenEl.value || "-"));
 }
@@ -380,10 +383,12 @@ function importData() {
             // Populate fields
             $("#bankName").value = data.bank || "";
             $("#teLenenBedrag").value = data.bedrag || "";
-            $("#jkp").value = data.jkp || "";
+            $("#jkp").value = data.jkp ? fmtDecimal(4).format(data.jkp) : "";
             $("#periode").value = data.periode || "";
             $("#renteType").value = data.renteType || "1";
             $("#startDatum").value = data.startDatum || "";
+            //const jkpValue = data.jkp || "";
+            //$("#jkp").value = jkpValue ? jkpValue.toString().replace('.', ',') : "";
             updateSummary();
             if (!DOM.app01.aflossingTable.hidden) {
                 generateSchedule();
@@ -411,7 +416,7 @@ function exportData() {
     const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(data, null, 2));
     const downloadAnchorNode = document.createElement('a');
     downloadAnchorNode.setAttribute("href", dataStr);
-    downloadAnchorNode.setAttribute("download", `lening_data ${data.bank} ${data.bedrag/1000}k ${data.periode}m.txt`);
+    downloadAnchorNode.setAttribute("download", `${data.bank}_${data.bedrag/1000}k_${data.periode}m_${data.startDatum}.txt`);
     document.body.appendChild(downloadAnchorNode);
     downloadAnchorNode.click();
     downloadAnchorNode.remove();
