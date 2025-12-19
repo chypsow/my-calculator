@@ -5,15 +5,6 @@ export let activePage = localStorage.getItem('activePage') ? parseInt(localStora
 export const $ = selector => document.querySelector(selector);
 export const $all = selector => Array.from(document.querySelectorAll(selector));
 
-export const DOM = {
-    app01 : $('#app01'),
-    app02 : $('#app02'),
-    app03 : $('#app03'),
-    app04 : $('#app04'),
-    sidebar : $('#sidebar'),
-    menuBtn : $('#menuBtn'),
-};
-
 export const  el = (tag, options = {}, children = []) => {
     const element = document.createElement(tag);
 
@@ -30,10 +21,10 @@ export const  el = (tag, options = {}, children = []) => {
 export const showApp = (index) => {
     for (let i = 1; i <= 4; i++) {
         if (i !== index) {
-            DOM[`app0${i}`].style.display = "none";
+            $(`#app0${i}`).style.display = "none";
         } else {
-            DOM[`app0${i}`].style.display = "block";
-            DOM[`app0${i}`].classList.add("wrapper");
+            $(`#app0${i}`).style.display = "block";
+            $(`#app0${i}`).classList.add("wrapper");
         }   
     }
 };
@@ -46,8 +37,9 @@ const renderApp = {
 };
 
 function makeSideBar() {
+    const sidebar = $('#sidebar');
     const tabArray = ['AFLOSSINGSTABEL', 'CALCULATOR 1', 'CALCULATOR 2', 'CALCULATOR 3'];
-    DOM.sidebar.setAttribute('role', 'tablist');
+    sidebar.setAttribute('role', 'tablist');
     tabArray.forEach((tab, i) => {
         const hyperlink = document.createElement('a');
         hyperlink.href = '#';
@@ -57,7 +49,7 @@ function makeSideBar() {
         if(i === activePage) hyperlink.classList.add('active');
         hyperlink.addEventListener('click', () => {
             if (hyperlink.classList.contains("active")) return; // Prevent reloading the same tab
-            const activeLink = DOM.sidebar.querySelector('.active');
+            const activeLink = sidebar.querySelector('.active');
             activeLink.classList.remove("active");
             activeLink.setAttribute('aria-selected', 'false');
             hyperlink.classList.add("active");
@@ -66,20 +58,20 @@ function makeSideBar() {
             localStorage.setItem('activePage', activePage);
             renderApp[activePage]();
         });
-        DOM.sidebar.appendChild(hyperlink);
+        sidebar.appendChild(hyperlink);
     });
 };
 
-DOM.menuBtn.addEventListener('click', () => {
-    DOM.sidebar.classList.toggle('closed');
-    DOM.menuBtn.classList.toggle('open');
+$('#menuBtn').addEventListener('click', () => {
+   $('#sidebar').classList.toggle('closed');
+    $('#menuBtn').classList.toggle('open');
 });
 
 // Close sidebar when clicking outside (optional)
 /*document.addEventListener('click', (e) => {
-    if (!DOM.sidebar.contains(e.target) && !DOM.menuBtn.contains(e.target)) {
-        DOM.sidebar.classList.add('closed');
-        DOM.menuBtn.classList.remove('open');
+    if (!$('#sidebar').contains(e.target) && !$('#menuBtn').contains(e.target)) {
+        $('#sidebar').classList.add('closed');
+        $('#menuBtn').classList.remove('open');
     }
 });*/
 

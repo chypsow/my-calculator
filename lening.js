@@ -1,30 +1,28 @@
-import { DOM, $, $all, el, showApp } from './main.js';
+import { $, $all, el, showApp } from './main.js';
 
 const fmtCurrency = new Intl.NumberFormat("nl-BE", { style: "currency", currency: "EUR",maximumFractionDigits: 2 });
 const fmtDecimal = (digits = 2) => new Intl.NumberFormat("nl-BE", { style: "decimal", maximumFractionDigits: digits });
 const fmtDate = d => new Date(d).toLocaleDateString("nl-BE");
 //const fmtPercent = new Intl.NumberFormat("nl-BE", { style: "percent", maximumFractionDigits: 4 });
 
-
 // UI Elements
-
 export function renderApp02() {
     showApp(2);
-    const root = DOM.app02;
+    const root = $('#app02');
     if (root.innerHTML.trim() !== "") return; // Prevent re-initialization
     root.append(createHeader('CALCULATOR 1'));
     // Placeholder for future calculator 1 implementation
 }
 export function renderApp03() {
     showApp(3);
-    const root = DOM.app03;
+    const root = $('#app03');
     if (root.innerHTML.trim() !== "") return; // Prevent re-initialization
     root.append(createHeader('CALCULATOR 2'));
     // Placeholder for future calculator 2 implementation
 }
 export function renderApp04() {
     showApp(4);
-    const root = DOM.app04;
+    const root = $('#app04');
     if (root.innerHTML.trim() !== "") return; // Prevent re-initialization
     root.append(createHeader('CALCULATOR 3'));
     // Placeholder for future calculator 3 implementation
@@ -33,7 +31,7 @@ export function renderApp04() {
 // Main function to create the app01 and initialize the calculator
 export function renderApp01() {
     showApp(1);
-    const root = DOM.app01;
+    const root = $('#app01');
     if (root.innerHTML.trim() !== "") return; // Prevent re-initialization  
 
     root.append(
@@ -49,6 +47,14 @@ export function renderApp01() {
     // Event listeners/* Events */
     $all(".invoer").forEach(inp => inp.addEventListener("input", () => {
         inp.value = inp.value.replace(/\./g, ',');
+        if (inp.id === "periode") {
+            // Update end date preview
+            const startDate = $("#startDatum").valueAsDate;
+            if (startDate) {
+                const endDate = new Date(startDate.getFullYear(), startDate.getMonth() + parseInt(inp.value || "0", 10), startDate.getDate());
+                $(".eind-datum").textContent = `Einddatum: ${fmtDate(endDate)}`;
+            }
+        }
         updateSummary();
         // regenerate table only if visible
         if (!$("#aflossingstabel").hidden) generateSchedule();
@@ -60,6 +66,13 @@ export function renderApp01() {
     });
 
     $("#startDatum").addEventListener("change", () => {
+        const startDate = $("#startDatum").valueAsDate;
+        if (startDate) {
+            const endDate = new Date(startDate.getFullYear(), startDate.getMonth() + parseInt($("#periode").value || "0", 10), startDate.getDate());
+            $(".eind-datum").textContent = `Einddatum: ${fmtDate(endDate)}`;
+        } else {
+            $(".eind-datum").textContent = `Einddatum: -- / -- / ----`;
+        }
         if (!$("#aflossingstabel").hidden) generateSchedule();
     });
 
@@ -113,7 +126,7 @@ function createLinksFieldset() {
             createBedragInput(),
             createRenteInput(),
             createPeriodeInput(),
-            createStartDatumInput()
+            createtDatums()
         ])
     ]);
 }
@@ -144,12 +157,19 @@ function createPeriodeInput() {
     });
 }
 
-function createStartDatumInput() {
-    return el("label", {
-        html: `Start datum:&nbsp;&nbsp;&nbsp;
-        <input type="date" id="startDatum">`
-    });
+function createtDatums() {
+    return el("div", { class: "datums" }, [
+        el("label", {
+            html: `Startdatum:&nbsp;&nbsp;&nbsp;
+            <input type="date" id="startDatum">`
+        }),
+        el("span", {
+            class: "eind-datum",
+            text: "Einddatum: -- / -- / ----"
+        })
+    ]);
 }
+
 function createRechtsFieldset() {
     return el("fieldset", { class: "rechts" }, [
         el("h2", { text: "Overzicht lening :" }),
@@ -266,6 +286,8 @@ function generateSchedule() {
     // Start date
     // startDateValue = $("#startDatum").valueAsDate;
     let currentDate = $("#startDatum").valueAsDate ? new Date($("#startDatum").valueAsDate) : new Date();
+    $('#startDatum').valueAsDate = currentDate;
+    $('.eind-datum').textContent = `Einddatum: ${fmtDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + periode, currentDate.getDate()))}`;
     // Ensure we show the starting month as provided (don't move before first row)
     
     let balance = bedrag;

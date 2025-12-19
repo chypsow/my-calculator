@@ -73,7 +73,9 @@ input , select{
     color:#ffffff; 
     /*outline:none;*/
 }
-select, .rente-type{
+.rente-type{
+    background: transparent;
+    border: 1px solid rgba(190, 190, 190, 0.829); 
     font-size: .9rem;
     width: fit-content;
     appearance: none; /* Verwijder standaard pijl */
@@ -83,6 +85,10 @@ select, .rente-type{
     background-size: .8rem;
     padding-right: 2rem; /* Ruimte voor de pijl */
 }
+/*.rente-type:focus{
+    outline: none;
+}*/
+
 /* Opties in dropdown (ondersteuning kan verschillen per browser) */
 .rente-type option {
     background-color: #d1d1d1; /* dropdown items achtergrond */
@@ -94,6 +100,15 @@ select, .rente-type{
 input[type="date"]::-webkit-calendar-picker-indicator {
     filter: invert(1);
     cursor: pointer;
+}
+.datums {
+    color: #ddb8b8;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1.5rem;
 }
 input:disabled{ background:transparent; border:none; color:var(--accent); font-family:var(--font-mono); }
 
