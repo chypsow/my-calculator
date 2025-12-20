@@ -42,7 +42,7 @@ fieldset{
     display: flex;
     flex-direction: column;
     gap: .5rem;
-    height: 11rem;
+    /*height: 11rem;*/
     /*font-size: 1.15rem;*/
     /*background: var(--glass);*/
     border-top: 1px solid rgba(221, 221, 221, 0.205);
@@ -76,7 +76,7 @@ input , select{
 .rente-type{
     background: transparent;
     border: 1px solid rgba(190, 190, 190, 0.829); 
-    font-size: .9rem;
+    /*font-size: .9rem;*/
     width: fit-content;
     appearance: none; /* Verwijder standaard pijl */
     background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iOCIgdmlld0JveD0iMCAwIDEyIDgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTAgMGwxMiAwTDYgOEwwIDBaIiBmaWxsPSIjZmZmIi8+PC9zdmc+'); /* Aangepaste pijl */

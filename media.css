@@ -17,7 +17,9 @@
     }
     header h1{ font-size: 2rem;}
     .wrapper{ width:94%; padding:.75rem; }
-    input[type="number"], .invoer{ width:5.25rem; }
+    .invoer{ width:6rem; }
+    .rente-type{ font-size:.8rem; }
+    .top-row{ flex-direction:column; align-items:flex-start; gap:1.5rem; }
 }
 
 /* Print styles */
