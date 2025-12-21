@@ -21,7 +21,7 @@
     cursor: pointer;
 }
 .bereken-btn {
-    margin: 1rem 0 2rem 0;
+    margin: 1rem 0 1rem 0;
     font-family: var(--mono-font);
     padding: .3rem 1.8rem;
     font-size: 1.2rem;
@@ -33,9 +33,21 @@
     cursor: pointer;
 }
 .sectie-wrapper {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
     gap: 2rem;
-    justify-content: flex-start;
+    justify-content: center;
+}
+.sectie-wrapper p {
+    margin: .2rem 0;
+    font-size: 1rem;
+    color: #ffffff;
+}
+.sectie-wrapper span {
+    margin-left: 0.5rem;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: var(--accent);
 }
 .sectie-header {
     font-size: 1.5rem;
@@ -49,9 +61,42 @@
     padding: 1rem;
     background: var(--calc-bg);
     border-radius: var(--radius);
-} 
+}
+.overzicht-titel {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-bottom: 1rem;
+    color: var(--accent);
+}
+.top-sectie {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    /*gap: .5rem;*/
+}
+.datum-sectie {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.kies-datum {
+    display: flex;
+    flex-direction: row;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: var(--accent);
+}
+.datum-status {
+    /*padding: .3rem .5rem;
+    font-size: 1rem;
+    border-radius: 4px;*/
+    border: 1px solid rgba(139, 139, 139, 0.685);
+    /*font-family: var(--font-mono);
+    color: #ffffff;*/
+    background-color: rgba(110, 110, 110, 0.251);
+}
 .kapitaal-groep, .rente-groep {
     display: flex;
+    width: 100%;
     flex-direction: column  ;
     gap: 1.5rem;
     padding: 1rem;

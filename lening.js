@@ -235,6 +235,9 @@ function updateSummary() {
 }
 
 export function parseInputs() {
+    const bedragElement = $("#teLenenBedrag"); // first check of app01 is loaded
+    if (!bedragElement) return null;
+
     const bedrag = parseFloat($("#teLenenBedrag").value.replace(',', '.'));
     const jkp = parseFloat($("#jkp").value.replace(',', '.'));
     const periode = parseInt($("#periode").value.replace(',', '.'), 10);
@@ -385,7 +388,7 @@ function exportData() {
         return;
     }
     const data = {
-        bank: $("#bankName").value || "",
+        bank: $("#bankName").value.toUpperCase() || "Bank",
         bedrag: inputs.bedrag,
         jkp: inputs.jkp,
         periode: inputs.periode,
@@ -396,10 +399,10 @@ function exportData() {
     const downloadAnchorNode = document.createElement('a');
     downloadAnchorNode.setAttribute("href", dataStr);
     //filename format: bank_bedragk_periodem_startDatum.txt
-    const safeBankName = data.bank.replace(/[^a-z0-9]/gi, '_').toUpperCase() || "bank";
+    //const safeBankName = data.bank.replace(/[^a-z0-9]/gi, '_').toUpperCase() || "bank";
     //als datum niet ingevuld is, gebruik dan 'nodate'
     if (!data.startDatum) data.startDatum = "nodate";
-    const filename = `${safeBankName}_${data.bedrag/1000}k_${data.periode}m_${data.startDatum}.txt`;
+    const filename = `${data.bank}_${data.bedrag/1000}k_${data.periode}m_${data.startDatum}.txt`;
     downloadAnchorNode.setAttribute("download", filename);
     document.body.appendChild(downloadAnchorNode);
     downloadAnchorNode.click();
