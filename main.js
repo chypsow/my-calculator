@@ -68,11 +68,11 @@ function makeSideBar() {
     });
 };
 
-$('#menuBtn').addEventListener('click', () => {
+/*$('#menuBtn').addEventListener('click', () => {
     $('#sidebar').classList.toggle('closed');
     $('#menuBtn').classList.toggle('open');
     $('.overlay').classList.toggle('active');
-});
+});*/
 
 // Close sidebar when clicking outside (optional)
 /*document.addEventListener('click', (e) => {

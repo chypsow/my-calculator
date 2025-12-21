@@ -12,31 +12,34 @@
     /*font-family: monospace;*/
     margin-left: 1rem;
     padding: .3rem .8rem;
-    font-size: 1rem;
+    font-size: .9rem;
     border-radius: 4px;
     border: none;
     background-color: var(--accent);
-    color: #000000;
-    cursor: pointer;
-}
-.bereken-btn {
-    margin-left: 1rem;
-    padding: .3rem 1.8rem;
-    font-size: 1rem;
-    border-radius: 4px;
-    border: none;
     background-color: rgb(214, 214, 214);
     color: #000000;
     cursor: pointer;
 }
-/*.calculator1 {
+.bereken-btn {
+    margin: 1rem 0 2rem 0;
+    font-family: var(--mono-font);
+    padding: .3rem 1.8rem;
+    font-size: 1.2rem;
+    border-radius: 4px;
+    border: none;
+    background-color: rgb(214, 214, 214);
+    background-color: var(--accent);
+    color: #000000;
+    cursor: pointer;
+}
+.calculator {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
     padding: 1rem;
-    background: var(--card-bg);
+    background: var(--calc-bg);
     border-radius: var(--radius);
-}*/
+}
 .sectie1 {
     display: flex;
     flex-direction: column;
