@@ -378,6 +378,7 @@ function importData() {
             if (!$("#aflossingstabel").hidden) {
                 generateSchedule();
             }
+            $all(".uitkomst").forEach(el => el.textContent = "");
         };
         reader.readAsText(file);
     };
