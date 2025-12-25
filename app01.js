@@ -21,6 +21,11 @@ export function buildApp01() {
                 $("#eindDatum").classList.remove("eind-datum-hidden");
             }
         }
+        // Skip resetOutputs if startDatum changed but month/year didn't
+        if (inp.id === "startDatum") {
+            // handle eindDatum update in separate listener
+            return;
+        }
         resetOutputs();
         //updateSummary();
         // regenerate table only if visible
@@ -56,17 +61,21 @@ export function buildApp01() {
             console.log('currentEndDateStr after : ', currentEndDateStr);
             // Return if month and year haven't changed
             if (newEndDateStr === currentEndDateStr) {
+                console.log('no change in month or year');
+                // handle eindDatum update
+                $("#eindDatum").textContent = `Einddatum: ${newEndDateStr}`;
                 return;
             }
             
             $("#eindDatum").textContent = `Einddatum: ${newEndDateStr}`;
             $("#eindDatum").classList.remove("eind-datum-hidden");
             //updateSummary();
+            resetOutputs();
         } else {
             $("#eindDatum").classList.add("eind-datum-hidden");
+            resetOutputs();
         }
         
-        resetOutputs();
         //if (!$("#aflossingstabel").hidden) generateSchedule();
         //$all(".uitkomst").forEach(el => el.textContent = "");
     });
