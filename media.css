@@ -37,8 +37,15 @@
     .on-print{ display:block; }
     body{ background:transparent; color:#000; }
     .wrapper{ width:100%; margin:0; padding:0; }
+    .table-wrapper{
+        max-width:100%;
+        width:100%;
+        margin:0;
+        padding:0;
+        background:transparent;
+        box-shadow:none;
+    }
     table{ table-layout:auto ; width:100%; }
     .table-header th{ font-size:0.7rem ; color:#000; border-color:#000;}
     header, footer{ display:none; }
-    .afdrukken{ display:none; }
 }

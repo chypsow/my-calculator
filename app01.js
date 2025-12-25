@@ -2,7 +2,7 @@ import { $, $all, el, createHeader,  fmtCurrency, fmtDate, fmtDecimal } from './
 
 export function buildApp01() {
     $('#app01').append(
-        createHeader('LENING OVERZICHT EN STATUS'),
+        createHeader('LENING - OVERZICHT EN STATUS'),
         createTopRow(),
         createMainSection(),
         //createButtons(),
@@ -87,8 +87,8 @@ export function buildApp01() {
             // check if month/year changed
             const prevDateStr = $("#currentDate").getAttribute("data-prev-date");
             const newDateStr = currentDate.toISOString().split('T')[0];
-            console.log('prevDateStr day: ', prevDateStr.slice(0,7));
-            console.log('newDateStr day: ', newDateStr.slice(0,7));
+            //console.log('prevDateStr day: ', prevDateStr.slice(0,7));
+            //console.log('newDateStr day: ', newDateStr.slice(0,7));
             if (prevDateStr.slice(0,7) === newDateStr.slice(0,7)) return;
             $("#currentDate").setAttribute("data-prev-date", newDateStr);
         }
@@ -202,22 +202,22 @@ function createLeftSummaryFieldset() {
         el("h2", { text: "Overzicht lening :" }),
         el("div", { class: "info-box", html: `
             <p> Geleend bedrag:
-                <span id="bedrag" class="resultaat"></span>
+                <span id="bedrag-1" class="resultaat"></span>
             </p>
             <p> Maandelijkse aflossing:
-                <span id="pmt" class="resultaat"></span>
+                <span id="pmt-1" class="resultaat"></span>
             </p>
             <p> Maandelijkse rentevoet:
-                <span id="rente" class="resultaat"></span>
+                <span id="rente-1" class="resultaat"></span>
             </p>
             <p> Totaal te betalen interesten:
-                <span id="interesten" class="resultaat"></span>
+                <span id="interesten-1" class="resultaat"></span>
             </p>
             <p> Lening periode:
-                <span id="periodeJaar" class="resultaat"></span>
+                <span id="periodeJaar-1" class="resultaat"></span>
             </p>
             <p> Resterende looptijd:
-                <span id="resterendeLooptijd" class="resultaat"></span>
+                <span id="resterendeLooptijd-1" class="resultaat"></span>
             </p>
         `})
     ]);
@@ -232,58 +232,25 @@ function createRightSummaryFieldset() {
             </p>
             <br>
             <p> Afbetaald kapitaal:
-                <span id="afbetaaldKapitaal" class="resultaat"></span>
+                <span id="afbetaaldKapitaal-1" class="resultaat"></span>
             </p>
             <p> Afbetaalde rente:
-                <span id="afbetaaldeRente" class="resultaat"></span>
+                <span id="afbetaaldeRente-1" class="resultaat"></span>
             </p>
             <p><span id="spacer">&nbsp;------------------------------------------&nbsp;</span></p>
             <p> Totaal betaald:
-                <span id="totaalBetaald" class="resultaat"></span>
+                <span id="totaalBetaald-1" class="resultaat"></span>
             </p>
          `
         })
     ]);
 }
 
-function createButtons() {
-    return el("div", { class: "button-group no-print" }, [
-        el("button", {id: "aflossingBtn", class: "no-print", disabled: true, text: "Aflossingstabel"}),
-        el("button", {id: "afdrukken", class: "afdrukken no-print", text: "Afdrukken", style: "visibility:hidden;"})
-    ]);
-}
-function createTable() {
-    return el("div", { id: "managerTable", class: "print-container" }, [
-        el("ul", {
-            id: "leningOverzicht",
-            class: "lening-overzicht on-print",
-            hidden: true
-        }),
-        el("table", { id: "aflossingstabel", hidden: true }, [
-            el("thead", { id: "tableHeader", class: "table-header", html: `
-                <tr>
-                    <th>No</th>
-                    <th>Datum</th>
-                    <th>Begin kapitaal</th>
-                    <th>Aflossing totaal</th>
-                    <th>Aflossing kapitaal</th>
-                    <th>Aflossing rente</th>
-                    <th>Uitstaand kapitaal</th>
-                    <th>Cumulatieve interesten</th>
-                    <th>Cumulatief afbetaald KPT</th>
-                    <th>Cumulatif aflossing</th>
-                </tr>
-            `}),
-            el("tbody", {
-                id: "tableInhoud",
-                class: "table-inhoud"
-            })
-        ])
-    ]);
-}
+
+
 
 // Lening calculator logic
-function updateSummary() {
+export function updateSummary() {
     const inputs = parseInputs();
     if (!inputs) {
         resetOutputs();
@@ -292,11 +259,11 @@ function updateSummary() {
     const { bedrag, jkp, periode, renteType: type, startDate } = inputs;
     const i = monthlyRate(jkp, type);
     const betaling = computePayment(bedrag, i, periode);
-    $('#bedrag').textContent = fmtCurrency.format(bedrag);
-    $("#pmt").textContent = fmtCurrency.format(betaling);
-    $("#rente").textContent = fmtDecimal(4).format(i * 100) + " %";
-    $("#interesten").textContent = fmtCurrency.format((betaling * periode - bedrag));
-    $("#periodeJaar").textContent = fmtDecimal(1).format(periode / 12) + " jaar";
+    $('#bedrag-1').textContent = fmtCurrency.format(bedrag);
+    $("#pmt-1").textContent = fmtCurrency.format(betaling);
+    $("#rente-1").textContent = fmtDecimal(4).format(i * 100) + " %";
+    $("#interesten-1").textContent = fmtCurrency.format((betaling * periode - bedrag));
+    $("#periodeJaar-1").textContent = fmtDecimal(1).format(periode / 12) + " jaar";
     const currentDateInput = $("#currentDate").value;
     const currentDate = currentDateInput ? new Date(currentDateInput) : new Date();
     if (!currentDateInput) {
@@ -309,28 +276,28 @@ function updateSummary() {
     const jaren = Math.floor(resterendeMaanden / 12);
     const maanden = resterendeMaanden % 12;
     const display = jaren > 0 ? `${jaren} jaar${maanden > 0 ? ` ${maanden} maanden` : ''}` : `${maanden} maanden`;
-    $('#resterendeLooptijd').textContent = resterendeMaanden ? display : '0 maanden';
+    $('#resterendeLooptijd-1').textContent = resterendeMaanden ? display : '0 maanden';
     $("#uitstaandKapitaal").textContent = fmtCurrency.format(remaining.capital);
-    $("#afbetaaldKapitaal").textContent = fmtCurrency.format(bedrag - remaining.capital);
-    $("#afbetaaldeRente").textContent = fmtCurrency.format((betaling * periode - bedrag) - remaining.interest);
-    $("#totaalBetaald").textContent = fmtCurrency.format(betaling * (periode - remaining.period));
+    $("#afbetaaldKapitaal-1").textContent = fmtCurrency.format(bedrag - remaining.capital);
+    $("#afbetaaldeRente-1").textContent = fmtCurrency.format((betaling * periode - bedrag) - remaining.interest);
+    $("#totaalBetaald-1").textContent = fmtCurrency.format(betaling * (periode - remaining.period));
     //$("#aflossingBtn").disabled = false;
    
     // Fill overview section
-    //$('#bedrag').textContent = $('#teLenenBedrag').value ? fmtCurrency.format(bedrag) : ''; 
-    //$('#pmt2').textContent = fmtCurrency.format(betaling);
-    //$('#rente2').textContent = fmtDecimal(4).format(i * 100) + " %";
-    //$('#interesten2').textContent = fmtCurrency.format((betaling * periode - bedrag));
+    $('#bedrag-2').textContent = fmtCurrency.format(bedrag);
+    $('#pmt-2').textContent = fmtCurrency.format(betaling);
+    $('#rente-2').textContent = fmtDecimal(4).format(i * 100) + " %";
+    $('#interesten-2').textContent = fmtCurrency.format((betaling * periode - bedrag));
 
     //const startDate = new Date($("#startDatum").value);
     //if (!isNaN(startDate.getTime())) {
-    //$('#startDatumDisplay').textContent = fmtDate(startDate);
+    $('#startDatumDisplay').textContent = fmtDate(startDate);
     //const periodeMaanden = periode ? parseInt(periode) : 0;
-    //const endDate = new Date(startDate);
-    //endDate.setMonth(endDate.getMonth() + periode);
-    //$('#endDatumDisplay').textContent = fmtDate(endDate);
+    const endDate = new Date(startDate);
+    endDate.setMonth(endDate.getMonth() + periode);
+    $('#endDatumDisplay').textContent = fmtDate(endDate);
     //}
-    //$('#periodeJaar2').textContent = $("#periodeJaar").textContent;
+    $('#periodeJaar-2').textContent = $("#periodeJaar-1").textContent;
     // Calculate remaining duration
     //const today = new Date();
     //const endDate = new Date(startDate);
@@ -341,12 +308,12 @@ function updateSummary() {
     //}
     //const jaren = Math.floor(resterendeMaanden / 12);
     
-    //$('#resterendeLooptijd2').textContent = $('#resterendeLooptijd').textContent;
+    $('#resterendeLooptijd-2').textContent = $('#resterendeLooptijd-1').textContent;
 
     //$(".summary-output").style.visibility = "visible";
 }
 
-function computeRemaining(bedrag, jkp, periode, type, startDate, currentDate = new Date()) {
+export function computeRemaining(bedrag, jkp, periode, type, startDate, currentDate = new Date()) {
     const i = monthlyRate(jkp, type);
     const betaling = computePayment(bedrag, i, periode);
     //const today = new Date();
@@ -390,12 +357,11 @@ export function parseInputs() {
 }
 
 function resetOutputs() {
-    //const outputsText = [$("#pmt"), $("#rente"), $("#periodeJaar"), $("#interesten")];
     $all(".resultaat").forEach(o => o.textContent = "");
-    //$("#afdrukken").style.visibility = "hidden";
-    //$("#aflossingstabel").hidden = true;
-    //$("#aflossingBtn").disabled = true;
-    //$(".summary-output").style.visibility = "hidden";
+    $all(".uitkomst").forEach(o => o.textContent = "");
+    $("#afdrukken").style.visibility = "hidden";
+    $("#aflossingstabel").hidden = true;
+    $("#aflossingBtn").style.visibility = "hidden";
 }
 
 export function monthlyRate(jkp, type) {
@@ -410,96 +376,6 @@ export function computePayment(principal, monthlyI, periods) {
     if (monthlyI <= 0) return principal / periods;
     const denom = 1 - Math.pow(1 + monthlyI, -periods);
     return principal * (monthlyI / denom);
-}
-
-function generateSchedule() {
-    const inputs = parseInputs();
-    if (!inputs) return;
-    const { bedrag, jkp, periode, renteType: type, startDate } = inputs;
-    const i = monthlyRate(jkp, type);
-    const betaling = computePayment(bedrag, i, periode);
-
-    $("#tableInhoud").innerHTML = "";
-    $("#aflossingstabel").hidden = false;
-    $("#afdrukken").style.visibility = "visible";
-
-    // Start date
-    // startDateValue = $("#startDatum").valueAsDate;
-    let currentDate = new Date(startDate);
-    //$('#startDatum').valueAsDate = currentDate;
-    //$('#eindDatum').textContent = `Einddatum: ${fmtDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + periode, currentDate.getDate()))}`;
-    //$("#eindDatum").classList.remove("eind-datum-hidden");
-    //updateSummary();
-    // Ensure we show the starting month as provided (don't move before first row)
-    
-    let balance = bedrag;
-    let cumInterest = 0;
-    let cumPrincipal = 0;
-
-    for (let n = 1; n <= periode; n++) {
-        const tr = document.createElement("tr");
-
-        // Date: increment month for each payment (payment at end of period)
-        currentDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, currentDate.getDate());
-
-        const interest = balance * i;
-        const principal = Math.min(betaling - interest, balance); // last payment protection
-        const payment = principal + interest;
-        const newBalance = Math.max(balance - principal, 0);
-
-        cumInterest += interest;
-        cumPrincipal += principal;
-
-        const cells = [
-            n,
-            fmtDate(currentDate),
-            fmtCurrency.format(balance),
-            fmtCurrency.format(payment),
-            fmtCurrency.format(principal),
-            fmtCurrency.format(interest),
-            fmtCurrency.format(newBalance),
-            fmtCurrency.format(cumInterest),
-            fmtCurrency.format(cumPrincipal),
-            fmtCurrency.format(payment * n)
-        ];
-
-        for (const c of cells) {
-            const td = document.createElement("td");
-            td.textContent = c;
-            tr.appendChild(td);
-        }
-
-        $("#tableInhoud").appendChild(tr);
-        balance = newBalance;
-        if (balance <= 0) break;
-    }
-}
-
-function preparePrintOverview() {
-    $("#leningOverzicht").innerHTML = "";
-    const inputs = parseInputs();
-    const li = (text) => {
-        const el = document.createElement("li");
-        el.textContent = text;
-        $("#leningOverzicht").appendChild(el);
-    };
-    li("Te lenen bedrag: " + fmtCurrency.format(inputs.bedrag));
-    li("JKP: " + (inputs.jkp.toString().replace('.', ',') || "-") + " %");
-    li("Maandelijkse rentevoet: " + ($("#rente").textContent || "-"));
-    li("Maandelijkse aflossing: " + ($("#pmt").textContent || "-"));
-    li("Totaal interesten: " + ($("#interesten").textContent || "-"));
-    li("Periode: " + (inputs.periode || "-") + " maanden");
-    li("Startdatum: " + fmtDate(inputs.startDate));
-    const endDate = new Date(inputs.startDate);
-    endDate.setMonth(endDate.getMonth() + inputs.periode);
-    li("Einddatum: " + fmtDate(endDate));
-    $("#leningOverzicht").style.columnCount = "3";
-    //$("#leningOverzicht").hidden = false;
-}
-
-function printData() {
-    preparePrintOverview();
-    window.print();
 }
 
 function importData() {

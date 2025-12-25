@@ -1,7 +1,7 @@
 
 import { buildApp01 } from './app01.js';
 import { buildApp02 } from './app02.js';
-import { buildApp03 } from './app03.js';
+import { buildApp03, preparePrintOverview } from './app03.js';
 
 export let activePage = localStorage.getItem('activePage') ? parseInt(localStorage.getItem('activePage')) : 0;
 export const $ = selector => document.querySelector(selector);
@@ -31,6 +31,11 @@ export const showApp = (index) => {
             $(`#app0${i}`).style.display = "none";
         } else {
             $(`#app0${i}`).style.display = "block";
+            if(i === 3) {
+                preparePrintOverview();
+                $(`#app0${i}`).classList.add("table-wrapper");
+                return;
+            }
             $(`#app0${i}`).classList.add("wrapper");
         }   
     }

@@ -3,7 +3,7 @@ import { parseInputs, monthlyRate, computePayment } from './app01.js';
 
 export function buildApp02() {
     $('#app02').append(
-        createHeader('LENING STATUS TUSSEN 2 DATUMS'),
+        createHeader('LENING - STATUS TUSSEN 2 DATUMS'),
         createCalculator()
     );
 
@@ -110,12 +110,12 @@ function calculteTotals() {
         totaalKapitaal += (betaling - maandRente);
     }
     
-    const restantKapitaal = bedrag - totaalKapitaal;
+    //const restantKapitaal = bedrag - totaalKapitaal;
 
     $('#totaal-kapitaal').textContent = fmtCurrency.format(totaalKapitaal);
-    $('#restant-kapitaal').textContent = fmtCurrency.format(restantKapitaal);
+    //$('#restant-kapitaal').textContent = fmtCurrency.format(restantKapitaal);
     $('#totaal-rente').textContent = fmtCurrency.format(totaalRente);
-    $('#restant-rente').textContent = fmtCurrency.format(Math.max(restantRente, 0));
+    //$('#restant-rente').textContent = fmtCurrency.format(Math.max(restantRente, 0));
 }
 
 function createCalculator() {
@@ -137,16 +137,16 @@ function createOverzicht() {
         el('div', { class: 'overzicht-inhoud' }, [
             el("div", { html: `
                 <p> Lening bedrag:
-                    <span id="bedrag" class="resultaat"></span>
+                    <span id="bedrag-2" class="resultaat"></span>
                 </p>
                 <p> Maandelijkse betaling:
-                    <span id="pmt2" class="resultaat"></span>
+                    <span id="pmt-2" class="resultaat"></span>
                 </p>
                 <p> Maandelijkse rentevoet:
-                    <span id="rente2" class="resultaat"></span>
+                    <span id="rente-2" class="resultaat"></span>
                 </p>
                 <p> Totaal te betalen interesten:
-                    <span id="interesten2" class="resultaat"></span>
+                    <span id="interesten-2" class="resultaat"></span>
                 </p>
             `}),
             el("div", { html: `
@@ -157,10 +157,10 @@ function createOverzicht() {
                     <span id="endDatumDisplay" class="resultaat"></span>
                 </p>
                 <p> Lening periode:
-                    <span id="periodeJaar2" class="resultaat"></span>
+                    <span id="periodeJaar-2" class="resultaat"></span>
                 </p>
                 <p> Resterende looptijd:
-                    <span id="resterendeLooptijd2" class="resultaat"></span>
+                    <span id="resterendeLooptijd-2" class="resultaat"></span>
                 </p>
             `})
         ])
@@ -171,17 +171,17 @@ function createSectie1() {
     return el('div', { class: 'top-sectie' }, [
         el('div', { class: 'datum-sectie' }, [
             el('div', { class: 'start-datum-sectie' }, [
-                el('h2', { text: 'Startdatum :', class: 'kies-datum' }),
+                el('h2', { text: 'Datum 1 :', class: 'kies-datum' }),
                 el('input', { type: 'date', id:'startdatum-status', class: 'datum-status' })]),
             el('div', { class: 'eind-datum-sectie' }, [
-                el('h2', { text: 'Einddatum :', class: 'kies-datum' }),
+                el('h2', { text: 'Datum 2 :', class: 'kies-datum' }),
                 el('input', { type: 'date', id:'einddatum-status', class: 'datum-status' }),
                 //el('button', { id: 'vandaag', class: 'vandaag-btn', text: 'vandaag' })
             ]),
         ]),
         el('div', { class: 'uitleg-sectie' }, [
-        el('p', { class: 'uitleg-tekst', text: 'Bereken de status van je lening op een bepaalde datum door een datum te kiezen bovenaan en op bereken te klikken.' }),
-        el('p', { class: 'uitleg-tekst', html: `De berekening is gebaseerd op de ingevoerde leninggegevens in de <strong>Aflossingstabel</strong> sectie.` }),
+        el('p', { class: 'uitleg-tekst', text: 'Bereken het afbetaalde kapitaal en de betaalde rente tussen twee datums op basis van de ingevoerde leninggegevens.' }),
+        el('p', { class: 'uitleg-tekst', html: `De berekening is gebaseerd op de ingevoerde leninggegevens in de <strong>Lening Calculator 1</strong> sectie.` })
         ])
     ]);
 }
@@ -189,23 +189,19 @@ function createSectie1() {
 function createSectie3() {
     return el('div', { class: 'sectie-wrapper' }, [
         el('div', { class: 'kapitaal-groep' , html:`
-            <div class="sectie-header">Kapitaal status op : <span id="gekozen-datum"></span></div>
-            <p> Afbetaald kapitaal: 
-                <span id="totaal-kapitaal" class="uitkomst"></span>
-            </p>
-            <p> Uitstaand kapitaal: 
-                <span id="restant-kapitaal" class="uitkomst"></span>
-            </p>
+            <div class="sectie-header">
+                <p> Afbetaald kapitaal: 
+                    <span id="totaal-kapitaal" class="uitkomst"></span>
+                </p>
+            </div>
             `
         }),
         el('div', { class: 'rente-groep' , html:`
-            <div class="sectie-header">Interesten status op : <span id="gekozen-datum"></span></div>
-            <p> Afbetaalde interesten: 
-                <span id="totaal-rente" class="uitkomst"></span>
-            </p>
-            <p> Restant interesten: 
-                <span id="restant-rente" class="uitkomst"></span>
-            </p>
+            <div class="sectie-header">
+                <p> Afbetaalde Rente: 
+                    <span id="totaal-rente" class="uitkomst"></span>
+                </p>
+            </div>
             `
         }),
     ]);

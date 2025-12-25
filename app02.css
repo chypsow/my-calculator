@@ -35,33 +35,42 @@
     cursor: pointer;
 }
 
-.sectie-header {
-    font-size: 1.3rem;
+
+.sectie-header span {
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
     font-weight: bold;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid rgba(221, 221, 221, 0.205);
     color: var(--accent);
+    padding-left: 0.5rem;
+}
+.sectie-header p {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 0;
+    font-size: 1rem;
+    font-weight: bold;
+    /*color: var(--accent);*/
 }
 .sectie-wrapper {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /*font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;*/
     display: flex;
     gap: 2rem;
     justify-content: center;
+    margin-top: 1rem;
 }
-.sectie-wrapper p, .overzicht p {
+.overzicht p {
     margin: .5rem 0;
     font-size: 1rem;
-    color: #ffffff;
 }
-.sectie-wrapper span, .overzicht span {
+.overzicht span {
     font-family:var(--font-mono);
     margin-left: 0.5rem;
-    /*font-weight: bold;*/
+    font-weight: bold;
     font-size: 1.1rem;
     color: var(--accent);
 }
 
 .top-sectie {
+    margin-bottom: 1rem;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
     flex-direction: column;
@@ -92,7 +101,7 @@
 .uitleg-tekst {
     margin: 0;
     font-size: 0.9rem;
-    color: #cccccc;
+    color: #ffffff;
 }
 .kapitaal-groep, .rente-groep {
     display: flex;
