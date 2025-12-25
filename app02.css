@@ -34,18 +34,7 @@
     color: #000000;
     cursor: pointer;
 }
-.bereken-btn {
-    margin: 1rem 0 1rem 0;
-    font-family: var(--mono-font);
-    padding: .3rem 1.8rem;
-    font-size: 1.2rem;
-    border-radius: 4px;
-    border: none;
-    background-color: rgb(214, 214, 214);
-    background-color: var(--accent);
-    color: #000000;
-    cursor: pointer;
-}
+
 .sectie-header {
     font-size: 1.3rem;
     font-weight: bold;
@@ -72,7 +61,6 @@
     color: var(--accent);
 }
 
-
 .top-sectie {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
@@ -81,14 +69,20 @@
 }
 .datum-sectie {
     display: flex;
+    flex-direction: row;
+    gap: 4rem;
+    margin-bottom: 1rem;
+}
+.start-datum-sectie, .eind-datum-sectie {
+    display: flex;
     align-items: center;
     gap: 1rem;
 }
 .kies-datum {
     display: flex;
     flex-direction: row;
-    font-size: 1.3rem;
-    font-weight: bold;
+    /*font-size: 1.3rem;*/
+    /*font-weight: bold;*/
     color: var(--accent);
 }
 .datum-status {

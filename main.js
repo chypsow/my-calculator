@@ -1,6 +1,7 @@
 
-import { renderApp01, renderApp03, renderApp04 } from './lening.js';
-import { renderApp02 } from './calculator.js';
+import { buildApp01 } from './app01.js';
+import { buildApp02 } from './app02.js';
+import { buildApp03 } from './app03.js';
 
 export let activePage = localStorage.getItem('activePage') ? parseInt(localStorage.getItem('activePage')) : 0;
 export const $ = selector => document.querySelector(selector);
@@ -35,36 +36,46 @@ export const showApp = (index) => {
     }
 };
 
-const renderApp = {
-    0: () => renderApp01(),
-    1: () => renderApp02(),
-    2: () => renderApp03(),
-    3: () => renderApp04()
-};
 
-function makeSideBar() {
-    const sidebar = $('#sidebar');
-    const tabArray = ['AFLOSSINGSTABEL', 'LENING STATUS'];
-    sidebar.setAttribute('role', 'tablist');
+export function createHeader(tekst) {
+    //const tekst = $('#topHeader').querySelector('.active').textContent;
+    //console.log(tekst);
+    return el("header", { class: "no-print" }, [
+        el("h1", { text: tekst })
+    ]);
+}
+export function createBerekenButton() {
+    return el('button', { id: 'berekenBtn', class: 'bereken-btn', text: 'Bereken' });
+}
+
+function makeTopHeader() {
+    const header = $('#topHeader');
+    const tabArray = ['LENING CALCULATOR 1', 'LENING CALCULATOR 2', 'AFLOSSINGSTABEL'];
+    header.setAttribute('role', 'tablist');
     tabArray.forEach((tab, i) => {
         const hyperlink = document.createElement('a');
         hyperlink.href = '#';
         hyperlink.textContent = tab;
-        hyperlink.setAttribute('role', 'tab'); // Add tab role
+        hyperlink.setAttribute('role', 'tab');
         hyperlink.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
         if(i === activePage) hyperlink.classList.add('active');
         hyperlink.addEventListener('click', () => {
-            if (hyperlink.classList.contains("active")) return; // Prevent reloading the same tab
-            const activeLink = sidebar.querySelector('.active');
+            if (hyperlink.classList.contains("active")) return;
+            const activeLink = header.querySelector('.active');
+            /*if (activeLink.textContent === tabArray[0] && $('#startDatum').value === '') {
+                alert('Gelieve eerst een startdatum in te vullen in aflossingstabel sectie.');
+                return;
+            }*/
             activeLink.classList.remove("active");
             activeLink.setAttribute('aria-selected', 'false');
             hyperlink.classList.add("active");
             hyperlink.setAttribute('aria-selected', 'true');
             activePage = i;
             localStorage.setItem('activePage', activePage);
-            renderApp[activePage]();
+            showApp(activePage + 1);
+            createHeader();
         });
-        sidebar.appendChild(hyperlink);
+        header.appendChild(hyperlink);
     });
 };
 
@@ -85,7 +96,10 @@ function makeSideBar() {
 
 /* Initialize */
 document.addEventListener("DOMContentLoaded", () => {
-    makeSideBar();
-    renderApp[activePage]();
+    makeTopHeader();
+    buildApp01();
+    buildApp02();
+    showApp(activePage + 1);
+    //renderApps();
 });
 
