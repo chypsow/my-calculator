@@ -60,7 +60,7 @@ function createCalculator() {
 
 function createOverzicht() {
     return el("div", { class: "overzicht" }, [
-        el('div', { class: 'overzicht-header', html: `<h2>Overzicht Lening Gegevens</h2><span> Vandaag: ${new Date().toLocaleDateString('nl-BE')}</span>` }),
+        el('div', { class: 'overzicht-header', html: `<h2>Lening Overzicht</h2><span> Vandaag: ${new Date().toLocaleDateString('nl-BE')}</span>` }),
         el('div', { class: 'overzicht-inhoud' }, [
             el("div", { html: `
                 <p> Lening bedrag:
