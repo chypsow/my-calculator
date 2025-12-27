@@ -131,7 +131,7 @@ export function preparePrintOverview() {
     li("Totaal interesten: " + ($("#interesten-1").textContent || "-"));
     li("Periode: " + (inputs.periode || "-") + " maanden");
     li("Startdatum: " + fmtDate(inputs.startDate));
-    li("Einddatum: " + ($('#endDatumDisplay').textContent || "-"));
+    li("Einddatum: " + ($('#eindDatumDisplay').textContent || "-"));
 
     $("#leningOverzicht").hidden = false;
     $("#aflossingBtn").style.visibility = "visible";

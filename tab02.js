@@ -1,5 +1,5 @@
 import { $, el, formatLocalDate, createHeader, fmtCurrency, $all } from './main.js';
-import { parseInputs, computeRemaining, updateSummary } from './tab01.js';
+import { parseInputs, computeRemaining, updateSummary, hasMonthYearChanged } from './tab01.js';
 
 export function buildtab02() {
     $('#tab02').append(
@@ -7,31 +7,14 @@ export function buildtab02() {
         createCalculator()
     );
 
-    const startDateInput = $('#startdatum-status');
-    startDateInput.addEventListener('change', () => {
-        const currentDate = startDateInput.valueAsDate;
-        if (currentDate) {
-            const prevDateStr = startDateInput.getAttribute("data-prev-date");
-            const newDateStr = formatLocalDate(currentDate);
-            if (prevDateStr && prevDateStr.slice(0,7) === newDateStr.slice(0,7)) return;
-            startDateInput.setAttribute("data-prev-date", newDateStr);
-        }
-        $all('.output-tab02').forEach(el => el.textContent = '');
+    $('#startdatum-status').addEventListener('change', function() {
+        if (hasMonthYearChanged(this)) $all('.output-tab02').forEach(el => el.textContent = '');
     });
 
-    const endDateInput = $('#einddatum-status');
-    endDateInput.addEventListener('change', () => {
-        const currentDate = endDateInput.valueAsDate;
-        if (currentDate) {
-            const prevDateStr = endDateInput.getAttribute("data-prev-date");
-            const newDateStr = formatLocalDate(currentDate);
-            //console.log('endDateInput change - newDateStr:', newDateStr);
-            //console.log('endDateInput change - prevDateStr:', prevDateStr);
-            if (prevDateStr && prevDateStr.slice(0,7) === newDateStr.slice(0,7)) return;
-            endDateInput.setAttribute("data-prev-date", newDateStr);
-        }
-        $all('.output-tab02').forEach(el => el.textContent = '');
+    $('#einddatum-status').addEventListener('change', function() {
+        if (hasMonthYearChanged(this)) $all('.output-tab02').forEach(el => el.textContent = '');
     });
+
     $('#berekenBtn2').addEventListener('click', calculteTotals);
 }
 
@@ -71,7 +54,9 @@ function calculteTotals() {
    
     updateSummary();
     // deduct one month from first date to include correct month in calculation
-    if(firstDate > startDate) firstDate.setMonth(firstDate.getMonth() - 1);
+    if(firstDate.getMonth() > startDate.getMonth() || firstDate.getFullYear() > startDate.getFullYear()) {
+        firstDate.setMonth(firstDate.getMonth() - 1);
+    }
     const remainingAtFirstDate = computeRemaining(bedrag, jkp, periode, type, startDate, firstDate);
     const remainingAtLastDate = computeRemaining(bedrag, jkp, periode, type, startDate, lastDate);
     const capitalPaid = remainingAtFirstDate.capital - remainingAtLastDate.capital;
@@ -116,7 +101,7 @@ function createOverzicht() {
                     <span id="startDatumDisplay" class="output-tab01"></span>
                 </p>
                 <p> Einddatum lening:
-                    <span id="endDatumDisplay" class="output-tab01"></span>
+                    <span id="eindDatumDisplay" class="output-tab01"></span>
                 </p>
                 <p> Lening periode:
                     <span id="periodeJaar-2" class="output-tab01"></span>

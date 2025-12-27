@@ -32,16 +32,6 @@ export const  el = (tag, options = {}, children = []) => {
     children.forEach(child => element.appendChild(child));
     return element;
 };
-export const renderTab = (index) => {
-    for (let i = 1; i <= 4; i++) {
-        if (i !== index) {
-            $(`#tab0${i}`).style.display = "none";
-        } else {
-            $(`#tab0${i}`).style.display = "block";
-            if(i === 3) preparePrintOverview();
-        }   
-    }
-};
 
 export function createHeader(tekst) {
     return el("header", { class: "no-print" }, [
@@ -70,11 +60,22 @@ function makeTopHeader() {
             activePage = i;
             localStorage.setItem('activePage', activePage);
             renderTab(activePage + 1);
-            //createHeader();
         });
         header.appendChild(hyperlink);
     });
 };
+
+export function renderTab(tabNumber) {
+    const tabs = [$('div#tab01'), $('div#tab02'), $('div#tab03')];
+    tabs.forEach((tab, index) => {
+        if (index === tabNumber - 1) {
+            tab.style.display = 'block';
+            if(tabNumber === 3) preparePrintOverview();
+        } else {
+            tab.style.display = 'none';
+        }
+    });
+}
 
 function makeCircleContainer() {
     const container = $(".circles-wrapper");

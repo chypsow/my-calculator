@@ -15,8 +15,9 @@ export function buildtab01() {
             const startDate = $("#startDatum").valueAsDate;
             if (startDate) {
                 const endDate = new Date(startDate.getFullYear(), startDate.getMonth() + parseInt(inp.value || "0", 10), startDate.getDate());
-                $("#eindDatum").textContent = `Einddatum: ${fmtDate(endDate)}`;
-                $("#eindDatum").classList.remove("eind-datum-hidden");
+                $("#eindDatum").textContent = fmtDate(endDate);
+                $("#eindDatum").setAttribute("data-prev-date", fmtDate(endDate));
+                $("#eindDatum-container").classList.remove("eind-datum-hidden");
             }
         }
         // Skip resetOutputs if startDatum changed but month/year didn't
@@ -28,59 +29,67 @@ export function buildtab01() {
     }));
 
     $("#renteType").addEventListener("change", () => {
-        updateSummary();
+        resetOutputs();
     });
 
     $("#startDatum").addEventListener("change", () => {
         const startDate = $("#startDatum").valueAsDate;
         if (startDate) {
+            $("#eindDatum-container").classList.remove("eind-datum-hidden");
             const periode = parseInt($("#periode").value || "0", 10);
             const endDate = new Date(startDate.getFullYear(), startDate.getMonth() + periode, startDate.getDate());
-            const newEndDateStr = fmtDate(endDate);
-            const day = startDate.getDate();
-            let currentEndDateStr = $("#eindDatum").textContent.replace("Einddatum: ", "");
-            // convert currentEndDateStr to Date object to adjust day
-            if (currentEndDateStr) {
-                const parts = currentEndDateStr.split('/');
-                if (parts.length === 3) {
-                    const currentEndDate = new Date(parts[2], parts[1] - 1, day);
-                    currentEndDateStr = fmtDate(currentEndDate);
-                }
-            }
-            // Return if month and year haven't changed
-            if (newEndDateStr === currentEndDateStr) {
-                // handle eindDatum update
-                $("#eindDatum").textContent = `Einddatum: ${newEndDateStr}`;
+            const newEndDateStr = formatLocalDate(endDate);
+            $("#eindDatum").textContent = fmtDate(endDate);
+            if (!hasMonthYearChanged($("#eindDatum"))) {
+                $("#eindDatum").setAttribute("data-prev-date", newEndDateStr);
+                $("#startDatumDisplay").textContent = fmtDate(startDate);
+                $("#eindDatumDisplay").textContent = fmtDate(endDate);
                 return;
             }
-            
-            $("#eindDatum").textContent = `Einddatum: ${newEndDateStr}`;
-            $("#eindDatum").classList.remove("eind-datum-hidden");
-            resetOutputs();
+            $("#eindDatum").setAttribute("data-prev-date", newEndDateStr);
+            $("#startDatumDisplay").textContent = fmtDate(startDate);
+            $("#eindDatumDisplay").textContent = fmtDate(endDate);
         } else {
-            $("#eindDatum").classList.add("eind-datum-hidden");
-            resetOutputs();
+            $("#eindDatum-container").classList.add("eind-datum-hidden");
+           
         }
+        resetOutputs();
     });
 
-    $("#currentDate").addEventListener("change", () => {
-        // make the same as startDatum change
-        const currentDate = $("#currentDate").valueAsDate;
-        if (currentDate) {
-            // check if month/year changed
-            const prevDateStr = $("#currentDate").getAttribute("data-prev-date");
-            const newDateStr = formatLocalDate(currentDate);
-            console.log('newDateStr:', newDateStr);
-            console.log('prevDateStr:', prevDateStr);
-            if (prevDateStr && prevDateStr.slice(0,7) === newDateStr.slice(0,7)) return;
-            $("#currentDate").setAttribute("data-prev-date", newDateStr);
-        }
-        resetStatusOutputs();
+    $("#currentDate").addEventListener("change", function() {
+        if (hasMonthYearChanged(this)) resetStatusOutputs();
     });
 
     $("#berekenBtn1").addEventListener("click", updateSummary);
     $("#importBtn").addEventListener("click", importData);
     $("#exportBtn").addEventListener("click", exportData);
+}
+//make function to check if date changed month/year only
+export function hasMonthYearChanged(element) {
+    let currentDate;
+    let prevDateStr;
+    let newDateStr;
+
+    if (element instanceof HTMLInputElement) {
+        currentDate = element.valueAsDate;
+        if (currentDate) {
+            prevDateStr = element.getAttribute("data-prev-date");
+            newDateStr = formatLocalDate(currentDate);
+            element.setAttribute("data-prev-date", newDateStr);
+        }
+    } else if (element instanceof HTMLSpanElement) {
+        const rawDateStr = element.textContent;
+        //console.log('rawDateStr:', rawDateStr);
+        const [dag, maand, jaar] = rawDateStr.split('/');
+        //console.log('dag:', dag, 'maand:', maand, 'jaar:', jaar);
+        newDateStr = `${jaar}-${maand.padStart(2,'0')}-${dag.padStart(2,'0')}`;
+        prevDateStr = element.getAttribute("data-prev-date");
+    }
+
+    if (prevDateStr && newDateStr && prevDateStr.slice(0, 7) === newDateStr.slice(0, 7)) {
+        return false;
+    }
+    return true;
 }
 
 // Create Elements
@@ -115,12 +124,12 @@ function createMainSection() {
 }
 
 function createInputFieldset() {
-    function createBedragInput() {
+    const bedragInput = () => {
         return el("label", {
             html: `Te lenen bedrag (EUR): <input type="text" id="teLenenBedrag" class="invoer">`
         });
     };
-    function createRenteInput() {
+    const renteInput = () => {
         return el("div", { class: "label-select", html: `
             <label>
                 Jaarlijkse rentevoet (%): <input type="text" id="jkp" class="invoer">
@@ -131,29 +140,26 @@ function createInputFieldset() {
             </select>
         `});
     };
-    function createPeriodeInput() {
+    const periodeInput = () => {
         return el("label", {
             html: `Lening periode (maand): <input type="text" id="periode" class="invoer">`
         });
     };
-    function createtDatums() {
+    const datums = () => {
         return el("div", { class: "datums" }, [
             el("label", {
                 html: `Startdatum:&nbsp;<input type="date" id="startDatum" class="invoer">`
             }),
-            el("span", {
-                id: "eindDatum",
-                class: "eind-datum-hidden",
-            })
-        ]);
+            el("p", { id:"eindDatum-container", text: "Einddatum: ", class: "eind-datum-hidden" }, [el("span", { id: "eindDatum" })])
+        ])
     };
     return el("div", { class: "input-fields card-light" }, [
         el("div", { class: "header-row-inputs", html: `<h2>In te vullen :</h2><span> Vandaag: ${new Date().toLocaleDateString('nl-BE')}</span>` }),
         el("div", { class: "form-inhoud" }, [
-            createBedragInput(),
-            createRenteInput(),
-            createPeriodeInput(),
-            createtDatums()
+            bedragInput(),
+            renteInput(),
+            periodeInput(),
+            datums(),
         ])
     ]);
 }
@@ -270,7 +276,7 @@ export function updateSummary() {
     $('#rente-2').textContent = fmtDecimal(4).format(i * 100) + " %";
     $('#interesten-2').textContent = fmtCurrency.format((betaling * periode - bedrag));
     $('#startDatumDisplay').textContent = fmtDate(startDate);
-    $('#endDatumDisplay').textContent = fmtDate(endDate);
+    $('#eindDatumDisplay').textContent = fmtDate(endDate);
     $('#periodeJaar-2').textContent = $("#periodeJaar-1").textContent;
     $('#resterendeLooptijd-2').textContent = $('#resterendeLooptijd-1').textContent;
 }
@@ -318,8 +324,9 @@ export function parseInputs() {
 function resetOutputs() {
     $all(".output-tab01").forEach(o => o.textContent = "");
     resetStatusOutputs();
-    //
-    $all(".output-tab01").forEach(o => o.textContent = "");
+    $all('.output-tab02').forEach(el => el.textContent = '');
+    
+    // Hide table and print button
     $("#afdrukken").style.visibility = "hidden";
     $("#aflossingstabel").hidden = true;
     $("#aflossingBtn").style.visibility = "hidden";
@@ -362,8 +369,9 @@ function importData() {
             if (data.startDatum) {
                 const startDate = new Date(data.startDatum);
                 const endDate = new Date(startDate.getFullYear(), startDate.getMonth() + parseInt(data.periode || "0", 10), startDate.getDate());
-                $("#eindDatum").textContent = `Einddatum: ${fmtDate(endDate)}`;
-                $("#eindDatum").classList.remove("eind-datum-hidden");
+                $("#eindDatum").textContent = fmtDate(endDate);
+                $("#eindDatum").setAttribute("data-prev-date", formatLocalDate(endDate));
+                $("#eindDatum-container").classList.remove("eind-datum-hidden");
             }
             resetOutputs();
         };
@@ -384,7 +392,7 @@ function exportData() {
         jkp: inputs.jkp,
         periode: inputs.periode,
         renteType: inputs.renteType,
-        startDatum: fmtDate(inputs.startDate)
+        startDatum: formatLocalDate(inputs.startDate)
     };
     const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(data, null, 2));
     const downloadAnchorNode = document.createElement('a');
