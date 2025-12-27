@@ -365,13 +365,17 @@ function importData() {
             $("#jkp").value = data.jkp ? fmtDecimal(4).format(data.jkp) : "";
             $("#periode").value = data.periode || "";
             $("#renteType").value = data.renteType || "1";
-            $("#startDatum").value = data.startDatum || "";
             if (data.startDatum) {
-                const startDate = new Date(data.startDatum);
+                const dateStr = data.startDatum.includes('-') ? data.startDatum : data.startDatum.split('/').reverse().join('-');
+                $("#startDatum").value = dateStr;
+                const startDate = new Date(dateStr);
                 const endDate = new Date(startDate.getFullYear(), startDate.getMonth() + parseInt(data.periode || "0", 10), startDate.getDate());
                 $("#eindDatum").textContent = fmtDate(endDate);
                 $("#eindDatum").setAttribute("data-prev-date", formatLocalDate(endDate));
                 $("#eindDatum-container").classList.remove("eind-datum-hidden");
+            } else {
+                $("#startDatum").value = "";
+                $("#eindDatum-container").classList.add("eind-datum-hidden");
             }
             resetOutputs();
         };
