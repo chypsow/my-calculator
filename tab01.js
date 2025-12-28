@@ -154,7 +154,7 @@ function createInputFieldset() {
         ])
     };
     return el("div", { class: "input-fields card-light" }, [
-        el("div", { class: "header-row-inputs", html: `<h2>In te vullen :</h2><span> Vandaag: ${new Date().toLocaleDateString('nl-BE')}</span>` }),
+        el("div", { class: "header-row-inputs", html: `<h2>In te vullen :</h2><span> Vandaag: ${ fmtDate(new Date()) }</span>` }),
         el("div", { class: "form-inhoud" }, [
             bedragInput(),
             renteInput(),

@@ -64,6 +64,7 @@ h1{
     flex-direction: row;
     width: 100%;
     background-color: #000000;
+    background: rgb(52, 61, 92);
     z-index: 1000;
 }
 .top-header a {
@@ -78,7 +79,7 @@ h1{
     white-space: nowrap;
 }
 .top-header a:hover {
-    background-color: #424242;
+    /*background-color: #424242;*/
     color: #e2e2e2;
 }
 .top-header a.active {
