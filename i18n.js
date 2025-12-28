@@ -20,7 +20,7 @@ export const translations = {
     "label.start-date": "Start date:",
     "label.end-date": "End date:",
     "label.bank-name": "Bank name:",
-    "placeholder.bank-name": "bank...",
+    "placeholder.bank-name": "bank name...",
     "label.today": "Today:",
 
     // Tab01 - Section titles
@@ -93,14 +93,14 @@ export const translations = {
 
   fr: {
     // Headers & sections
-    "tab.calculator1": "CALCULATEUR DE PRÊT - 1",
-    "tab.calculator2": "CALCULATEUR DE PRÊT - 2",
+    "tab.calculator1": "SIMULATEUR DE PRÊT - 1",
+    "tab.calculator2": "SIMULATEUR DE PRÊT - 2",
     "tab.amortization": "TABLEAU D'AMORTISSEMENT",
     "header.loan-overview": "PRÊT - APERÇU ET STATUT",
     "header.loan-status": "PRÊT - STATUT ENTRE 2 DATES",
     "header.amortization": "PRÊT - TABLEAU D'AMORTISSEMENT",
-    "header.calculator2": "CALCULATRICE 2",
-    "header.calculator3": "CALCULATRICE 3",
+    "header.calculator1": "SIMULATEUR 1",
+    "header.calculator2": "SIMULATEUR 2",
 
     // Tab01 - Input labels
     "label.loan-amount": "Montant du prêt (EUR):",
@@ -127,9 +127,9 @@ export const translations = {
     "output.loan-period": "Durée du prêt:",
     "output.remaining-duration": "Durée restante:",
     "output.outstanding-capital": "Capital impayé:",
-    "output.remaining-interest": "Intérêt restant:",
+    "output.remaining-interest": "Intérêts restants:",
     "output.paid-capital": "Capital payé:",
-    "output.paid-interest": "Intérêt payé:",
+    "output.paid-interest": "Intérêts payés:",
     "output.total-paid": "Total payé:",
 
     // Tab02 - Labels
@@ -142,7 +142,7 @@ export const translations = {
 
     // Tab02 - Output
     "output.paid-capital": "Capital payé:",
-    "output.paid-interest": "Intérêt payé:",
+    "output.paid-interest": "Intérêts payés:",
     "output.total-paid": "Total payé:",
 
     // Tab03 - Table headers
@@ -151,11 +151,11 @@ export const translations = {
     "table.begin-capital": "Capital initial",
     "table.total-payment": "Paiement total",
     "table.principal": "Principal",
-    "table.interest": "Intérêt",
+    "table.interest": "Intérêts",
     "table.outstanding": "Capital impayé",
-    "table.cumulative-interest": "Intérêt cumulé",
+    "table.cumulative-interest": "Intérêts cumulés",
     "table.cumulative-principal": "Principal cumulé",
-    "table.cumulative-payment": "Paiement cumulé",
+    "table.cumulative-payment": "Paiements cumulés",
 
     // Buttons
     "button.import": "Importer",
@@ -172,11 +172,11 @@ export const translations = {
     "message.no-data-export": "Aucune donnée valide à exporter.",
 
     // Print section
-    "print.loan-amount": "Montant du prêt:",
+    "print.loan-amount": "Montant emprunté:",
     "print.annual-rate": "Taux annuel:",
     "print.monthly-rate": "Taux d'intérêt mensuel:",
     "print.monthly-payment": "Paiement mensuel:",
-    "print.total-interest": "Intérêt total:",
+    "print.total-interest": "Intérêts total:",
     "print.period": "Durée:",
     "print.start-date": "Date de début:",
     "print.end-date": "Date de fin:",

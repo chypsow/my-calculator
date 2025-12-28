@@ -121,19 +121,32 @@ export function preparePrintOverview() {
     $("#leningOverzicht").innerHTML = "";
     
     updateSummary();
-    const li = (text) => {
-        const el = document.createElement("li");
-        el.textContent = text;
-        $("#leningOverzicht").appendChild(el);
+    const li = (text, amount, sep = " ") => {
+        const label = document.createElement("li");
+        const el = document.createElement("span");
+        el.textContent = t(text);
+        el.setAttribute("data-i18n", text);
+        label.appendChild(el);
+        
+        // Add separator
+        const sepEl = document.createElement("span");
+        sepEl.textContent = sep;
+        label.appendChild(sepEl);
+        
+        const span = document.createElement("span");
+        span.textContent = amount;
+        label.appendChild(span);
+        $("#leningOverzicht").appendChild(label);
     };
-    li(t('print.loan-amount') + " " + fmtCurrency.format(inputs.bedrag));
-    li(t('print.annual-rate') + " " + (inputs.jkp.toString().replace('.', ',') || "-") + " %");
-    li(t('print.monthly-rate') + " " + ($("#rente-1").textContent || "-"));
-    li(t('print.monthly-payment') + " " + ($("#pmt-1").textContent || "-"));
-    li(t('print.total-interest') + " " + ($("#interesten-1").textContent || "-"));
-    li(t('print.period') + " " + (inputs.periode || "-") + " " + t('label.months'));
-    li(t('print.start-date') + " " + fmtDate(inputs.startDate));
-    li(t('print.end-date') + " " + ($('#eindDatumDisplay').textContent || "-"));
+    
+    li('print.loan-amount', fmtCurrency.format(inputs.bedrag));
+    li('print.annual-rate', (inputs.jkp.toString().replace('.', ',') || "-") + " %");
+    li('print.monthly-rate', ($("#rente-1").textContent || "-"));
+    li('print.monthly-payment', ($("#pmt-1").textContent || "-"));
+    li('print.total-interest', ($("#interesten-1").textContent || "-"));
+    li('print.period', (inputs.periode || "-") + " " + t('label.months'));
+    li('print.start-date', fmtDate(inputs.startDate));
+    li('print.end-date', ($('#eindDatumDisplay').textContent || "-"));
 
     $("#leningOverzicht").hidden = false;
     $("#aflossingBtn").style.visibility = "visible";
