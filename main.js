@@ -2,7 +2,7 @@
 import { createTab01 } from './tab01.js';
 import { createTab02 } from './tab02.js';
 import { createTab03, preparePrintOverview } from './tab03.js';
-import { initLangSwitcher, t } from './i18n.js';
+import { applyLang, currentLang, t } from './i18n.js';
 
 export let activePage = localStorage.getItem('activePage') ? parseInt(localStorage.getItem('activePage')) : 0;
 export const $ = selector => document.querySelector(selector);
@@ -82,6 +82,21 @@ function createTopHeader() {
     });
 };
 
+function createLangSwitcher () {
+    const container = $('#lang-switch');
+    const languages = [{ code: 'en', label: 'EN' }, { code: 'fr', label: 'FR' }, { code: 'nl', label: 'NL' }];
+    languages.forEach(lang => {
+        const button = el('button', { class: 'lang-btn', 'data-lang': lang.code, text: lang.label });
+        button.addEventListener('click', () => {
+            const currentLang = localStorage.getItem('language') || 'en';
+            if (currentLang === lang.code) return;
+            localStorage.setItem('language', lang.code);
+            applyLang(lang.code);
+        });
+        container.appendChild(button);
+    });
+}
+
 export function renderTab(tabNumber) {
     const tabs = [$('div#tab01'), $('div#tab02'), $('div#tab03')];
     tabs.forEach((tab, index) => {
@@ -96,7 +111,8 @@ export function renderTab(tabNumber) {
 
 /* Initialize */
 document.addEventListener("DOMContentLoaded", () => {
-    initLangSwitcher();
+    createLangSwitcher();
+    applyLang(currentLang);
     createCircles();
     createTopHeader();
     createTab01();

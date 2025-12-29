@@ -269,7 +269,7 @@ export const translations = {
 };
 
 // Current language
-let currentLang = localStorage.getItem('lang') || 'en';
+export let currentLang = localStorage.getItem('lang') || 'en';
 
 // Get translation by key
 export function t(key) {
@@ -352,8 +352,8 @@ export function applyLang(lang) {
 
 }
 
-// Initialize language switching buttons
-export function initLangSwitcher() {
+// Initialize language switching buttons - uitgeschakeld
+/*export function initLangSwitcher() {
   const langSwitch = document.getElementById('lang-switch');
   if (!langSwitch) return;
 
@@ -367,4 +367,4 @@ export function initLangSwitcher() {
 
   // Set initial language
   applyLang(currentLang);
-}
+}*/

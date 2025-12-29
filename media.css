@@ -38,7 +38,7 @@
     .table-header th, .table-inhoud td{ font-size:.65rem; }
     /*.circles-wrapper{ width:100px; height:100px; }*/
     .top-header {flex-direction: column; gap:0; }
-    .top-header a { text-align: center; }
+    .top-header a { text-align: center; padding: .75rem; }
     /*.top-header a.active {
     background-color: #424242;
     color: #ffffff;*/
