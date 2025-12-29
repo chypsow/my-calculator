@@ -58,7 +58,7 @@ function createCircles() {
 };
 function createTopHeader() {
     const header = $('#topHeader');
-    const tabLabels = [t('tab.calculator1'), t('tab.calculator2'), t('tab.amortization')];
+    const tabLabels = [t('tab.simulator'), t('tab.calculator'), t('tab.amortization')];
     header.setAttribute('role', 'tablist');
     tabLabels.forEach((tab, i) => {
         const hyperlink = document.createElement('a');
@@ -104,13 +104,13 @@ document.addEventListener("DOMContentLoaded", () => {
     createTab03();
     renderTab(activePage + 1);
     
-    // Listen for language changes - applyLang() updates all data-i18n elements
-    window.addEventListener('languageChanged', (e) => {
+    // Listen for language changes - applyLang() updates all data-i18n elements - uitgeschakeld
+    /*window.addEventListener('languageChanged', (e) => {
         // Update top header tab labels
         const tabs = $('#topHeader').querySelectorAll('a');
         const tabLabels = [t('tab.calculator1'), t('tab.calculator2'), t('tab.amortization')];
         tabs.forEach((tab, i) => {
             tab.textContent = tabLabels[i];
         });
-    });
+    });*/
 });

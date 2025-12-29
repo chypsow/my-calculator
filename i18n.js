@@ -2,21 +2,19 @@
 export const translations = {
   en: {
     // Headers & sections
-    "tab.calculator1": "LOAN CALCULATOR - 1",
-    "tab.calculator2": "LOAN CALCULATOR - 2",
+    "tab.simulator": "LOAN SIMULATOR",
+    "tab.calculator": "LOAN CALCULATOR",
     "tab.amortization": "AMORTIZATION TABLE",
     "header.loan-overview": "LOAN - OVERVIEW AND STATUS",
     "header.loan-status": "LOAN - STATUS BETWEEN 2 DATES",
     "header.amortization": "LOAN - AMORTIZATION TABLE",
-    "header.calculator2": "CALCULATOR 2",
-    "header.calculator3": "CALCULATOR 3",
 
     // Tab01 - Input labels
     "label.loan-amount": "Loan amount (EUR):",
     "label.interest-rate": "Annual interest rate (%):",
     "label.interest-type.effective": "Effective",
     "label.interest-type.nominal": "Nominal",
-    "label.period-months": "Loan period (months):",
+    "label.period-months": "Loan period:",
     "label.start-date": "Start date:",
     "label.end-date": "End date:",
     "label.bank-name": "Bank name:",
@@ -32,26 +30,26 @@ export const translations = {
     "output.loan-amount": "Loan amount:",
     "output.monthly-payment": "Monthly payment:",
     "output.monthly-rate": "Monthly interest rate:",
-    "output.total-interest": "Total interest to pay:",
+    "output.total-interest": "Total interests to pay:",
     "output.loan-period": "Loan period:",
     "output.remaining-duration": "Remaining duration:",
     "output.outstanding-capital": "Outstanding capital:",
-    "output.remaining-interest": "Remaining interest:",
+    "output.remaining-interest": "Remaining interests:",
     "output.paid-capital": "Paid capital:",
-    "output.paid-interest": "Paid interest:",
+    "output.paid-interest": "Paid interests:",
     "output.total-paid": "Total paid:",
 
     // Tab02 - Labels
-    "label.date1": "Date 1:",
-    "label.date2": "Date 2:",
+    "label.date1": "First date",
+    "label.date2": "Second date",
     "label.years": "years",
     "label.months": "months",
-    "section.explanation": "Calculate the paid capital and paid interest between two dates based on the entered loan data.",
-    "section.explanation-ref": "The calculation is based on the entered loan data in the Loan Calculator 1 section.",
+    "section.explanation": "Calculate the paid capital and paid interests between two dates based on the entered loan data.",
+    "section.explanation-ref": "The calculation is based on the entered loan data in the LOAN SIMULATOR section.",
 
     // Tab02 - Output
     "output.paid-capital": "Paid capital:",
-    "output.paid-interest": "Paid interest:",
+    "output.paid-interest": "Paid interests:",
     "output.total-paid": "Total paid:",
 
     // Tab03 - Table headers
@@ -60,11 +58,11 @@ export const translations = {
     "table.begin-capital": "Begin capital",
     "table.total-payment": "Total payment",
     "table.principal": "Principal",
-    "table.interest": "Interest",
+    "table.interest": "Interests",
     "table.outstanding": "Outstanding capital",
-    "table.cumulative-interest": "Cumulative interest",
+    "table.cumulative-interest": "Cumulative interests",
     "table.cumulative-principal": "Cumulative principal",
-    "table.cumulative-payment": "Cumulative payment",
+    "table.cumulative-payment": "Cumulative payments",
 
     // Buttons
     "button.import": "Import",
@@ -85,7 +83,7 @@ export const translations = {
     "print.annual-rate": "Annual rate:",
     "print.monthly-rate": "Monthly interest rate:",
     "print.monthly-payment": "Monthly payment:",
-    "print.total-interest": "Total interest:",
+    "print.total-interest": "Total interests:",
     "print.period": "Period:",
     "print.start-date": "Start date:",
     "print.end-date": "End date:",
@@ -93,21 +91,19 @@ export const translations = {
 
   fr: {
     // Headers & sections
-    "tab.calculator1": "SIMULATEUR DE PRÊT - 1",
-    "tab.calculator2": "SIMULATEUR DE PRÊT - 2",
+    "tab.simulator": "SIMULATEUR DE PRÊT",
+    "tab.calculator": "CALCULATEUR DE PRÊT",
     "tab.amortization": "TABLEAU D'AMORTISSEMENT",
     "header.loan-overview": "PRÊT - APERÇU ET STATUT",
     "header.loan-status": "PRÊT - STATUT ENTRE 2 DATES",
     "header.amortization": "PRÊT - TABLEAU D'AMORTISSEMENT",
-    "header.calculator1": "SIMULATEUR 1",
-    "header.calculator2": "SIMULATEUR 2",
 
     // Tab01 - Input labels
     "label.loan-amount": "Montant du prêt (EUR):",
     "label.interest-rate": "Taux d'intérêt annuel (%):",
     "label.interest-type.effective": "Effectif",
     "label.interest-type.nominal": "Nominal",
-    "label.period-months": "Durée du prêt (mois):",
+    "label.period-months": "Durée du prêt:",
     "label.start-date": "Date de début:",
     "label.end-date": "Date de fin:",
     "label.bank-name": "Nom de la banque:",
@@ -133,12 +129,12 @@ export const translations = {
     "output.total-paid": "Total payé:",
 
     // Tab02 - Labels
-    "label.date1": "Date 1:",
-    "label.date2": "Date 2:",
+    "label.date1": "Première date:",
+    "label.date2": "Deuxième date:",
     "label.years": "ans",
     "label.months": "mois",
-    "section.explanation": "Calculer le capital payé et l'intérêts payés entre deux dates en fonction des données de prêt entrées.",
-    "section.explanation-ref": "Le calcul est basé sur les données de prêt entrées dans la section Calculateur de prêt - 1.",
+    "section.explanation": "Calculer le capital payé et les intérêts payés entre deux dates en fonction des données de prêt entrées.",
+    "section.explanation-ref": "Le calcul est basé sur les données de prêt entrées dans la section SIMULATEUR DE PRÊT.",
 
     // Tab02 - Output
     "output.paid-capital": "Capital payé:",
@@ -176,7 +172,7 @@ export const translations = {
     "print.annual-rate": "Taux annuel:",
     "print.monthly-rate": "Taux d'intérêt mensuel:",
     "print.monthly-payment": "Paiement mensuel:",
-    "print.total-interest": "Intérêts total:",
+    "print.total-interest": "Intérêts totales:",
     "print.period": "Durée:",
     "print.start-date": "Date de début:",
     "print.end-date": "Date de fin:",
@@ -184,21 +180,19 @@ export const translations = {
 
   nl: {
     // Headers & sections
-    "tab.calculator1": "LENING CALCULATOR - 1",
-    "tab.calculator2": "LENING CALCULATOR - 2",
+    "tab.simulator": "LENING SIMULATOR",
+    "tab.calculator": "LENING CALCULATOR",
     "tab.amortization": "AFLOSSINGSTABEL",
     "header.loan-overview": "LENING - OVERZICHT EN STATUS",
     "header.loan-status": "LENING - STATUS TUSSEN 2 DATUMS",
     "header.amortization": "LENING - AFLOSSINGSTABEL",
-    "header.calculator2": "CALCULATOR 2",
-    "header.calculator3": "CALCULATOR 3",
 
     // Tab01 - Input labels
     "label.loan-amount": "Te lenen bedrag (EUR):",
     "label.interest-rate": "Jaarlijkse rentevoet (%):",
     "label.interest-type.effective": "Effectief",
     "label.interest-type.nominal": "Nominaal",
-    "label.period-months": "Lening periode (maand):",
+    "label.period-months": "Lening periode:",
     "label.start-date": "Startdatum:",
     "label.end-date": "Einddatum:",
     "label.bank-name": "Naam bank:",
@@ -224,12 +218,12 @@ export const translations = {
     "output.total-paid": "Totaal afbetaald:",
 
     // Tab02 - Labels
-    "label.date1": "Datum 1:",
-    "label.date2": "Datum 2:",
+    "label.date1": "Eerste datum:",
+    "label.date2": "Tweede datum:",
     "label.years": "jaar",
     "label.months": "maanden",
     "section.explanation": "Bereken het afbetaalde kapitaal en de betaalde rente tussen twee datums op basis van de ingevoerde leninggegevens.",
-    "section.explanation-ref": "De berekening is gebaseerd op de ingevoerde leninggegevens in de Lening Calculator 1 sectie.",
+    "section.explanation-ref": "De berekening is gebaseerd op de ingevoerde leninggegevens in de LENING SIMULATOR sectie.",
 
     // Tab02 - Output
     "output.paid-capital": "Afbetaald kapitaal:",
@@ -313,26 +307,40 @@ export function applyLang(lang) {
     el.placeholder = t(key);
   });
 
-  // Update all elements with data-i18n-value
-  document.querySelectorAll('[data-i18n-value]').forEach(el => {
+  // Update all elements with data-i18n-value - uitgeschakeld
+  /*document.querySelectorAll('[data-i18n-value]').forEach(el => {
     const key = el.getAttribute('data-i18n-value');
     el.value = t(key);
-  });
+  });*/
 
-  // Update option elements for selects
-  document.querySelectorAll('option[data-i18n]').forEach(el => {
+  // Update option elements for selects - uitgeschakeld
+  /*document.querySelectorAll('option[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
     el.textContent = t(key);
-  });
+  });*/
 
-  // Update button elements
-  document.querySelectorAll('button[data-i18n]').forEach(el => {
+  // Update button elements - uitgeschakeld
+  /*document.querySelectorAll('button[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
     el.textContent = t(key);
-  });
+  });*/
 
   // Update html lang attribute
   document.documentElement.lang = lang;
+
+  // Re-render tabs to apply translations to dynamically generated content
+  // This will be handled by main.js calling renderTabs()
+  //window.dispatchEvent(new CustomEvent('languageChanged', { detail: { lang } }));
+
+  // Update top header tab labels
+  const topHeader = document.getElementById('topHeader');
+  if (topHeader) {
+    const tabs = topHeader.querySelectorAll('a');
+    const tabLabels = [t('tab.simulator'), t('tab.calculator'), t('tab.amortization')];
+    tabs.forEach((tab, i) => {
+      tab.textContent = tabLabels[i];
+    });
+  }
 
   // Highlight active language button
   document.querySelectorAll('.lang-btn').forEach(btn => {
@@ -342,9 +350,6 @@ export function applyLang(lang) {
     }
   });
 
-  // Re-render tabs to apply translations to dynamically generated content
-  // This will be handled by main.js calling renderTabs()
-  window.dispatchEvent(new CustomEvent('languageChanged', { detail: { lang } }));
 }
 
 // Initialize language switching buttons
@@ -353,7 +358,8 @@ export function initLangSwitcher() {
   if (!langSwitch) return;
 
   langSwitch.addEventListener('click', (e) => {
-    const btn = e.target.closest('[data-lang]');
+    //const btn = e.target.closest('[data-lang]');
+    const btn = e.target;
     if (btn) {
       applyLang(btn.getAttribute('data-lang'));
     }
