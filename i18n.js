@@ -275,7 +275,7 @@ export const translations = {
 };
 
 // Current language
-export let currentLang = localStorage.getItem('lang') || 'en';
+let currentLang = localStorage.getItem('lang') || 'en';
 
 // Get translation by key
 export function t(key) {

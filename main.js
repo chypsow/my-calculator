@@ -2,7 +2,7 @@
 import { createTab01 } from './tab01.js';
 import { createTab02 } from './tab02.js';
 import { createTab03, preparePrintOverview } from './tab03.js';
-import { applyLang, currentLang, t } from './i18n.js';
+import { applyLang, t } from './i18n.js';
 
 export let activePage = localStorage.getItem('activePage') ? parseInt(localStorage.getItem('activePage')) : 0;
 export const $ = selector => document.querySelector(selector);
@@ -88,13 +88,17 @@ function createLangSwitcher () {
     languages.forEach(lang => {
         const button = el('button', { class: 'lang-btn', 'data-lang': lang.code, text: lang.label });
         button.addEventListener('click', () => {
-            const currentLang = localStorage.getItem('language') || 'en';
+            const currentLang = localStorage.getItem('lang') || 'en';
             if (currentLang === lang.code) return;
-            localStorage.setItem('language', lang.code);
+            localStorage.setItem('lang', lang.code);
             applyLang(lang.code);
         });
         container.appendChild(button);
     });
+    // Highlight active language button
+    const currentLang = localStorage.getItem('lang') || 'en';
+    const activeButton = container.querySelector(`button[data-lang="${currentLang}"]`);
+    if (activeButton) activeButton.classList.add('active');
 }
 
 export function renderTab(tabNumber) {
@@ -112,7 +116,6 @@ export function renderTab(tabNumber) {
 /* Initialize */
 document.addEventListener("DOMContentLoaded", () => {
     createLangSwitcher();
-    applyLang(currentLang);
     createCircles();
     createTopHeader();
     createTab01();
