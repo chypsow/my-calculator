@@ -2,7 +2,7 @@ import { $, el, formatLocalDate, createHeader, fmtCurrency, $all, fmtDate, t } f
 import { parseInputs, computeRemaining, updateSummary, hasMonthYearChanged } from './tab01.js';
 
 export function createTab02() {
-    $('#tab02').innerHTML = '';
+    //$('#tab02').innerHTML = '';
     $('#tab02').append(
         createHeader('header.loan-status'),
         createCalculator()
@@ -16,7 +16,7 @@ export function createTab02() {
         if (hasMonthYearChanged(this)) $all('.output-tab02').forEach(el => el.textContent = '');
     });
 
-    $('#berekenBtn2').addEventListener('click', calculteTotals);
+    $('#berekenBtn-2').addEventListener('click', calculteTotals);
 }
 
 function calculteTotals() {
@@ -69,7 +69,7 @@ function calculteTotals() {
 
 function createCalculator() {
     const createBerekenButton = () => {
-        return el('button', { id: 'berekenBtn2', class: 'bereken-btn', "data-i18n": "button.calculate", text: t('button.calculate') });
+        return el('button', { id: 'berekenBtn-2', class: 'accented-btn', "data-i18n": "button.calculate", text: t('button.calculate') });
     }
     return el('div', { class: 'calculator' }, [
         createOverzicht(),
@@ -85,30 +85,30 @@ function createOverzicht() {
         el('div', { class: 'overzicht-inhoud' }, [
             el("div", { html: `
                 <p> <span data-i18n="output.loan-amount">${t('output.loan-amount')}</span>
-                    <span id="bedrag-2" class="output-tab01"></span>
+                    <span id="bedrag-2" class="output-overview"></span>
                 </p>
                 <p> <span data-i18n="output.monthly-payment">${t('output.monthly-payment')}</span>
-                    <span id="pmt-2" class="output-tab01"></span>
+                    <span id="pmt-2" class="output-overview"></span>
                 </p>
                 <p> <span data-i18n="output.monthly-rate">${t('output.monthly-rate')}</span>
-                    <span id="rente-2" class="output-tab01"></span>
+                    <span id="rente-2" class="output-overview"></span>
                 </p>
                 <p> <span data-i18n="output.total-interest">${t('output.total-interest')}</span>
-                    <span id="interesten-2" class="output-tab01"></span>
+                    <span id="interesten-2" class="output-overview"></span>
                 </p>
             `}),
             el("div", { html: `
                 <p> <span data-i18n="label.start-date">${t('label.start-date')}</span>
-                    <span id="startDatumDisplay" class="output-tab01"></span>
+                    <span id="startDatumDisplay-2" class="output-overview"></span>
                 </p>
                 <p> <span data-i18n="label.end-date">${t('label.end-date')}</span>
-                    <span id="eindDatumDisplay" class="output-tab01"></span>
+                    <span id="eindDatumDisplay-2" class="output-overview"></span>
                 </p>
                 <p> <span data-i18n="output.loan-period">${t('output.loan-period')}</span>
-                    <span id="periodeJaar-2" class="output-tab01"></span>
+                    <span id="periodeJaar-2" class="output-overview"></span>
                 </p>
                 <p> <span data-i18n="output.remaining-duration">${t('output.remaining-duration')}</span>
-                    <span id="resterendeLooptijd-2" class="output-tab01"></span>
+                    <span id="resterendeLooptijd-2" class="output-overview"></span>
                 </p>
             `})
         ])

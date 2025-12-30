@@ -4,9 +4,11 @@ export const translations = {
     // Headers & sections
     "tab.simulator": "LOAN SIMULATOR",
     "tab.calculator": "LOAN CALCULATOR",
+    "tab.reports": "LOAN REPORTS",
     "tab.amortization": "AMORTIZATION TABLE",
     "header.loan-overview": "LOAN - OVERVIEW AND STATUS",
     "header.loan-status": "LOAN - STATUS BETWEEN 2 DATES",
+    "header.loan-reports": "LOAN - REPORTS",
     "header.amortization": "LOAN - AMORTIZATION TABLE",
 
     // Tab01 - Input labels
@@ -22,11 +24,14 @@ export const translations = {
     "label.bank-name": "Bank name:",
     "placeholder.bank-name": "bank name...",
     "label.today": "Today:",
+    "label.annual-report": "Annual Overview Report",
+    "label.detailed-report": "Detailed Report",
 
     // Tab01 - Section titles
     "section.input-fields": "Input Fields:",
     "section.loan-overview": "Loan Overview:",
     "section.loan-status-on": "Loan status on:",
+    "section.report-header": "Please select the type of report.",
 
     // Tab01 - Output labels
     "output.loan-amount": "Loan amount:",
@@ -70,6 +75,7 @@ export const translations = {
     "button.import": "Import",
     "button.export": "Export",
     "button.calculate": "Calculate",
+    "button.execute": "Execute",
     "button.amortization-table": "Amortization Table",
     "button.print": "Print",
     "button.today": "Today",
@@ -95,9 +101,11 @@ export const translations = {
     // Headers & sections
     "tab.simulator": "SIMULATEUR DE PRÊT",
     "tab.calculator": "CALCULATEUR DE PRÊT",
+    "tab.reports": "RAPPORTS DE PRÊT",
     "tab.amortization": "TABLEAU D'AMORTISSEMENT",
     "header.loan-overview": "PRÊT - APERÇU ET STATUT",
     "header.loan-status": "PRÊT - STATUT ENTRE 2 DATES",
+    "header.loan-reports": "PRÊT - RAPPORTS",
     "header.amortization": "PRÊT - TABLEAU D'AMORTISSEMENT",
 
     // Tab01 - Input labels
@@ -113,11 +121,14 @@ export const translations = {
     "label.bank-name": "Nom de la banque:",
     "placeholder.bank-name": "banque...",
     "label.today": "Aujourd'hui:",
+    "label.annual-report": "Rapport de synthèse annuel",
+    "label.detailed-report": "Rapport détaillé",
 
     // Tab01 - Section titles
     "section.input-fields": "À remplir:",
     "section.loan-overview": "Aperçu du prêt:",
     "section.loan-status-on": "Statut du prêt le:",
+    "section.report-header": "Veuillez sélectionner le type de rapport.",
 
     // Tab01 - Output labels
     "output.loan-amount": "Montant emprunté:",
@@ -161,6 +172,7 @@ export const translations = {
     "button.import": "Importer",
     "button.export": "Exporter",
     "button.calculate": "Calculer",
+    "button.execute": "Exécuter",
     "button.amortization-table": "Tableau d'amortissement",
     "button.print": "Imprimer",
     "button.today": "Aujourd'hui",
@@ -186,9 +198,11 @@ export const translations = {
     // Headers & sections
     "tab.simulator": "LENING SIMULATOR",
     "tab.calculator": "LENING CALCULATOR",
+    "tab.reports": "LENING RAPPORTEN",
     "tab.amortization": "AFLOSSINGSTABEL",
     "header.loan-overview": "LENING - OVERZICHT EN STATUS",
     "header.loan-status": "LENING - STATUS TUSSEN 2 DATUMS",
+    "header.loan-reports": "LENING - RAPPORTEN",
     "header.amortization": "LENING - AFLOSSINGSTABEL",
 
     // Tab01 - Input labels
@@ -204,11 +218,14 @@ export const translations = {
     "label.bank-name": "Naam bank:",
     "placeholder.bank-name": "Naam bank...",
     "label.today": "Vandaag:",
+    "label.annual-report": "Jaarlijks overzicht rapport",
+    "label.detailed-report": "Gedetailleerd rapport",
 
     // Tab01 - Section titles
     "section.input-fields": "In te vullen:",
     "section.loan-overview": "Overzicht lening:",
     "section.loan-status-on": "Lening status op:",
+    "section.report-header": "Gelieve het type rapport te selecteren.",
 
     // Tab01 - Output labels
     "output.loan-amount": "Lening bedrag:",
@@ -252,6 +269,7 @@ export const translations = {
     "button.import": "Importeren",
     "button.export": "Exporteren",
     "button.calculate": "Bereken",
+    "button.execute": "Uitvoeren",
     "button.amortization-table": "Aflossingstabel",
     "button.print": "Afdrukken",
     "button.today": "vandaag",

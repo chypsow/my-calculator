@@ -1,7 +1,8 @@
 
 import { createTab01 } from './tab01.js';
 import { createTab02 } from './tab02.js';
-import { createTab03, preparePrintOverview } from './tab03.js';
+import { createTab03 } from './tab03.js';
+import { createTab04, preparePrintOverview } from './tab04.js';
 import { translations } from './i18n.js';
 
 // Current language
@@ -60,7 +61,7 @@ function createCircles() {
 };
 function createTopHeader() {
     const header = $('#topHeader');
-    const tabLabels = {'tab.simulator': t('tab.simulator'), 'tab.calculator': t('tab.calculator'), 'tab.amortization': t('tab.amortization')};
+    const tabLabels = {'tab.simulator': t('tab.simulator'), 'tab.calculator': t('tab.calculator'), 'tab.reports': t('tab.reports'), 'tab.amortization': t('tab.amortization')};
     header.setAttribute('role', 'tablist');
     Object.entries(tabLabels).forEach(([key, label], index) => {
         const tab = el('a', { href: '#', 'data-i18n': key, text: label, role: 'tab', 'aria-selected': index === activePage ? 'true' : 'false' });
@@ -107,11 +108,11 @@ function createLangSwitcher () {
 }
 
 export function renderTab(tabNumber) {
-    const tabs = [$('div#tab01'), $('div#tab02'), $('div#tab03')];
+    const tabs = [$('div#tab01'), $('div#tab02'), $('div#tab03'), $('div#tab04')];
     tabs.forEach((tab, index) => {
         if (index === tabNumber - 1) {
             tab.style.display = 'block';
-            if(tabNumber === 3) preparePrintOverview();
+            if(tabNumber === 4) preparePrintOverview();
         } else {
             tab.style.display = 'none';
         }
@@ -126,6 +127,7 @@ document.addEventListener("DOMContentLoaded", () => {
     createTab01();
     createTab02();
     createTab03();
+    createTab04();
     renderTab(activePage + 1);
 });
 

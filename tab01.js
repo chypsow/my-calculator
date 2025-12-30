@@ -71,13 +71,17 @@ export function createTab01() {
             $("#eindDatum").textContent = fmtDate(endDate);
             if (!hasMonthYearChanged($("#eindDatum"))) {
                 $("#eindDatum").setAttribute("data-prev-date", newEndDateStr);
-                $("#startDatumDisplay").textContent = fmtDate(startDate);
-                $("#eindDatumDisplay").textContent = fmtDate(endDate);
+                $("#startDatumDisplay-2").textContent = fmtDate(startDate);
+                $("#eindDatumDisplay-2").textContent = fmtDate(endDate);
+                $("#startDatumDisplay-3").textContent = fmtDate(startDate);
+                $("#eindDatumDisplay-3").textContent = fmtDate(endDate);
                 return;
             }
             $("#eindDatum").setAttribute("data-prev-date", newEndDateStr);
-            $("#startDatumDisplay").textContent = fmtDate(startDate);
-            $("#eindDatumDisplay").textContent = fmtDate(endDate);
+            $("#startDatumDisplay-2").textContent = fmtDate(startDate);
+            $("#eindDatumDisplay-2").textContent = fmtDate(endDate);
+            $("#startDatumDisplay-3").textContent = fmtDate(startDate);
+            $("#eindDatumDisplay-3").textContent = fmtDate(endDate);
         } else {
             $("#eindDatum-container").classList.add("eind-datum-hidden");
            
@@ -86,10 +90,10 @@ export function createTab01() {
     });
 
     $("#currentDate").addEventListener("change", function() {
-        if (hasMonthYearChanged(this)) resetStatusOutputs();
+        if (hasMonthYearChanged(this)) resetOutputsTab01();
     });
 
-    $("#berekenBtn1").addEventListener("click", updateSummary);
+    $("#berekenBtn-1").addEventListener("click", updateSummary);
     $("#importBtn").addEventListener("click", importData);
     $("#exportBtn").addEventListener("click", exportData);
 }
@@ -143,7 +147,7 @@ function createTopRow() {
 
 function createMainSection() {
     const createBerekenButton = () => {
-        return el('button', { id: 'berekenBtn1', class: 'bereken-btn', "data-i18n": "button.calculate", text: t('button.calculate') });
+        return el('button', { id: 'berekenBtn-1', class: 'accented-btn', "data-i18n": "button.calculate", text: t('button.calculate') });
     }
     return el("section", { class: "no-print" }, [
         createInputFieldset(),
@@ -211,22 +215,22 @@ function createLeftSummaryFieldset() {
         el("h2", { "data-i18n": "section.loan-overview", text: t('section.loan-overview') }),
         el("div", { class: "info-box", html: `
             <p> <span data-i18n="output.loan-amount">${t('output.loan-amount')}</span>
-                <span id="bedrag-1" class="output-tab01"></span>
+                <span id="bedrag-1" class="output-overview"></span>
             </p>
             <p> <span data-i18n="output.monthly-payment">${t('output.monthly-payment')}</span>
-                <span id="pmt-1" class="output-tab01"></span>
+                <span id="pmt-1" class="output-overview"></span>
             </p>
             <p> <span data-i18n="output.monthly-rate">${t('output.monthly-rate')}</span>
-                <span id="rente-1" class="output-tab01"></span>
+                <span id="rente-1" class="output-overview"></span>
             </p>
             <p> <span data-i18n="output.total-interest">${t('output.total-interest')}</span>
-                <span id="interesten-1" class="output-tab01"></span>
+                <span id="interesten-1" class="output-overview"></span>
             </p>
             <p> <span data-i18n="output.loan-period">${t('output.loan-period')}</span>
-                <span id="periodeJaar-1" class="output-tab01"></span>
+                <span id="periodeJaar-1" class="output-overview"></span>
             </p>
             <p> <span data-i18n="output.remaining-duration">${t('output.remaining-duration')}</span>
-                <span id="resterendeLooptijd-1" class="output-tab01"></span>
+                <span id="resterendeLooptijd-1" class="output-overview"></span>
             </p>
         `})
     ]);
@@ -237,21 +241,21 @@ function createRightSummaryFieldset() {
         el("div", { class: "info-box", html: `
             
             <p> <span data-i18n="output.outstanding-capital">${t('output.outstanding-capital')}</span>
-                <span id="uitstaandKapitaal" class="output-status-tab01"></span>
+                <span id="uitstaandKapitaal" class="output-tab01"></span>
             </p>
             <p> <span data-i18n="output.remaining-interest">${t('output.remaining-interest')}</span>
-                <span id="resterendeInteresten" class="output-status-tab01"></span>
+                <span id="resterendeInteresten" class="output-tab01"></span>
             </p>
             <br>
             <p> <span data-i18n="output.paid-capital">${t('output.paid-capital')}</span>
-                <span id="afbetaaldKapitaal-1" class="output-status-tab01"></span>
+                <span id="afbetaaldKapitaal-1" class="output-tab01"></span>
             </p>
             <p> <span data-i18n="output.paid-interest">${t('output.paid-interest')}</span>
-                <span id="afbetaaldeRente-1" class="output-status-tab01"></span>
+                <span id="afbetaaldeRente-1" class="output-tab01"></span>
             </p>
             <hr class="output-sectie-separator">
             <p> <span data-i18n="output.total-paid">${t('output.total-paid')}</span>
-                <span id="totaalBetaald-1" class="output-status-tab01"></span>
+                <span id="totaalBetaald-1" class="output-tab01"></span>
             </p>
          `
         })
@@ -311,15 +315,25 @@ export function updateSummary() {
     $("#afbetaaldeRente-1").textContent = fmtCurrency.format((betaling * periode - bedrag) - remaining.interest);
     $("#totaalBetaald-1").textContent = fmtCurrency.format(betaling * (periode - remaining.period));
    
-    // Fill overview section
+    // Fill overview section of tab 2
     $('#bedrag-2').textContent = fmtCurrency.format(bedrag);
     $('#pmt-2').textContent = fmtCurrency.format(betaling);
     $('#rente-2').textContent = fmtDecimal(4).format(i * 100) + " %";
     $('#interesten-2').textContent = fmtCurrency.format((betaling * periode - bedrag));
-    $('#startDatumDisplay').textContent = fmtDate(startDate);
-    $('#eindDatumDisplay').textContent = fmtDate(endDate);
+    $('#startDatumDisplay-2').textContent = fmtDate(startDate);
+    $('#eindDatumDisplay-2').textContent = fmtDate(endDate);
     $('#periodeJaar-2').textContent = $("#periodeJaar-1").textContent;
     $('#resterendeLooptijd-2').textContent = $('#resterendeLooptijd-1').textContent;
+
+    // Fill overview section of tab 3
+    $('#bedrag-3').textContent = fmtCurrency.format(bedrag);
+    $('#pmt-3').textContent = fmtCurrency.format(betaling);
+    $('#rente-3').textContent = fmtDecimal(4).format(i * 100) + " %";
+    $('#interesten-3').textContent = fmtCurrency.format((betaling * periode - bedrag));
+    $('#startDatumDisplay-3').textContent = fmtDate(startDate);
+    $('#eindDatumDisplay-3').textContent = fmtDate(endDate);
+    $('#periodeJaar-3').textContent = $("#periodeJaar-1").textContent;
+    $('#resterendeLooptijd-3').textContent = $('#resterendeLooptijd-1').textContent;
 }
 
 export function computeRemaining(bedrag, jkp, periode, type, startDate, currentDate = new Date()) {
@@ -368,18 +382,23 @@ export function parseInputs() {
 }
 
 function resetOutputs() {
-    $all(".output-tab01").forEach(o => o.textContent = "");
-    resetStatusOutputs();
-    $all('.output-tab02').forEach(el => el.textContent = '');
+    resetOutputsOverview();
+    resetOutputsTab01();
+    resetOutputsTab02();
     
     // Hide table and print button
     $("#afdrukken").style.visibility = "hidden";
     $("#aflossingstabel").hidden = true;
     $("#aflossingBtn").style.visibility = "hidden";
 }
-
-function resetStatusOutputs() {
-    $all(".output-status-tab01").forEach(o => o.textContent = "");
+function resetOutputsOverview() {
+    $all(".output-overview").forEach(o => o.textContent = "");
+}
+function resetOutputsTab01() {
+    $all(".output-tab01").forEach(o => o.textContent = "");
+}
+function resetOutputsTab02() {
+    $all(".output-tab02").forEach(o => o.textContent = "");
 }
 
 export function monthlyRate(jkp, type) {
