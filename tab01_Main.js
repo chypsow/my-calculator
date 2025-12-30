@@ -1,6 +1,6 @@
 import { $, $all, formatLocalDate, createHeader,  fmtCurrency, fmtDate, fmtDecimal, t } from './main.js';
 import { createTopRow, createMainSection } from './tab01_DOM.js';
-import { generateSchedule, createTable, printData } from './tab01_Table.js';
+import { generateSchedule, createTable, printData, setTableVisibility } from './tab01_Table.js';
 
 export function createTab01() {
     $('#tab01').append(
@@ -10,7 +10,8 @@ export function createTab01() {
         createTable()
     );
     
-    resetOutputs();
+    setTableVisibility(false);
+    $("#aflossingBtn").disabled = true;
 
     // Event listeners/* Events */
     $all(".invoer").forEach(inp => inp.addEventListener("input", () => {
@@ -101,8 +102,7 @@ export function createTab01() {
         if ($("#aflossingstabel").hidden) {
             generateSchedule();
         } else {
-            $("#aflossingstabel").hidden = true;
-            $("#afdrukken").style.visibility = "hidden";
+            setTableVisibility(false);
         }
     });
     $('#afdrukken').addEventListener('click', printData);
@@ -236,10 +236,7 @@ function resetOutputs() {
     resetOutputsOverview();
     resetOutputsTab01();
     resetOutputsTab02();
-    
-    // Hide table and print button
-    $("#afdrukken").style.visibility = "hidden";
-    $("#aflossingstabel").hidden = true;
+    setTableVisibility(false);
     $("#aflossingBtn").disabled = true;
 }
 function resetOutputsOverview() {

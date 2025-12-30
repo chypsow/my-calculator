@@ -55,6 +55,16 @@ export function printData() {
     window.print();
 }
 
+export function setTableVisibility(visible) {
+    if (visible) {
+        $("#aflossingstabel").hidden = false;
+        $("#afdrukken").style.visibility = "visible";
+    } else {
+        $("#aflossingstabel").hidden = true;
+        $("#afdrukken").style.visibility = "hidden";
+    }
+}
+
 export function generateSchedule() {
     const inputs = parseInputs();
     if (!inputs) return;
@@ -63,8 +73,7 @@ export function generateSchedule() {
     const betaling = computePayment(bedrag, i, periode);
 
     $("#tableInhoud").innerHTML = "";
-    $("#aflossingstabel").hidden = false;
-    $("#afdrukken").style.visibility = "visible";
+    setTableVisibility(true);
 
     let currentDate = new Date(startDate);
     let balance = bedrag;

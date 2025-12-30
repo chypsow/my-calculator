@@ -2,7 +2,6 @@ import { $, el, createHeader, fmtCurrency, fmtDate, t } from './main.js';
 import { parseInputs, computeRemaining, updateSummary, hasMonthYearChanged } from './tab01_Main.js';
 
 export function createTab03() {
-    //$('#tab03').innerHTML = '';
     $('#tab03').append(
         createHeader('header.loan-reports'),
         createReportContainer()
