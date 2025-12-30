@@ -1,5 +1,5 @@
 import { $, el, createHeader, fmtCurrency, fmtDate, t } from './main.js';
-import { parseInputs, computeRemaining, updateSummary, hasMonthYearChanged } from './tab01.js';
+import { parseInputs, computeRemaining, updateSummary, hasMonthYearChanged } from './tab01_Main.js';
 
 export function createTab03() {
     //$('#tab03').innerHTML = '';
@@ -32,30 +32,30 @@ function createOverzicht() {
         el('div', { class: 'overzicht-inhoud' }, [
             el("div", { html: `
                 <p> <span data-i18n="output.loan-amount">${t('output.loan-amount')}</span>
-                    <span id="bedrag-3" class="output-overview"></span>
+                    <span class="output-overview loan-amount"></span>
                 </p>
                 <p> <span data-i18n="output.monthly-payment">${t('output.monthly-payment')}</span>
-                    <span id="pmt-3" class="output-overview"></span>
+                    <span class="output-overview monthly-payment"></span>
                 </p>
                 <p> <span data-i18n="output.monthly-rate">${t('output.monthly-rate')}</span>
-                    <span id="rente-3" class="output-overview"></span>
+                    <span class="output-overview monthly-rate"></span>
                 </p>
                 <p> <span data-i18n="output.total-interest">${t('output.total-interest')}</span>
-                    <span id="interesten-3" class="output-overview"></span>
+                    <span class="output-overview total-interest"></span>
                 </p>
             `}),
             el("div", { html: `
                 <p> <span data-i18n="label.start-date">${t('label.start-date')}</span>
-                    <span id="startDatumDisplay-3" class="output-overview"></span>
+                    <span  class="output-overview startDateDisplay"></span>
                 </p>
                 <p> <span data-i18n="label.end-date">${t('label.end-date')}</span>
-                    <span id="eindDatumDisplay-3" class="output-overview"></span>
+                    <span class="output-overview endDateDisplay"></span>
                 </p>
                 <p> <span data-i18n="output.loan-period">${t('output.loan-period')}</span>
-                    <span id="periodeJaar-3" class="output-overview"></span>
+                    <span class="output-overview loan-period"></span>
                 </p>
                 <p> <span data-i18n="output.remaining-duration">${t('output.remaining-duration')}</span>
-                    <span id="resterendeLooptijd-3" class="output-overview"></span>
+                    <span class="output-overview remaining-duration"></span>
                 </p>
             `})
         ])

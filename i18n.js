@@ -4,7 +4,7 @@ export const translations = {
     // Headers & sections
     "tab.simulator": "LOAN SIMULATOR",
     "tab.calculator": "LOAN CALCULATOR",
-    "tab.reports": "LOAN REPORTS",
+    "tab.reports": "LOAN ANALYSER",
     "tab.amortization": "AMORTIZATION TABLE",
     "header.loan-overview": "LOAN - OVERVIEW AND STATUS",
     "header.loan-status": "LOAN - STATUS BETWEEN 2 DATES",
@@ -101,7 +101,7 @@ export const translations = {
     // Headers & sections
     "tab.simulator": "SIMULATEUR DE PRÊT",
     "tab.calculator": "CALCULATEUR DE PRÊT",
-    "tab.reports": "RAPPORTS DE PRÊT",
+    "tab.reports": "ANALYSEUR DE PRÊT",
     "tab.amortization": "TABLEAU D'AMORTISSEMENT",
     "header.loan-overview": "PRÊT - APERÇU ET STATUT",
     "header.loan-status": "PRÊT - STATUT ENTRE 2 DATES",
@@ -198,7 +198,7 @@ export const translations = {
     // Headers & sections
     "tab.simulator": "LENING SIMULATOR",
     "tab.calculator": "LENING CALCULATOR",
-    "tab.reports": "LENING RAPPORTEN",
+    "tab.reports": "LENING ANALYSER",
     "tab.amortization": "AFLOSSINGSTABEL",
     "header.loan-overview": "LENING - OVERZICHT EN STATUS",
     "header.loan-status": "LENING - STATUS TUSSEN 2 DATUMS",

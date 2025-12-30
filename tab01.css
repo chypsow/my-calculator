@@ -10,10 +10,10 @@
     padding: .3rem .5rem;
     font-size: 1rem;
     border-radius: 4px;
-    border: 1px solid rgba(139, 139, 139, 0.5);
+    border: 1px solid var(--border);
     font-family: var(--font-mono);
     color: #ffffff;
-    background-color: rgba(27, 27, 27, 0.251);
+    background-color: var(--input-bg);
 }
 .top-row span{
     margin-right: 1rem;
@@ -131,7 +131,7 @@ section{
     /*height: 11rem;*/
     /*font-size: 1.15rem;*/
     /*background: var(--glass);*/
-    border-top: 1px solid rgba(221, 221, 221, 0.3);
+    border-top: 1px solid var(--border);
     padding-top: 1rem;
     /*padding:.8rem;*/
     border-radius:4px;
@@ -165,16 +165,16 @@ input , select{
     font-size:1rem;
     padding:.35rem .5rem;
     border-radius:4px;
-    border:1px solid rgba(139, 139, 139, 0.437);
-    background-color: rgba(27, 27, 27, 0.251);
+    border:1px solid var(--border);
+    background-color: var(--input-bg);
     color:#ffffff; 
     /*outline:none;*/
 }
 .rente-type, .periode-eenheid{ 
     padding:.35rem .5rem;
     border-radius:4px;
-    border:1px solid rgba(139, 139, 139, 0.3);
-    background-color: rgba(27, 27, 27, 0.251);
+    border:1px solid var(--border);
+    background-color: var(--input-bg);
     font-size: .9rem;
     width: fit-content;
     appearance: none; /* Verwijder standaard pijl */
@@ -190,7 +190,7 @@ input , select{
 
 /* Opties in dropdown (ondersteuning kan verschillen per browser) */
 .rente-type option, .periode-eenheid option {
-    background-color: #d1d1d1; /* dropdown items achtergrond */
+    background-color: #e7e7e7; /* dropdown items achtergrond */
     color: #000000; 
 }
 .invoer {
@@ -235,6 +235,49 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 /* Compact layout for rente + select */
 .label-select{ display:flex; align-items:center; gap:.5rem; }
+
+.table-wrapper{
+    max-width:var(--max-width);
+    width:clamp(320px, 60%, 1200px);
+    margin:2rem auto;
+    padding:1.25rem;
+    background: var(--glass);
+    opacity: .98;
+    border-radius:var(--radius);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+.button-group{
+    display:flex;
+    gap:1rem;
+    justify-content:space-between;
+}
+.button-group button[disabled]{
+    cursor: default;
+    opacity: 0.4;
+}
+.button-group button[disabled]:hover{
+    filter: none;
+}
+
+/* Table styles */
+.managerTable{ width:100%; overflow:auto; }
+table{
+    width:100%;
+    position: relative;
+    border-collapse:collapse;
+    background:#fff;
+    color:#222;
+    /*font-family:var(--font-mono);*/
+    margin:1.5rem 0;
+    table-layout:fixed;
+}
+.table-header{ position:sticky; top:var(--ht-top-header); background:var(--bg-table-header) ; color:#000000; }
+.table-header th, .table-inhoud td{ padding:.5rem .2rem; font-size:.8rem; text-align:center; border-bottom:1px solid #dcdcdc; overflow:hidden; text-overflow:ellipsis; white-space:normal; }
+
+/* Misc */
+.lening-overzicht{ list-style:none; padding:0; margin:0 0 1rem 0; column-count:3; column-gap:2rem; background: var(--glass-plus); border-radius:var(--radius); box-shadow: 0 4px 6px rgba(0,0,0,0.3); padding:1rem; }
+.lening-overzicht li{ padding:.25rem 0; color: #e4e4e4; font-family:var(--font-mono); }
+.lening-overzicht li span{ font-weight: bold; color: var(--accent); }
 
 
 

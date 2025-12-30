@@ -1,13 +1,17 @@
-import { $, $all, el, formatLocalDate, createHeader,  fmtCurrency, fmtDate, fmtDecimal, t } from './main.js';
+import { $, $all, formatLocalDate, createHeader,  fmtCurrency, fmtDate, fmtDecimal, t } from './main.js';
+import { createTopRow, createMainSection } from './tab01_DOM.js';
+import { generateSchedule, createTable, printData } from './tab01_Table.js';
 
 export function createTab01() {
-    //$('#tab01').innerHTML = '';
     $('#tab01').append(
         createHeader('header.loan-overview'),
         createTopRow(),
         createMainSection(),
+        createTable()
     );
     
+    resetOutputs();
+
     // Event listeners/* Events */
     $all(".invoer").forEach(inp => inp.addEventListener("input", () => {
         inp.value = inp.value.replace(/\./g, ',');
@@ -71,17 +75,13 @@ export function createTab01() {
             $("#eindDatum").textContent = fmtDate(endDate);
             if (!hasMonthYearChanged($("#eindDatum"))) {
                 $("#eindDatum").setAttribute("data-prev-date", newEndDateStr);
-                $("#startDatumDisplay-2").textContent = fmtDate(startDate);
-                $("#eindDatumDisplay-2").textContent = fmtDate(endDate);
-                $("#startDatumDisplay-3").textContent = fmtDate(startDate);
-                $("#eindDatumDisplay-3").textContent = fmtDate(endDate);
+                $all(".startDateDisplay").forEach(elm => elm.textContent = fmtDate(startDate));
+                $all(".endDateDisplay").forEach(elm => elm.textContent = fmtDate(endDate));
                 return;
             }
             $("#eindDatum").setAttribute("data-prev-date", newEndDateStr);
-            $("#startDatumDisplay-2").textContent = fmtDate(startDate);
-            $("#eindDatumDisplay-2").textContent = fmtDate(endDate);
-            $("#startDatumDisplay-3").textContent = fmtDate(startDate);
-            $("#eindDatumDisplay-3").textContent = fmtDate(endDate);
+            $all(".startDateDisplay").forEach(elm => elm.textContent = fmtDate(startDate));
+            $all(".endDateDisplay").forEach(elm => elm.textContent = fmtDate(endDate));
         } else {
             $("#eindDatum-container").classList.add("eind-datum-hidden");
            
@@ -96,7 +96,18 @@ export function createTab01() {
     $("#berekenBtn-1").addEventListener("click", updateSummary);
     $("#importBtn").addEventListener("click", importData);
     $("#exportBtn").addEventListener("click", exportData);
+
+    $('#aflossingBtn').addEventListener('click', () => {
+        if ($("#aflossingstabel").hidden) {
+            generateSchedule();
+        } else {
+            $("#aflossingstabel").hidden = true;
+            $("#afdrukken").style.visibility = "hidden";
+        }
+    });
+    $('#afdrukken').addEventListener('click', printData);
 }
+
 //make function to check if date changed month/year only
 export function hasMonthYearChanged(element) {
     let currentDate;
@@ -112,9 +123,7 @@ export function hasMonthYearChanged(element) {
         }
     } else if (element instanceof HTMLSpanElement) {
         const rawDateStr = element.textContent;
-        //console.log('rawDateStr:', rawDateStr);
         const [dag, maand, jaar] = rawDateStr.split('/');
-        //console.log('dag:', dag, 'maand:', maand, 'jaar:', jaar);
         newDateStr = `${jaar}-${maand.padStart(2,'0')}-${dag.padStart(2,'0')}`;
         prevDateStr = element.getAttribute("data-prev-date");
     }
@@ -125,143 +134,6 @@ export function hasMonthYearChanged(element) {
     return true;
 }
 
-// Create Elements
-function createTopRow() {
-    function createBankName() {
-    return el("label", { class: "bank-name" }, [
-        el("span", { "data-i18n": "label.bank-name", text: t('label.bank-name') }),
-        el("input", { type: "text", id: "bankName", "data-i18n-placeholder": "placeholder.bank-name", placeholder: t('placeholder.bank-name') })
-    ]);
-    }
-    function createImportExportButtons() {
-        return el("div", { class: "import-export-buttons" }, [
-            el("button", { id: "importBtn", "data-i18n": "button.import", text: t('button.import') }),
-            el("button", { id: "exportBtn", "data-i18n": "button.export", text: t('button.export') })
-        ]);
-    }
-    return el("div", { class: "top-row no-print" }, [
-        createBankName(),
-        createImportExportButtons()
-    ]);
-}
-
-function createMainSection() {
-    const createBerekenButton = () => {
-        return el('button', { id: 'berekenBtn-1', class: 'accented-btn', "data-i18n": "button.calculate", text: t('button.calculate') });
-    }
-    return el("section", { class: "no-print" }, [
-        createInputFieldset(),
-        createBerekenButton(),
-        createSummaryFieldset()
-    ]);
-}
-
-function createInputFieldset() {
-    const bedragInput = () => {
-        return el("label", {
-            html: `<span data-i18n="label.loan-amount">${t('label.loan-amount')}</span> <input type="text" id="teLenenBedrag" class="invoer">`
-        });
-    };
-    const renteInput = () => {
-        return el("div", { class: "label-select", html: `
-            <label>
-                <span data-i18n="label.interest-rate">${t('label.interest-rate')}</span> <input type="text" id="jkp" class="invoer">
-            </label>
-            <select id="renteType" class="rente-type">
-                <option value="1" data-i18n="label.interest-type.effective">${t('label.interest-type.effective')}</option>
-                <option value="2" data-i18n="label.interest-type.nominal">${t('label.interest-type.nominal')}</option>
-            </select>
-        `});
-    };
-    const periodeInput = () => {
-        return el("div", { class: "label-select", html: `
-            <label>
-                <span data-i18n="label.loan-period">${t('label.loan-period')}</span> <input type="text" id="periode" class="invoer">
-            </label>
-            <select id="periodeEenheid" class="periode-eenheid">
-                <option value="months" data-i18n="label.period-unit.months">${t('label.period-unit.months')}</option>
-                <option value="years" data-i18n="label.period-unit.years">${t('label.period-unit.years')}</option>
-            </select>
-
-        `})
-    };
-    const datums = () => {
-        return el("div", { class: "datums" }, [
-            el("label", {
-                html: `<span data-i18n="label.start-date">${t('label.start-date')}</span>&nbsp;<input type="date" id="startDatum" class="invoer">`
-            }),
-            el("p", { id: "eindDatum-container", html: `<span data-i18n="label.end-date">${t('label.end-date')}</span>&nbsp;&nbsp;` , class: "eind-datum-hidden" }, [el("span", { id: "eindDatum" })])
-        ])
-    };
-    return el("div", { class: "input-fields card-light" }, [
-        el("div", { class: "header-row-inputs", html: `<h2 data-i18n="section.input-fields">${t('section.input-fields')}</h2><span><span data-i18n="label.today">${t('label.today')}</span> <span id="todayDate">${fmtDate(new Date())}</span></span>` }),
-        el("div", { class: "form-inhoud" }, [
-            bedragInput(),
-            renteInput(),
-            periodeInput(),
-            datums(),
-        ])
-    ]);
-}
-function createSummaryFieldset() {
-    return el("div", { class: "summary-output" }, [
-        createLeftSummaryFieldset(),
-        createRightSummaryFieldset()
-    ]);
-}
-
-function createLeftSummaryFieldset() {
-    return el("div", { class: "output-fields card-dark" }, [
-        el("h2", { "data-i18n": "section.loan-overview", text: t('section.loan-overview') }),
-        el("div", { class: "info-box", html: `
-            <p> <span data-i18n="output.loan-amount">${t('output.loan-amount')}</span>
-                <span id="bedrag-1" class="output-overview"></span>
-            </p>
-            <p> <span data-i18n="output.monthly-payment">${t('output.monthly-payment')}</span>
-                <span id="pmt-1" class="output-overview"></span>
-            </p>
-            <p> <span data-i18n="output.monthly-rate">${t('output.monthly-rate')}</span>
-                <span id="rente-1" class="output-overview"></span>
-            </p>
-            <p> <span data-i18n="output.total-interest">${t('output.total-interest')}</span>
-                <span id="interesten-1" class="output-overview"></span>
-            </p>
-            <p> <span data-i18n="output.loan-period">${t('output.loan-period')}</span>
-                <span id="periodeJaar-1" class="output-overview"></span>
-            </p>
-            <p> <span data-i18n="output.remaining-duration">${t('output.remaining-duration')}</span>
-                <span id="resterendeLooptijd-1" class="output-overview"></span>
-            </p>
-        `})
-    ]);
-}
-function createRightSummaryFieldset() {
-    return el("div", { class: "output-fields card-dark" }, [
-        el("div", { class: "header-row", html: `<h2 data-i18n="section.loan-status-on">${t('section.loan-status-on')}</h2><input type="date" id="currentDate" class="invoer" }>` }),
-        el("div", { class: "info-box", html: `
-            
-            <p> <span data-i18n="output.outstanding-capital">${t('output.outstanding-capital')}</span>
-                <span id="uitstaandKapitaal" class="output-tab01"></span>
-            </p>
-            <p> <span data-i18n="output.remaining-interest">${t('output.remaining-interest')}</span>
-                <span id="resterendeInteresten" class="output-tab01"></span>
-            </p>
-            <br>
-            <p> <span data-i18n="output.paid-capital">${t('output.paid-capital')}</span>
-                <span id="afbetaaldKapitaal-1" class="output-tab01"></span>
-            </p>
-            <p> <span data-i18n="output.paid-interest">${t('output.paid-interest')}</span>
-                <span id="afbetaaldeRente-1" class="output-tab01"></span>
-            </p>
-            <hr class="output-sectie-separator">
-            <p> <span data-i18n="output.total-paid">${t('output.total-paid')}</span>
-                <span id="totaalBetaald-1" class="output-tab01"></span>
-            </p>
-         `
-        })
-    ]);
-}
-
 // Lening calculator logic
 export function updateSummary() {
     const inputs = parseInputs();
@@ -269,21 +141,22 @@ export function updateSummary() {
         resetOutputs();
         return;
     }
+    $("#aflossingBtn").disabled = false;
+
     const { bedrag, jkp, periode, renteType: type, startDate } = inputs;
     const i = monthlyRate(jkp, type);
     const betaling = computePayment(bedrag, i, periode);
-    $('#bedrag-1').textContent = fmtCurrency.format(bedrag);
-    $("#pmt-1").textContent = fmtCurrency.format(betaling);
-    $("#rente-1").textContent = fmtDecimal(4).format(i * 100) + " %";
-    $("#interesten-1").textContent = fmtCurrency.format((betaling * periode - bedrag));
+    $all('.loan-amount').forEach(elm => elm.textContent = fmtCurrency.format(bedrag));
+    $all('.monthly-payment').forEach(elm => elm.textContent = fmtCurrency.format(betaling));
+    $all('.monthly-rate').forEach(elm => elm.textContent = fmtDecimal(4).format(i * 100) + " %");
+    $all('.total-interest').forEach(elm => elm.textContent = fmtCurrency.format((betaling * periode - bedrag)));
 
     const formatDuration = (remainingMonths) => {   
         const jaren = Math.floor(remainingMonths / 12);
         const maanden = remainingMonths % 12;
         return jaren > 0 ? `${jaren} ${t('label.years')}${maanden > 0 ? ` ${maanden} ${t('label.months')}` : ''}` : `${maanden} ${t('label.months')}`;
     }
-
-    $("#periodeJaar-1").textContent = formatDuration(periode);
+    $all('.loan-period').forEach(elm => elm.textContent = formatDuration(periode));
     
     // Calculate remaining duration from today to end date
     const today = new Date();
@@ -294,15 +167,13 @@ export function updateSummary() {
         resterendeMaanden = (endDate.getFullYear() - today.getFullYear()) * 12 + (endDate.getMonth() - today.getMonth());
     }
     const display = formatDuration(resterendeMaanden);
-    $('#resterendeLooptijd-1').textContent = resterendeMaanden ? display : '0 maanden';
+    $all('.remaining-duration').forEach(elm => elm.textContent = resterendeMaanden ? display : `0 ${t('label.months')}`);
+    $all('.startDateDisplay').forEach(elm => elm.textContent = fmtDate(startDate));
+    $all('.endDateDisplay').forEach(elm => elm.textContent = fmtDate(endDate));
 
     // Calculate remaining capital and interest up to currentDate
     const currentDateInput = $("#currentDate").value;
     const currentDate = currentDateInput ? new Date(currentDateInput) : new Date();
-    // ensure currentDate is not before startDate
-    /*if (currentDate < startDate) {
-        currentDate.setTime(startDate.getTime());
-    }*/
     if (!currentDateInput) {
         const currentDateStr = formatLocalDate(currentDate);
         $("#currentDate").value = currentDateStr;
@@ -314,26 +185,6 @@ export function updateSummary() {
     $("#afbetaaldKapitaal-1").textContent = fmtCurrency.format(bedrag - remaining.capital);
     $("#afbetaaldeRente-1").textContent = fmtCurrency.format((betaling * periode - bedrag) - remaining.interest);
     $("#totaalBetaald-1").textContent = fmtCurrency.format(betaling * (periode - remaining.period));
-   
-    // Fill overview section of tab 2
-    $('#bedrag-2').textContent = fmtCurrency.format(bedrag);
-    $('#pmt-2').textContent = fmtCurrency.format(betaling);
-    $('#rente-2').textContent = fmtDecimal(4).format(i * 100) + " %";
-    $('#interesten-2').textContent = fmtCurrency.format((betaling * periode - bedrag));
-    $('#startDatumDisplay-2').textContent = fmtDate(startDate);
-    $('#eindDatumDisplay-2').textContent = fmtDate(endDate);
-    $('#periodeJaar-2').textContent = $("#periodeJaar-1").textContent;
-    $('#resterendeLooptijd-2').textContent = $('#resterendeLooptijd-1').textContent;
-
-    // Fill overview section of tab 3
-    $('#bedrag-3').textContent = fmtCurrency.format(bedrag);
-    $('#pmt-3').textContent = fmtCurrency.format(betaling);
-    $('#rente-3').textContent = fmtDecimal(4).format(i * 100) + " %";
-    $('#interesten-3').textContent = fmtCurrency.format((betaling * periode - bedrag));
-    $('#startDatumDisplay-3').textContent = fmtDate(startDate);
-    $('#eindDatumDisplay-3').textContent = fmtDate(endDate);
-    $('#periodeJaar-3').textContent = $("#periodeJaar-1").textContent;
-    $('#resterendeLooptijd-3').textContent = $('#resterendeLooptijd-1').textContent;
 }
 
 export function computeRemaining(bedrag, jkp, periode, type, startDate, currentDate = new Date()) {
@@ -389,7 +240,7 @@ function resetOutputs() {
     // Hide table and print button
     $("#afdrukken").style.visibility = "hidden";
     $("#aflossingstabel").hidden = true;
-    $("#aflossingBtn").style.visibility = "hidden";
+    $("#aflossingBtn").disabled = true;
 }
 function resetOutputsOverview() {
     $all(".output-overview").forEach(o => o.textContent = "");
@@ -430,7 +281,6 @@ function importData() {
             $("#jkp").value = data["annual-rate"] ? fmtDecimal(4).format(data["annual-rate"]) : "";
             $("#renteType").value = data["rate-type"] || "1";
             $("#periode").value = data["period-months"] || "";
-            //$("#periodeEenheid").value = data["period-unit"] || data.periodeEenheid || "months";
             if (data["start-date"]) {
                 const dateStr = data["start-date"].includes('-') ? data["start-date"] : data["start-date"].split('/').reverse().join('-');
                 $("#startDatum").value = dateStr;
@@ -467,7 +317,6 @@ function exportData() {
     const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(data, null, 4));
     const downloadAnchorNode = document.createElement('a');
     downloadAnchorNode.setAttribute("href", dataStr);
-    //const bankNameSafe = data["bank-name"].replace(/\s+/g, '_').toLowerCase();
     const filename = `${data["bank-name"]}_${data["loan-amount"]/1000}k_${data["period-months"]}m_${data["start-date"]}.txt`;
     downloadAnchorNode.setAttribute("download", filename);
     document.body.appendChild(downloadAnchorNode);
