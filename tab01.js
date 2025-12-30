@@ -1,5 +1,4 @@
-import { $, $all, el,formatLocalDate, createHeader,  fmtCurrency, fmtDate, fmtDecimal } from './main.js';
-import { t } from './i18n.js';
+import { $, $all, el, formatLocalDate, createHeader,  fmtCurrency, fmtDate, fmtDecimal, t } from './main.js';
 
 export function createTab01() {
     //$('#tab01').innerHTML = '';

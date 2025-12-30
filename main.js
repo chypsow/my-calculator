@@ -2,8 +2,10 @@
 import { createTab01 } from './tab01.js';
 import { createTab02 } from './tab02.js';
 import { createTab03, preparePrintOverview } from './tab03.js';
-import { applyLang, t } from './i18n.js';
+import { translations } from './i18n.js';
 
+// Current language
+let currentLang = localStorage.getItem('lang') || 'en';
 export let activePage = localStorage.getItem('activePage') ? parseInt(localStorage.getItem('activePage')) : 0;
 export const $ = selector => document.querySelector(selector);
 export const $all = selector => Array.from(document.querySelectorAll(selector));
@@ -58,27 +60,28 @@ function createCircles() {
 };
 function createTopHeader() {
     const header = $('#topHeader');
-    const tabLabels = [t('tab.simulator'), t('tab.calculator'), t('tab.amortization')];
+    const tabLabels = {'tab.simulator': t('tab.simulator'), 'tab.calculator': t('tab.calculator'), 'tab.amortization': t('tab.amortization')};
     header.setAttribute('role', 'tablist');
-    tabLabels.forEach((tab, i) => {
-        const hyperlink = document.createElement('a');
-        hyperlink.href = '#';
-        hyperlink.textContent = tab;
-        hyperlink.setAttribute('role', 'tab');
-        hyperlink.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
-        if(i === activePage) hyperlink.classList.add('active');
-        hyperlink.addEventListener('click', () => {
-            if (hyperlink.classList.contains("active")) return;
-            const activeLink = header.querySelector('.active');
-            activeLink.classList.remove("active");
-            activeLink.setAttribute('aria-selected', 'false');
-            hyperlink.classList.add("active");
-            hyperlink.setAttribute('aria-selected', 'true');
-            activePage = i;
+    Object.entries(tabLabels).forEach(([key, label], index) => {
+        const tab = el('a', { href: '#', 'data-i18n': key, text: label, role: 'tab', 'aria-selected': index === activePage ? 'true' : 'false' });
+        if (index === activePage) {
+            tab.classList.add('active');
+        }
+        tab.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (tab.classList.contains("active")) return;
+            const activeTab = header.querySelector('.active');
+            if (activeTab) {
+                activeTab.classList.remove('active');
+                activeTab.setAttribute('aria-selected', 'false');
+            }
+            tab.classList.add('active');
+            tab.setAttribute('aria-selected', 'true');
+            activePage = index;
             localStorage.setItem('activePage', activePage);
             renderTab(activePage + 1);
         });
-        header.appendChild(hyperlink);
+        header.appendChild(tab);
     });
 };
 
@@ -88,15 +91,17 @@ function createLangSwitcher () {
     languages.forEach(lang => {
         const button = el('button', { class: 'lang-btn', 'data-lang': lang.code, text: lang.label });
         button.addEventListener('click', () => {
-            const currentLang = localStorage.getItem('lang') || 'en';
             if (currentLang === lang.code) return;
+            currentLang = lang.code;
             localStorage.setItem('lang', lang.code);
             applyLang(lang.code);
+            // Update active button highlight
+            container.querySelectorAll('button').forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
         });
         container.appendChild(button);
     });
     // Highlight active language button
-    const currentLang = localStorage.getItem('lang') || 'en';
     const activeButton = container.querySelector(`button[data-lang="${currentLang}"]`);
     if (activeButton) activeButton.classList.add('active');
 }
@@ -122,14 +127,39 @@ document.addEventListener("DOMContentLoaded", () => {
     createTab02();
     createTab03();
     renderTab(activePage + 1);
-    
-    // Listen for language changes - applyLang() updates all data-i18n elements - uitgeschakeld
-    /*window.addEventListener('languageChanged', (e) => {
-        // Update top header tab labels
-        const tabs = $('#topHeader').querySelectorAll('a');
-        const tabLabels = [t('tab.calculator1'), t('tab.calculator2'), t('tab.amortization')];
-        tabs.forEach((tab, i) => {
-            tab.textContent = tabLabels[i];
-        });
-    });*/
 });
+
+export function t(key) {
+  if (!translations[currentLang] || !translations[currentLang][key]) {
+    // Fallback to NL or key itself
+    return translations['en']?.[key] || key;
+  }
+  return translations[currentLang][key];
+}
+
+function applyLang(lang) {
+  if (!translations[lang]) {
+    console.warn(`Language ${lang} not supported`);
+    return;
+  }
+
+  currentLang = lang;
+  localStorage.setItem('lang', lang);
+
+  // Update all elements with data-i18n attribute
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    const text = t(key);
+    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+      el.placeholder = text;
+    } else {
+      el.textContent = text;
+    }
+  });
+
+  // Update all elements with data-i18n-placeholder
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    el.placeholder = t(key);
+  });
+}

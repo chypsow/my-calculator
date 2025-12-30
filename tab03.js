@@ -1,6 +1,5 @@
-import { $, el, createHeader, fmtCurrency, fmtDate } from './main.js';
+import { $, el, createHeader, fmtCurrency, fmtDate, t } from './main.js';
 import { parseInputs, monthlyRate, computePayment, updateSummary } from './tab01.js';
-import { t } from './i18n.js';
 
 export function createTab03() {
     $('#tab03').innerHTML = '';
