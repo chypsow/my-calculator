@@ -89,6 +89,53 @@ h1{
     color: #000;
 }
 
+/* Language Switcher Styles */
+.lang-switch {
+  position: fixed;
+  top: 58px;
+  display: flex;
+  gap: 10px;
+  z-index: 1001;
+  background: transparent;
+  margin: 0 8px;
+  border-radius: 8px;
+  align-self: flex-end;
+  /*box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);*/
+}
+
+.lang-btn {
+  padding: 6px 16px;
+  border: 2px solid #ccc;
+  background: #bebebe;
+  color: #333;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  min-width: 50px;
+  text-align: center;
+}
+
+.lang-btn:hover {
+  /*border-color: var(--accent);
+  color: var(--accent);
+  background: white;*/
+  background: #bebebeb2;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(25, 118, 210, 0.2);
+}
+
+.lang-btn.active {
+  background: var(--accent);
+  background: black;
+  /*color: white;*/
+  /*border-color: var(--accent);*/
+  color: #fcfcfc;
+  box-shadow: 0 4px 12px rgba(25, 118, 210, 0.3);
+}
+
 /* Layout wrapper */
 .wrapper{
     max-width:var(--max-width);

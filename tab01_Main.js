@@ -278,6 +278,7 @@ function importData() {
             $("#jkp").value = data["annual-rate"] ? fmtDecimal(4).format(data["annual-rate"]) : "";
             $("#renteType").value = data["rate-type"] || "1";
             $("#periode").value = data["period-months"] || "";
+            $("#periodeEenheid").value = "months";
             if (data["start-date"]) {
                 const dateStr = data["start-date"].includes('-') ? data["start-date"] : data["start-date"].split('/').reverse().join('-');
                 $("#startDatum").value = dateStr;
