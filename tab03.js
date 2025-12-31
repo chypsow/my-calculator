@@ -1,5 +1,5 @@
 import { $, el, createHeader, fmtCurrency, fmtDate, t } from './main.js';
-import { parseInputs, computeRemaining, updateSummary, hasMonthYearChanged, monthlyRate, computePayment } from './tab01_main.js';
+import { parseInputs, updateSummary, monthlyRate, computePayment } from './tab01_main.js';
 
 export function createTab03() {
     $('#tab03').append(
@@ -7,32 +7,24 @@ export function createTab03() {
         createReportContainer()
     );
 
-    // Event Listener for Execute Button
     $('#executeBtn').addEventListener('click', () => {
         generateReport();
     });
 }
 
 function generateReport() {
-    // Placeholder function for report generation logic
-    //alert(t('label.report-generated'));
     const inputs = parseInputs();
     if (!inputs) return;
 
     updateSummary();
     const reportType = document.querySelector('input[name="reportDescription"]:checked').value;
-    //const remaining = computeRemaining(inputs, new Date());
     if (reportType === 'annual-overview') {
-        // Generate annual overview report
         generateAnnualOverviewReport(inputs);
-        
     } else if (reportType === 'detailed') {
         // Generate detailed report
         console.log('Generating Detailed Report...');
         // Add logic for generating detailed report
     }
-
-    //alert(t('label.report-generated') + ` (${reportType})`);
 }
 
 function generateAnnualOverviewReport(inputs) {
@@ -139,6 +131,8 @@ function createAnnualReportTable(bedrag, betaling, monthlyRate, totalMonths, sta
     return table;
 }
 
+
+// DOM Creation Functions
 function createReportContainer() {
     return el('div', { class: 'main-container' }, [
         createOverzicht(),
