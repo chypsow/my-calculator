@@ -32,7 +32,7 @@ function generateReport() {
         // Add logic for generating detailed report
     }
 
-    alert(t('label.report-generated') + ` (${reportType})`);
+    //alert(t('label.report-generated') + ` (${reportType})`);
 }
 
 function generateAnnualOverviewReport(inputs) {
