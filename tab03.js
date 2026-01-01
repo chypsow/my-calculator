@@ -4,7 +4,7 @@ import { updateSummary, monthlyRate, computePayment } from './tab01.js';
 export function createTab03() {
     $('#tab03').append(
         createHeader('header.loan-reports'),
-        createReportContainer()
+        createReportContainer(),
     );
 
     $('#executeBtn').addEventListener('click', () => {
@@ -12,44 +12,26 @@ export function createTab03() {
     });
 }
 
-function generateReport() {
+export function generateReport() {
     const inputs = updateSummary();
     if (!inputs) return;
 
     const reportType = $('input[name="reportDescription"]:checked').value;
     if (reportType === 'annual-overview') {
-        generateAnnualOverviewReport(inputs);
+        createAnnualReportTable(inputs);
     } else if (reportType === 'detailed') {
         console.log('Generating Detailed Report...');
         // Add logic for generating detailed report
     }
 }
 
-function generateAnnualOverviewReport(inputs) {
-    const { bedrag, jkp, periode, renteType: type, startDate } = inputs;
+function createAnnualReportTable(inputs) {
+    const { bedrag, jkp, periode: totalMonths, renteType: type, startDate } = inputs;
     
     // Calculate monthly interest rate and payment
     const i = monthlyRate(jkp, type);
-    const betaling = computePayment(bedrag, i, periode);
-    
-    // Create report container
-    const reportContainer = el('div', { class: 'annual-report-container' }, [
-        createAnnualReportTable(bedrag, betaling, i, periode, startDate)
-    ]);
-    
-    // Insert report into page
-    const existingReport = $('#annualReportOutput');
-    if (existingReport) {
-        existingReport.innerHTML = '';
-        existingReport.appendChild(reportContainer);
-    } else {
-        // If container doesn't exist, create it
-        const reportOutput = el('div', { id: 'annualReportOutput', class: 'report-output' }, [reportContainer]);
-        $('#tab03').appendChild(reportOutput);
-    }
-}
+    const betaling = computePayment(bedrag, i, totalMonths);
 
-function createAnnualReportTable(bedrag, betaling, monthlyRate, totalMonths, startDate) {
     const table = el('table', { class: 'annual-report-table' });
     
     // Create table header
@@ -65,7 +47,7 @@ function createAnnualReportTable(bedrag, betaling, monthlyRate, totalMonths, sta
     const tbody = el('tbody');
     
     let balance = bedrag;
-    let i = monthlyRate;
+    //let i = monthlyRate;
     
     // Determine number of year intervals
     const numYears = Math.ceil(totalMonths / 12);
@@ -126,7 +108,9 @@ function createAnnualReportTable(bedrag, betaling, monthlyRate, totalMonths, sta
     }
     
     table.appendChild(tbody);
-    return table;
+    const outputDiv = $('#annualReportOutput');
+    outputDiv.innerHTML = '';
+    outputDiv.appendChild(table);
 }
 
 
@@ -134,8 +118,13 @@ function createAnnualReportTable(bedrag, betaling, monthlyRate, totalMonths, sta
 function createReportContainer() {
     return el('div', { class: 'main-container' }, [
         createOverzicht(),
-        createKeuzeContainer()
+        createKeuzeContainer(),
+        CreateReportOutput()
     ]);
+}
+
+function CreateReportOutput() {
+    return el('div', { id: 'annualReportOutput', class: 'report-output' });
 }
 
 function createOverzicht() {

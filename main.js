@@ -1,7 +1,7 @@
 
 import { createTab01 } from './tab01.js';
 import { createTab02 } from './tab02.js';
-import { createTab03 } from './tab03.js';
+import { createTab03, generateReport } from './tab03.js';
 import { translations } from './i18n.js';
 
 // Current language
@@ -161,6 +161,16 @@ export function renderTab(tabNumber) {
     });
 }
 
+function autoFillSimulator() {
+    $('#teLenenBedrag').value = '220000';
+    $('#jkp').value = '12.116';
+    $('#renteType').value = '2';
+    $('#periode').value = '300';
+    $('#periodeEenheid').value = 'months';
+    $('#startDatum').value = '2020-11-01';
+    generateReport();
+}
+
 /* Initialize */
 document.addEventListener("DOMContentLoaded", () => {
     createCircles();
@@ -170,4 +180,5 @@ document.addEventListener("DOMContentLoaded", () => {
     createTab02();
     createTab03();
     renderTab(activePage + 1);
+    //autoFillSimulator();
 });
