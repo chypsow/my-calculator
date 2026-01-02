@@ -134,13 +134,21 @@
     background:var(--bg-table-header) ; 
     color:#000000;
 }
+.annual-report-table th:first-child,
+.annual-report-table td:first-child {
+    width: 2.5rem;  /* Vaste breedte voor eerste kolom */
+}
+.annual-report-table th:nth-child(2),
+.annual-report-table td:nth-child(2) {
+    width: 9.5rem;  /* Vaste breedte voor eerste kolom */
+}
 .annual-report-table thead th {
     font-size:.8rem;
     padding: .5rem;
     font-weight: 600;
 }
 .annual-report-table tbody td {
-    font-size:.8rem; 
+    font-size:.9rem; 
     padding:.35rem; 
     border-bottom:1px solid #dcdcdc; 
 }
