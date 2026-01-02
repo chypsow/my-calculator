@@ -1,38 +1,38 @@
-.keuze-container {
+.config-container {
     margin: 0;
     display: flex;
     flex-direction: column;
     gap: 1rem;
 }
-.keuze-container h2 {
+.config-container h2 {
     margin: 0;
     font-family: var(--font-sans);
     font-size: 1.4rem;
 }
-.keuze-container .instruction-text {
+.config-container .instruction-text {
     margin: 0;
     font-size: .9rem;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: #ffffff;
 }
-.configuration-container {
+.cb-container {
     margin-bottom: 1rem;
     display: flex;
     flex-direction: column;
     gap: 2.5rem;
 }
-.configuration-container .interval-input {
+.cb-container .interval-input {
     width: 6rem;
     margin-left: 0.5rem;
     border: 1px solid var(--border);
     padding: .4rem .5rem;
 }
-.configuration-container .interval-input::-webkit-outer-spin-button,
-.configuration-container .interval-input::-webkit-inner-spin-button {
+.cb-container .interval-input::-webkit-outer-spin-button,
+.cb-container .interval-input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     /*margin: 0;*/
 }
-/*.configuration-container .interval-input[type=number] {
+/*.cb-container .interval-input[type=number] {
     -moz-appearance: textfield;
 }*/
 .columns-container p {
@@ -128,10 +128,20 @@
 
 .annual-report-table thead {
     position:sticky; top:var(--ht-top-header); background:var(--bg-table-header) ; color:#000000;
+    border-bottom:1px solid #aaaaaa;
 }
-
+.annual-report-table thead th {
+    font-size:.8rem;
+    padding: .3rem;
+    font-weight: 600;
+}
+.annual-report-table tbody td {
+    font-size:.8rem; 
+    padding:.2rem; 
+    border-bottom:1px solid #dcdcdc; 
+}
 .annual-report-table thead th, .annual-report-table tbody td {
-    padding:.2rem; font-size:.8rem; text-align:center; overflow:hidden; text-overflow:ellipsis; white-space:normal;
+    text-align:center; overflow:hidden; text-overflow:ellipsis; white-space:normal;
 }
 
 .annual-report-table tbody tr {
@@ -139,19 +149,17 @@
     transition: background-color 0.2s ease;
 }
 
-.annual-report-table tbody tr:hover {
+/*.annual-report-table tbody tr:hover {
     background-color: #e2e2e2;
-}
+}*/
 
 /*.annual-report-table tbody td {
     padding: 0.75rem 1rem;
 }*/
-.annual-report-table tbody td {
-    border-bottom:1px solid #dcdcdc; 
-}
+
 .annual-report-table td:first-child {
     /*text-align: right;*/
-    color: #324555;
+    color: #5f6a74;
     font-weight: 500;
 }
 

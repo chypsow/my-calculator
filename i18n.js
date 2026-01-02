@@ -4,11 +4,11 @@ export const translations = {
     // Headers & sections
     "tab.simulator": "LOAN SIMULATOR",
     "tab.calculator": "LOAN CALCULATOR",
-    "tab.table": "LOAN ANALYSER",
+    "tab.table": "LOAN TABLES",
     "tab.amortization": "AMORTIZATION TABLE",
     "header.loan-overview": "LOAN - OVERVIEW AND STATUS",
     "header.loan-status": "LOAN - STATUS BETWEEN 2 DATES",
-    "header.loan-table": "LOAN - TABLE",
+    "header.loan-table": "LOAN - TABLES",
     "header.amortization": "LOAN - AMORTIZATION TABLE",
 
     // Tab01 - Input labels
@@ -75,9 +75,9 @@ export const translations = {
     "table.interest": "Interests",
     "table.outstanding-capital": "Outstanding capital",
     "table.outstanding-interest": "Outstanding interests",
-    "table.cumulative-interest": "Cumulative interests",
-    "table.cumulative-principal": "Cumulative principal",
-    "table.cumulative-payment": "Cumulative payments",
+    "table.cumulative-interest": "Cumul. interests",
+    "table.cumulative-principal": "Cumul. principal",
+    "table.cumulative-payment": "Cumul. payments",
 
     // Buttons
     "button.import": "Import",
@@ -87,6 +87,7 @@ export const translations = {
     "button.deselect-all": "Deselect all",    "button.amortization-table": "Amortization Table",
     "button.print": "Print",
     "button.today": "Today",
+    "button.hide": "Hide table",
 
     // Messages
     "message.invalid-input": "Invalid input. Check the loan data.",
@@ -109,7 +110,7 @@ export const translations = {
     // Headers & sections
     "tab.simulator": "SIMULATEUR DE PRÊT",
     "tab.calculator": "CALCULATEUR DE PRÊT",
-    "tab.table": "ANALYSEUR DE PRÊT",
+    "tab.table": "TABLEAUX DE PRÊT",
     "tab.amortization": "TABLEAU D'AMORTISSEMENT",
     "header.loan-overview": "PRÊT - APERÇU ET STATUT",
     "header.loan-status": "PRÊT - STATUT ENTRE 2 DATES",
@@ -192,6 +193,7 @@ export const translations = {
     "button.deselect-all": "Tout désélectionner",    "button.amortization-table": "Tableau d'amortissement",
     "button.print": "Imprimer",
     "button.today": "Aujourd'hui",
+    "button.hide": "Cacher le tableau",
 
     // Messages
     "message.invalid-input": "Entrée invalide. Vérifiez les données du prêt.",
@@ -214,11 +216,11 @@ export const translations = {
     // Headers & sections
     "tab.simulator": "LENING SIMULATOR",
     "tab.calculator": "LENING CALCULATOR",
-    "tab.table": "LENING ANALYSER",
+    "tab.table": "LENING TABELLEN",
     "tab.amortization": "AFLOSSINGSTABEL",
     "header.loan-overview": "LENING - OVERZICHT EN STATUS",
     "header.loan-status": "LENING - STATUS TUSSEN 2 DATUMS",
-    "header.loan-table": "LENING - TABEL",
+    "header.loan-table": "LENING - TABELLEN",
     "header.amortization": "LENING - AFLOSSINGSTABEL",
 
     // Tab01 - Input labels
@@ -285,9 +287,9 @@ export const translations = {
     "table.interest": "Aflossing rente",
     "table.outstanding-capital": "Uitstaand kapitaal",
     "table.outstanding-interest": "Uitstaande rente",
-    "table.cumulative-interest": "Cumulatieve interesten",
-    "table.cumulative-principal": "Cumulatief afbetaald KPT",
-    "table.cumulative-payment": "Cumulatief aflossing",
+    "table.cumulative-interest": "Cumul. interesten",
+    "table.cumulative-principal": "Cumul. afbetaald KPT",
+    "table.cumulative-payment": "Cumul. aflossing",
 
     // Buttons
     "button.import": "Importeren",
@@ -297,6 +299,7 @@ export const translations = {
     "button.deselect-all": "Alles deselecteren",    "button.amortization-table": "Aflossingstabel",
     "button.print": "Afdrukken",
     "button.today": "vandaag",
+    "button.hide": "Verberg tabel",
 
     // Messages
     "message.invalid-input": "Ongeldige invoer. Controleer de leninggegevens.",

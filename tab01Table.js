@@ -35,35 +35,7 @@ export function createTable() {
     ]);
 }
 
-function preparePrintOverview() {
-    $("#leningOverzicht").innerHTML = "";
-    const inputs = parseInputs();
 
-    const bedrag = el("li", { html: `<strong data-i18n="print.loan-amount">${t('print.loan-amount')}</strong> <span>${fmtCurrency.format(inputs.bedrag)}</span>` });
-    const jkp = el("li", { html: `<strong data-i18n="print.annual-rate">${t('print.annual-rate')}</strong> <span>${inputs.jkp.toString().replace('.', ',') || "-"} %</span>` });
-    const rentevoet = el("li", { html: `<strong data-i18n="print.monthly-rate">${t('print.monthly-rate')}</strong> <span>${$('.monthly-rate').textContent || "-"}</span>` });
-    const pmt = el("li", { html: `<strong data-i18n="print.monthly-payment">${t('print.monthly-payment')}</strong> <span>${$('.monthly-payment').textContent || "-"}</span>` });
-    const rente = el("li", { html: `<strong data-i18n="print.total-interest">${t('print.total-interest')}</strong> <span>${$('.total-interest').textContent || "-"}</span>` });
-    const periode = el("li", { html: `<strong data-i18n="print.period">${t('print.period')}</strong> <span>${inputs.periode || "-"}</span> <span data-i18n="label.months">${t('label.months')}</span>` });
-    const startDate = el("li", { html: `<strong data-i18n="print.start-date">${t('print.start-date')}</strong> <span>${fmtDate(inputs.startDate)}</span>` });
-    const endDate = el("li", { html: `<strong data-i18n="print.end-date">${t('print.end-date')}</strong> <span>${$('.endDateDisplay').textContent || "-"}</span>` });
-    $("#leningOverzicht").append(bedrag, jkp, rentevoet, pmt, rente, periode, startDate, endDate);
-}
-
-export function printData() {
-    preparePrintOverview();
-    window.print();
-}
-
-export function setTableVisibility(visible) {
-    if (visible) {
-        $("#aflossingstabel").hidden = false;
-        $("#afdrukken").style.visibility = "visible";
-    } else {
-        $("#aflossingstabel").hidden = true;
-        $("#afdrukken").style.visibility = "hidden";
-    }
-}
 
 export function generateSchedule() {
     const inputs = parseInputs();

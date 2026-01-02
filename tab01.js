@@ -1,17 +1,16 @@
 import { $, $all, formatLocalDate, createHeader,  fmtCurrency, fmtDate, fmtDecimal, t } from './main.js';
 import { createTopRow, createMainSection } from './tab01DOM.js';
-import { generateSchedule, createTable, printData, setTableVisibility } from './tab01Table.js';
+import { setTableVisibility } from './tab03.js';
 
 export function createTab01() {
     $('#tab01').append(
         createHeader('header.loan-overview'),
         createTopRow(),
-        createMainSection(),
-        createTable()
+        createMainSection()
     );
     
-    setTableVisibility(false);
-    $("#aflossingBtn").disabled = true;
+    //setTableVisibility(false);
+    //$("#aflossingBtn").disabled = true;
 
     // Event listeners/* Events */
     $all(".invoer").forEach(inp => inp.addEventListener("input", () => {
@@ -98,14 +97,14 @@ export function createTab01() {
     $("#importBtn").addEventListener("click", importData);
     $("#exportBtn").addEventListener("click", exportData);
 
-    $('#aflossingBtn').addEventListener('click', () => {
+    /*$('#aflossingBtn').addEventListener('click', () => {
         if ($("#aflossingstabel").hidden) {
             generateSchedule();
         } else {
             setTableVisibility(false);
         }
     });
-    $('#afdrukken').addEventListener('click', printData);
+    $('#afdrukken').addEventListener('click', printData);*/
 }
 
 //make function to check if date changed month/year only
@@ -160,7 +159,7 @@ export function updateSummary() {
     //if (returnInputs && !updateOutputs) { return inputs; }
     //console.log("Updating summary with outputs");
 
-    $("#aflossingBtn").disabled = false;
+    //$("#aflossingBtn").disabled = false;
 
     const { bedrag, jkp, periode, renteType: type, startDate } = inputs;
     const i = monthlyRate(jkp, type);
@@ -252,7 +251,7 @@ function resetOutputs() {
     resetOutputsTab01();
     resetOutputsTab02();
     setTableVisibility(false);
-    $("#aflossingBtn").disabled = true;
+    //$("#aflossingBtn").disabled = true;
 }
 function resetOutputsOverview() {
     $all(".output-overview").forEach(o => o.textContent = "");

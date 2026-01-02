@@ -1,5 +1,5 @@
 import { $, el, createHeader, fmtCurrency, fmtDate, t } from './main.js';
-import { updateSummary, monthlyRate, computePayment } from './tab01.js';
+import { parseInputs, updateSummary, monthlyRate, computePayment } from './tab01.js';
 
 export function createTab03() {
     $('#tab03').append(
@@ -7,9 +7,18 @@ export function createTab03() {
         createReportContainer(),
     );
 
-    $('#generateBtn').addEventListener('click', () => {
-        generateTable();
+    setTableVisibility(false);
+
+    $('#generateBtn').addEventListener('click', function() {
+        if($("#annualReportOutput").hidden) {
+            generateTable();
+        } else {
+            this.textContent = t('button.generate');
+            setTableVisibility(false);
+        }
     });
+
+    $('#afdrukken').addEventListener('click', printData);
 
     $('#selectAllBtn').addEventListener('click', () => {
         document.querySelectorAll('.column-checkbox').forEach(checkbox => checkbox.checked = true);
@@ -18,6 +27,35 @@ export function createTab03() {
     $('#deselectAllBtn').addEventListener('click', () => {
         document.querySelectorAll('.column-checkbox').forEach(checkbox => checkbox.checked = false);
     });
+}
+
+export function setTableVisibility(visible) {
+    if (visible) {
+        $("#annualReportOutput").hidden = false;
+        $("#afdrukken").style.visibility = "visible";
+    } else {
+        $("#annualReportOutput").hidden = true;
+        $("#afdrukken").style.visibility = "hidden";
+    }
+}
+function preparePrintOverview() {
+    $("#leningOverzicht").innerHTML = "";
+    const inputs = parseInputs();
+
+    const bedrag = el("li", { html: `<strong data-i18n="print.loan-amount">${t('print.loan-amount')}</strong> <span>${fmtCurrency.format(inputs.bedrag)}</span>` });
+    const jkp = el("li", { html: `<strong data-i18n="print.annual-rate">${t('print.annual-rate')}</strong> <span>${inputs.jkp.toString().replace('.', ',') || "-"} %</span>` });
+    const rentevoet = el("li", { html: `<strong data-i18n="print.monthly-rate">${t('print.monthly-rate')}</strong> <span>${$('.monthly-rate').textContent || "-"}</span>` });
+    const pmt = el("li", { html: `<strong data-i18n="print.monthly-payment">${t('print.monthly-payment')}</strong> <span>${$('.monthly-payment').textContent || "-"}</span>` });
+    const rente = el("li", { html: `<strong data-i18n="print.total-interest">${t('print.total-interest')}</strong> <span>${$('.total-interest').textContent || "-"}</span>` });
+    const periode = el("li", { html: `<strong data-i18n="print.period">${t('print.period')}</strong> <span>${inputs.periode || "-"}</span> <span data-i18n="label.months">${t('label.months')}</span>` });
+    const startDate = el("li", { html: `<strong data-i18n="print.start-date">${t('print.start-date')}</strong> <span>${fmtDate(inputs.startDate)}</span>` });
+    const endDate = el("li", { html: `<strong data-i18n="print.end-date">${t('print.end-date')}</strong> <span>${$('.endDateDisplay').textContent || "-"}</span>` });
+    $("#leningOverzicht").append(bedrag, jkp, rentevoet, pmt, rente, periode, startDate, endDate);
+}
+
+function printData() {
+    preparePrintOverview();
+    window.print();
 }
 
 export function generateTable() {
@@ -37,13 +75,16 @@ export function generateTable() {
         alert('Selecteer minsten één kolom');
         return;
     }
-
+    setTableVisibility(true);
+    $('#generateBtn').textContent = t('button.hide');
     createAnnualReportTable(inputs, interval, selectedColumns);
 }
 
 function createAnnualReportTable(inputs, interval, selectedColumns) {
     const { bedrag, jkp, periode: totalMonths, renteType: type, startDate } = inputs;
-    
+
+    const outputDiv = $('#annualReportOutput');
+    outputDiv.innerHTML = '';
     // Calculate monthly interest rate and payment
     const i = monthlyRate(jkp, type);
     const betaling = computePayment(bedrag, i, totalMonths);
@@ -53,6 +94,7 @@ function createAnnualReportTable(inputs, interval, selectedColumns) {
     // Create table header
     const thead = el('thead');
     const headerRow = el('tr');
+    headerRow.appendChild(el('th', { text: t('table.no'), 'data-i18n': 'table.no' }));
     headerRow.appendChild(el('th', { text: `${ interval === 1 ? t('table.interval-date') : t('table.interval-month', { interval }) }`, 'data-i18n': interval === 1 ? 'table.interval-date' : 'table.interval-month' }));
     
     // Map labels for selected columns only
@@ -121,7 +163,8 @@ function createAnnualReportTable(inputs, interval, selectedColumns) {
         balance -= intervalPrincipal;
         
         const row = el('tr');
-        
+        // No. column
+        row.appendChild(el('td', { text: intervalNum }));
         // Interval column (always shown)
         const intervalCell = el('td', { 
             text: interval === 1 ? fmtDate(intervalStartDate) : `${fmtDate(intervalStartDate)} - ${fmtDate(intervalEndDate)}`
@@ -183,8 +226,6 @@ function createAnnualReportTable(inputs, interval, selectedColumns) {
     }
     
     table.appendChild(tbody);
-    const outputDiv = $('#annualReportOutput');
-    outputDiv.innerHTML = '';
     outputDiv.appendChild(table);
 }
 
@@ -193,7 +234,7 @@ function createAnnualReportTable(inputs, interval, selectedColumns) {
 function createReportContainer() {
     return el('div', { class: 'main-container' }, [
         createOverzicht(),
-        createKeuzeContainer(),
+        createConfigContainer(),
         CreateReportOutput()
     ]);
 }
@@ -203,7 +244,7 @@ function CreateReportOutput() {
 }
 
 function createOverzicht() {
-    return el("div", { class: "overzicht" }, [
+    return el("div", { class: "overzicht no-print" }, [
         el('div', { class: 'overzicht-header', html: `<h2 data-i18n="section.loan-overview">${t('section.loan-overview')}</h2><span><span data-i18n="label.today">${t('label.today')}</span> <span>${fmtDate(new Date())}</span></span>` }),
         el('div', { class: 'overzicht-inhoud' }, [
             el("div", { html: `
@@ -238,17 +279,18 @@ function createOverzicht() {
     ]);
 }
 
-function createKeuzeContainer() {
-    return el('div', { class: 'keuze-container' }, [
-        el('h2', { html: `<span data-i18n="section.table-instructions-header">${t('section.table-instructions-header')}</span>` }),
-        el('p', { class: 'instruction-text', 'data-i18n': 'section.table-instructions', text: t('section.table-instructions') }),
+function createConfigContainer() {
+    return el('div', { class: 'config-container' }, [
+        el('h2', { class: 'no-print', html: `<span data-i18n="section.table-instructions-header">${t('section.table-instructions-header')}</span>` }),
+        el('p', { class: 'instruction-text no-print', 'data-i18n': 'section.table-instructions', text: t('section.table-instructions') }),
         createCheckboxes(),
-        createExecuteButton()
+        createButtons(),
+        createPrintOverview()
     ]);
 }
 
 function createCheckboxes() {
-    return el('div', { class: 'configuration-container' }, [
+    return el('div', { class: 'cb-container no-print' }, [
         el('div', { class: 'interval-input-container' }, [
             el('label', { 'data-i18n': 'label.interval', text: t('label.interval') }),
             el('input', { 
@@ -293,6 +335,17 @@ function createCheckboxes() {
     ]);
 }
 
-function createExecuteButton() {
-    return el('button', { id: 'generateBtn', class: 'accented-btn', "data-i18n": "button.generate", text: t('button.generate') });
+function createButtons() {
+    return el("div", { class: "button-group no-print" }, [
+        el("button", {id: "generateBtn", class: "accented-btn no-print", "data-i18n": "button.generate", text: t('button.generate')}),
+        el("button", {id: "afdrukken", class: "accented-btn no-print", "data-i18n": "button.print", text: t('button.print')})
+    ]);
+}
+
+function createPrintOverview() {
+    return el("ul", {
+        id: "leningOverzicht",
+        class: "lening-overzicht on-print",
+        hidden: true
+    });
 }
