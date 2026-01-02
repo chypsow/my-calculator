@@ -135,7 +135,7 @@ function createAnnualReportTable(inputs, interval, selectedColumns) {
         // Calculate accurate interval end date by adding months and getting last day
         let intervalEndDate = new Date(startDate);
         intervalEndDate.setMonth(intervalEndDate.getMonth() + intervalEndMonth);
-        intervalEndDate.setDate(0); // Set to last day of previous month
+        //intervalEndDate.setDate(0); // Set to last day of previous month
         
         // Calculate cumulative principal and interest for this interval
         let intervalPrincipal = 0;
@@ -162,7 +162,7 @@ function createAnnualReportTable(inputs, interval, selectedColumns) {
         row.appendChild(el('td', { text: intervalNum }));
         // Interval column (always shown)
         const intervalCell = el('td', { 
-            text: interval === 1 ? fmtDate(intervalStartDate) : `${fmtDate(intervalStartDate)} - ${fmtDate(intervalEndDate)}`
+            text: interval === 1 ? fmtDate(intervalEndDate) : `${fmtDate(intervalStartDate)} - ${fmtDate(intervalEndDate)}`
         });
         row.appendChild(intervalCell);
         

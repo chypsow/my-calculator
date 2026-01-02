@@ -25,11 +25,13 @@
     .top-row{ flex-direction:column; align-items:flex-start; gap:1.5rem; }
     .sectie-wrapper { flex-direction: column; align-items: center; }
     .kapitaal-groep, .rente-groep { width: 100%; }
+    .checkbox-group { width: 100%; }
 }
 @media (max-width:650px){
     :root { --ht-top-header: 2.5rem; }
     header h1{ font-size: 1.5rem; }
     label{ font-size:.65rem; }
+    .interval-input-container label{ font-size: .9rem;}
     .lang-switch {padding:4px 12px; font-size:.85rem; }
     .table-header th, .table-inhoud td{ font-size:.65rem; }
     .wrapper{ width:98%; padding:.5rem; }
@@ -40,7 +42,7 @@
     .datums p span:nth-child(2) { font-size:.75rem; }
     .output-fields h2{ font-size:1.1rem; }
     .output-fields p{ font-size:.75rem; }
-    .info-box .output-tab01, .info-box .output-status-tab01{ font-size: .85rem; }
+    .info-box .output-overview, .info-box .output-tab01{ font-size: .85rem; }
     .overzicht-header h2{ font-size:1.1rem; }
     .overzicht-inhoud p span:first-child { font-size:.75rem; }
     .overzicht-inhoud p span:nth-child(2) { font-size:.85rem; }

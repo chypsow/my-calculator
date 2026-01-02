@@ -79,10 +79,10 @@
     font-size: 1.3rem;
     color: var(--accent);
 }
-.datum-status {
+/*.datum-status {
     border: 1px solid rgba(139, 139, 139, 0.685);
     background-color: rgba(110, 110, 110, 0.251);
-}
+}*/
 
 /* Output sectie */
 .output-sectie {
