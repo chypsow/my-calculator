@@ -94,7 +94,7 @@ h1{
 }
 
 /* Language Switcher Styles */
-.lang-switch {
+.lang-select {
     position: fixed;
     top: 0px;
     right: 0px;
@@ -113,18 +113,18 @@ h1{
     cursor: pointer;
 }
 
-.lang-switch:hover {
+.lang-select:hover {
     filter: brightness(0.8);
 }
 
-.lang-switch option {
+.lang-select option {
     background-color: #e0e0e0;
     color: #000000;
     padding: 0.5rem;
     border: none;
 }
 
-.lang-switch option:hover {
+.lang-select option:hover {
     background-color: var(--accent);
     color: #000000;
 }

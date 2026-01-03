@@ -13,7 +13,7 @@
 @media (max-width:950px){
     header, footer{ flex-direction:column; align-items:center; gap:.5rem; }
     header h1{ font-size: 2rem;}
-    .lang-switch { margin: 6px; }
+    .lang-select { margin: 6px; }
     .lening-overzicht{ column-count:1; }
     .top-header a { font-size: .9rem; }
     /*.table-wrapper{ width:98%; padding:.75rem; }*/
@@ -32,7 +32,7 @@
     header h1{ font-size: 1.5rem; }
     label{ font-size:.65rem; }
     .interval-input-container label{ font-size: .9rem;}
-    .lang-switch {padding:2px 12px 4px 12px; font-size:.9rem; }
+    .lang-select {padding:2px 12px 4px 12px; font-size:.9rem; }
     .table-header th, .table-inhoud td{ font-size:.65rem; }
     .simulator, .calculator, .generator{ width:98%; padding:.5rem; }
     .top-header {flex-direction: column; gap:0; }
@@ -62,7 +62,7 @@
     table{ table-layout:auto ; width:100%; }
     .no-print{ display:none; }
     .on-print{ display:block; }
-    .lang-switch { display: none; }
+    .lang-select { display: none; }
     .simulator, .calculator, .generator{ width:100%; margin:0; padding:0; }
     /*.table-wrapper{ max-width:100%; width:100%; margin:0; padding:0; background:transparent; box-shadow:none; }*/
     .table-header th{ font-size:0.7rem ; color:#000; border-color:#000;}

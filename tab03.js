@@ -2,11 +2,13 @@ import { $, el, createHeader, fmtCurrency, fmtDate, t } from './main.js';
 import { parseInputs, updateSummary, monthlyRate, computePayment } from './tab01.js';
 
 export function createTab03() {
-    $('#tab03').append(
+    const tab03 = el('div', { id: 'tab03' });
+    tab03.append(
         createHeader('header.loan-table'),
         createReportContainer(),
     );
-
+    $('main').appendChild(tab03);
+    
     setTableVisibility(false);
 
     $('#generateBtn').addEventListener('click', () => {
@@ -22,6 +24,8 @@ export function createTab03() {
     $('#deselectAllBtn').addEventListener('click', () => {
         document.querySelectorAll('.column-checkbox').forEach(checkbox => checkbox.checked = false);
     });
+
+    return tab03;
 }
 
 export function setTableVisibility(visible) {

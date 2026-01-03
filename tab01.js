@@ -1,16 +1,15 @@
-import { $, $all, formatLocalDate, createHeader,  fmtCurrency, fmtDate, fmtDecimal, t } from './main.js';
+import { $, $all, formatLocalDate, createHeader,  fmtCurrency, fmtDate, fmtDecimal, t, el } from './main.js';
 import { createSimulatorDOM } from './tab01DOM.js';
 import { setTableVisibility } from './tab03.js';
 
 export function createTab01() {
-    $('#tab01').append(
+    const tab01 = el('div', { id: 'tab01' });
+    tab01.append(
         createHeader('header.loan-overview'),
         createSimulatorDOM()
     );
+    $('main').appendChild(tab01);
     
-    //setTableVisibility(false);
-    //$("#aflossingBtn").disabled = true;
-
     // Event listeners/* Events */
     $all(".invoer").forEach(inp => inp.addEventListener("input", () => {
         inp.value = inp.value.replace(/\./g, ',');
@@ -96,14 +95,7 @@ export function createTab01() {
     $("#importBtn").addEventListener("click", importData);
     $("#exportBtn").addEventListener("click", exportData);
 
-    /*$('#aflossingBtn').addEventListener('click', () => {
-        if ($("#aflossingstabel").hidden) {
-            generateSchedule();
-        } else {
-            setTableVisibility(false);
-        }
-    });
-    $('#afdrukken').addEventListener('click', printData);*/
+    return tab01;
 }
 
 //make function to check if date changed month/year only

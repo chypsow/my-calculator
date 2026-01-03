@@ -2,12 +2,13 @@ import { $, el, formatLocalDate, createHeader, fmtCurrency, $all, fmtDate, t } f
 import { computeRemaining, updateSummary, hasMonthYearChanged } from './tab01.js';
 
 export function createTab02() {
-    //$('#tab02').innerHTML = '';
-    $('#tab02').append(
+    const tab02 = el('div', { id: 'tab02' });
+    tab02.append(
         createHeader('header.loan-status'),
         createCalculatorDOM()
     );
-
+    $('main').appendChild(tab02);
+    
     $('#startdatum-status').addEventListener('change', function() {
         if (hasMonthYearChanged(this)) $all('.output-tab02').forEach(el => el.textContent = '');
     });
@@ -17,6 +18,8 @@ export function createTab02() {
     });
 
     $('#berekenBtn-2').addEventListener('click', calculteTotals);
+
+    return tab02;
 }
 
 function calculteTotals() {

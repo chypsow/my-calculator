@@ -94,7 +94,7 @@ export function createHeader(keyOrText) {
 }
 
 function createCircles() {
-    const container = $(".circles-wrapper");
+    const container = el('div', { class: 'circles-wrapper no-print' });
     for (let i = 0; i < 7; i++) {
         container.appendChild(el('div', { class: 'circle' }));
     }
@@ -102,7 +102,7 @@ function createCircles() {
 }
 
 function createTopHeader() {
-    const header = $('#topHeader');
+    const header = el('nav', { id: 'topHeader', class: 'top-header no-print' });
     const tabLabels = {'tab.simulator': t('tab.simulator'), 'tab.calculator': t('tab.calculator'), 'tab.table': t('tab.table')};
     header.setAttribute('role', 'tablist');
     Object.entries(tabLabels).forEach(([key, label], index) => {
@@ -126,18 +126,20 @@ function createTopHeader() {
         });
         header.appendChild(tab);
     });
+    return header;
 }
 
 function createLangSwitcher () {
-    const select = $('#lang-switch');
+    const select = el('select', { class: 'lang-select', id: 'lang-select', 'aria-label': 'Select Language' });
     const languages = [{ code: 'en', label: 'EN' }, { code: 'fr', label: 'FR' }, { code: 'nl', label: 'NL' }];
-    
-    //const select = el('select', { class: 'lang-select', id: 'lang-select' });
     
     languages.forEach(lang => {
         const option = el('option', { value: lang.code, text: lang.label });
         if (lang.code === currentLang) {
             option.selected = true;
+            option.setAttribute('aria-selected', 'true');
+        } else {
+            option.setAttribute('aria-selected', 'false');
         }
         select.appendChild(option);
     });
@@ -146,11 +148,17 @@ function createLangSwitcher () {
         const newLang = e.target.value;
         if (currentLang === newLang) return;
         currentLang = newLang;
+        
+        // Set aria-selected on all options
+        Array.from(select.options).forEach(opt => {
+            opt.setAttribute('aria-selected', opt.value === newLang ? 'true' : 'false');
+        });
+        
         localStorage.setItem('lang', newLang);
         applyLang(newLang);
     });
     
-    //container.appendChild(select);
+    return select;
 }
 
 export function renderTab(tabNumber) {
@@ -174,11 +182,17 @@ function autoFillSimulator() {
     $('#startDatum').value = '2020-11-01';
 }
 
+function createMainContent() {
+    const main = $('main');
+    main.appendChild(createCircles());
+    main.appendChild(createTopHeader());
+    main.appendChild(createLangSwitcher());
+}
+    
+
 /* Initialize */
 document.addEventListener("DOMContentLoaded", () => {
-    createCircles();
-    createTopHeader();
-    createLangSwitcher();
+    createMainContent();
     createTab01();
     createTab02();
     createTab03();
