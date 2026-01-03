@@ -5,7 +5,7 @@ export function createTab02() {
     //$('#tab02').innerHTML = '';
     $('#tab02').append(
         createHeader('header.loan-status'),
-        createCalculator()
+        createCalculatorDOM()
     );
 
     $('#startdatum-status').addEventListener('change', function() {
@@ -65,7 +65,7 @@ function calculteTotals() {
     $('#totaal-afbetaald').textContent = fmtCurrency.format(capitalPaid + interestPaid);
 }
 
-function createCalculator() {
+function createCalculatorDOM() {
     const createBerekenButton = () => {
         return el('button', { id: 'berekenBtn-2', class: 'accented-btn', "data-i18n": "button.calculate", text: t('button.calculate') });
     }

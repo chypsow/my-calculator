@@ -227,7 +227,7 @@ function createAnnualReportTable(inputs, interval, selectedColumns) {
 
 // DOM Creation Functions
 function createReportContainer() {
-    return el('div', { class: 'main-container' }, [
+    return el('div', { class: 'generator' }, [
         createOverzicht(),
         createConfigContainer(),
         CreateReportOutput()

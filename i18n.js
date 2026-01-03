@@ -3,13 +3,13 @@ export const translations = {
   en: {
     // Headers & sections
     "tab.simulator": "LOAN SIMULATOR",
-    "tab.calculator": "LOAN CALCULATOR",
+    "tab.calculator": "CALCULATIONS",
     "tab.table": "LOAN TABLES",
     "tab.amortization": "AMORTIZATION TABLE",
-    "header.loan-overview": "LOAN - OVERVIEW AND STATUS",
-    "header.loan-status": "LOAN - STATUS BETWEEN 2 DATES",
-    "header.loan-table": "LOAN - TABLES",
-    "header.amortization": "LOAN - AMORTIZATION TABLE",
+    "header.loan-overview": "LOAN SIMULATOR",
+    "header.loan-status": "CALCULATE PAID CAPITAL & PAID INTERESTS DURING A PERIOD",
+    "header.loan-table": "GENERATE AMORTIZATION TABLE",
+    "header.amortization": "GENERATE AMORTIZATION TABLE",
 
     // Tab01 - Input labels
     "label.loan-amount": "Loan amount (EUR):",
@@ -108,23 +108,23 @@ export const translations = {
 
   fr: {
     // Headers & sections
-    "tab.simulator": "SIMULATEUR DE PRÊT",
-    "tab.calculator": "CALCULATEUR DE PRÊT",
-    "tab.table": "TABLEAUX DE PRÊT",
+    "tab.simulator": "SIMULATEUR DE CRÉDIT",
+    "tab.calculator": "CALCULS",
+    "tab.table": "TABLEAUX DE CRÉDIT",
     "tab.amortization": "TABLEAU D'AMORTISSEMENT",
-    "header.loan-overview": "PRÊT - APERÇU ET STATUT",
-    "header.loan-status": "PRÊT - STATUT ENTRE 2 DATES",
-    "header.loan-table": "PRÊT - TABLEAUX",
-    "header.amortization": "PRÊT - TABLEAU D'AMORTISSEMENT",
+    "header.loan-overview": "SIMULATEUR DE CRÉDIT",
+    "header.loan-status": "CALCULER LE CAPITAL PAYÉ ET LES INTÉRÊTS PAYÉS PENDANT UNE PÉRIODE",
+    "header.loan-table": "GÉNÉRER UN TABLEAU D'AMORTISSEMENT",
+    "header.amortization": "GÉNÉRER UN TABLEAU D'AMORTISSEMENT",
 
     // Tab01 - Input labels
-    "label.loan-amount": "Montant du prêt (EUR):",
+    "label.loan-amount": "Montant du crédit (EUR):",
     "label.interest-rate": "Taux d'intérêt annuel (%):",
     "label.interest-type.effective": "Effectif",
     "label.interest-type.nominal": "Nominal",
     "label.period-unit.months": "mois",
     "label.period-unit.years": "ans",
-    "label.loan-period": "Durée du prêt:",
+    "label.loan-period": "Durée du crédit:",
     "label.start-date": "Date de début:",
     "label.end-date": "Date de fin:",
     "label.bank-name": "Nom de la banque:",
@@ -135,8 +135,8 @@ export const translations = {
 
     // Tab01 - Section titles
     "section.input-fields": "À remplir:",
-    "section.loan-overview": "Aperçu du prêt:",
-    "section.loan-status-on": "Statut du prêt le:",
+    "section.loan-overview": "Aperçu du crédit:",
+    "section.loan-status-on": "Statut du crédit le:",
     "section.report-header": "Veuillez sélectionner le rapport à générer:",
 
     // Tab01 - Output labels
@@ -144,7 +144,7 @@ export const translations = {
     "output.monthly-payment": "Paiement mensuel:",
     "output.monthly-rate": "Taux d'intérêt mensuel:",
     "output.total-interest": "Intérêts totales à payer:",
-    "output.loan-period": "Durée du prêt:",
+    "output.loan-period": "Durée du crédit:",
     "output.remaining-duration": "Durée restante:",
     "output.outstanding-capital": "Capital impayé:",
     "output.remaining-interest": "Intérêts restants:",
@@ -157,8 +157,8 @@ export const translations = {
     "label.date2": "Deuxième date:",
     "label.years": "ans",
     "label.months": "mois",
-    "section.explanation": "Calculer le capital payé et les intérêts payés entre deux dates en fonction des données de prêt entrées.",
-    "section.explanation-ref": "Le calcul est basé sur les données de prêt entrées dans la section SIMULATEUR DE PRÊT.",
+    "section.explanation": "Calculer le capital payé et les intérêts payés entre deux dates en fonction des données du crédit entrées.",
+    "section.explanation-ref": "Le calcul est basé sur les données du crédit entrées dans la section SIMULATEUR DE CRÉDIT.",
 
     // Tab02 - Output
     "output.paid-capital": "Capital payé:",
@@ -196,8 +196,8 @@ export const translations = {
     "button.hide": "Cacher le tableau",
 
     // Messages
-    "message.invalid-input": "Entrée invalide. Vérifiez les données du prêt.",
-    "message.no-valid-start": "Aucune date de début de prêt valide trouvée.",
+    "message.invalid-input": "Entrée invalide. Vérifiez les données du crédit.",
+    "message.no-valid-start": "Aucune date de début de crédit valide trouvée.",
     "message.valid-dates": "Veuillez entrer des dates valides.",
     "message.no-data-export": "Aucune donnée valide à exporter.",
 
@@ -215,13 +215,13 @@ export const translations = {
   nl: {
     // Headers & sections
     "tab.simulator": "LENING SIMULATOR",
-    "tab.calculator": "LENING CALCULATOR",
+    "tab.calculator": "BEREKENINGEN",
     "tab.table": "LENING TABELLEN",
     "tab.amortization": "AFLOSSINGSTABEL",
-    "header.loan-overview": "LENING - OVERZICHT EN STATUS",
-    "header.loan-status": "LENING - STATUS TUSSEN 2 DATUMS",
-    "header.loan-table": "LENING - TABELLEN",
-    "header.amortization": "LENING - AFLOSSINGSTABEL",
+    "header.loan-overview": "LENING SIMULATOR",
+    "header.loan-status": "BEREKEN HET AFBETAALD KAPITAAL & DE BETAALDE RENTE TIJDENS EEN PERIODE",
+    "header.loan-table": "GENEREER AFLOSSINGSTABEL",
+    "header.amortization": "GENEREER AFLOSSINGSTABEL",
 
     // Tab01 - Input labels
     "label.loan-amount": "Te lenen bedrag (EUR):",
@@ -263,7 +263,7 @@ export const translations = {
     "label.date2": "Tweede datum:",
     "label.years": "jaar",
     "label.months": "maanden",
-    "section.explanation": "Bereken het afbetaalde kapitaal en de betaalde rente tussen twee datums op basis van de ingevoerde leninggegevens.",
+    "section.explanation": "Bereken het afbetaald kapitaal en de betaalde rente tussen twee datums op basis van de ingevoerde leninggegevens.",
     "section.explanation-ref": "De berekening is gebaseerd op de ingevoerde leninggegevens in de LENING SIMULATOR sectie.",
 
     // Tab02 - Output

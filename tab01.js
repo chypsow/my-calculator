@@ -1,12 +1,11 @@
 import { $, $all, formatLocalDate, createHeader,  fmtCurrency, fmtDate, fmtDecimal, t } from './main.js';
-import { createTopRow, createMainSection } from './tab01DOM.js';
+import { createSimulatorDOM } from './tab01DOM.js';
 import { setTableVisibility } from './tab03.js';
 
 export function createTab01() {
     $('#tab01').append(
         createHeader('header.loan-overview'),
-        createTopRow(),
-        createMainSection()
+        createSimulatorDOM()
     );
     
     //setTableVisibility(false);

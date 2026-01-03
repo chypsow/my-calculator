@@ -1,7 +1,14 @@
 import { el, fmtDate, t } from './main.js';
 
 // Create Elements
-export function createTopRow() {
+export function createSimulatorDOM() {
+    const container = el("div", { class: "simulator" }, [
+        createTopRow(),
+        createMainSection(),
+    ]);
+    return container;
+}
+function createTopRow() {
     function createBankName() {
     return el("label", { class: "bank-name" }, [
         el("span", { "data-i18n": "label.bank-name", text: t('label.bank-name') }),
@@ -20,7 +27,7 @@ export function createTopRow() {
     ]);
 }
 
-export function createMainSection() {
+function createMainSection() {
     return el("section", { class: "no-print" }, [
         createInputFieldset(),
         createBerekenButton(),
