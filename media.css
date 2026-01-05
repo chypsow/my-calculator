@@ -67,7 +67,7 @@
     /*.table-wrapper{ max-width:100%; width:100%; margin:0; padding:0; background:transparent; box-shadow:none; }*/
     .table-header th{ font-size:0.7rem ; color:#000; border-color:#000;}
     .lening-overzicht{ padding:0; list-style-type: none; }
-    .lening-overzicht li, .lening-overzicht li span{ color:#000; font-family:var(--font-mono); font-size: .9rem;}
+    .lening-overzicht li, .lening-overzicht li span{ color:#000; font-family: 'cambria', serif; font-size: .9rem; }
     .lening-overzicht li{ color: #929292; }
     .lening-overzicht li span{ font-weight: bold; }
     .annual-report-table{ border-collapse: collapse; }

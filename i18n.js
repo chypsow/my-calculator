@@ -246,11 +246,11 @@ export const translations = {
     "section.report-header": "Selecteer het rapport om te genereren:",
 
     // Tab01 - Output labels
-    "output.loan-amount": "Lening bedrag:",
+    "output.loan-amount": "Geleend bedrag:",
     "output.monthly-payment": "Maandelijkse aflossing:",
     "output.monthly-rate": "Maandelijkse rentevoet:",
     "output.total-interest": "Totaal te betalen interesten:",
-    "output.loan-period": "Lening periode:",
+    "output.loan-period": "Periode lening:",
     "output.remaining-duration": "Resterende looptijd:",
     "output.outstanding-capital": "Uitstaand kapitaal:",
     "output.remaining-interest": "Resterende rente:",
@@ -308,7 +308,7 @@ export const translations = {
     "message.no-data-export": "Geen geldige gegevens om te exporteren.",
 
     // Print section
-    "print.loan-amount": "Te lenen bedrag:",
+    "print.loan-amount": "Geleend bedrag:",
     "print.annual-rate": "Jaarlijkse rente:",
     "print.monthly-rate": "Maandelijkse rentevoet:",
     "print.monthly-payment": "Maandelijkse aflossing:",
