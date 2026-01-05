@@ -3,7 +3,7 @@
     section{ flex-direction:column; gap:1rem; }
     fieldset{ width:100%; }
     footer { display: none; }
-    .lening-overzicht{ column-count:2; }
+    /*.lening-overzicht{ column-count:2; }*/
     .simulator, .calculator, .generator{ width:85%; padding:.75rem; }
     /*.table-wrapper{ width:85%; padding:.75rem; }*/
     .table-header th, .table-inhoud td{ font-size:.85rem; white-space:nowrap; }
@@ -14,7 +14,7 @@
     header, footer{ flex-direction:column; align-items:center; gap:.5rem; }
     header h1{ font-size: 2rem;}
     .lang-select { margin: 6px; }
-    .lening-overzicht{ column-count:1; }
+    /*.lening-overzicht{ column-count:1; }*/
     .top-header a { font-size: .9rem; }
     /*.table-wrapper{ width:98%; padding:.75rem; }*/
     .table-header th, .table-inhoud td{ font-size:.75rem; }
@@ -66,13 +66,13 @@
     .simulator, .calculator, .generator{ width:100%; margin:0; padding:0; }
     /*.table-wrapper{ max-width:100%; width:100%; margin:0; padding:0; background:transparent; box-shadow:none; }*/
     .table-header th{ font-size:0.7rem ; color:#000; border-color:#000;}
-    .lening-overzicht{ padding:0; list-style-type: none; }
+    .lening-overzicht{ padding:0; list-style-type: none; column-count: 2; }
     .lening-overzicht li, .lening-overzicht li span{ color:#000; font-family: 'cambria', serif; font-size: .9rem; }
-    .lening-overzicht li{ color: #929292; }
-    .lening-overzicht li span{ font-weight: bold; }
+    .lening-overzicht li{ color: #929292; padding: .2rem 0; }
+    .lening-overzicht li span{ font-weight: bold; margin-left: .5rem; }
     .annual-report-table{ border-collapse: collapse; }
     .annual-report-table thead { position: static; border-bottom: 1px solid #7a7a7a; background: transparent; }
-    .annual-report-table tbody tr { border-bottom: 1px solid #b3b3b3; background: transparent; }
+    .annual-report-table tbody tr { border-bottom: 1px solid #d3d3d3; background: transparent; }
     .annual-report-table tbody tr:hover { background: unset; }
     .annual-report-table tbody td { color: #000; }
 }
