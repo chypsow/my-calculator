@@ -188,6 +188,41 @@ function createLangSwitcher () {
     return select;
 }
 
+function createThemeSelector() {
+    const container = el('div', { class: 'theme-selector no-print' });
+    const themes = [
+        { id: 'theme-dark-cyan', color: 'rgb(0, 217, 255)' },
+        { id: 'theme-dark-rose', color: 'rgba(250, 208, 196, 1)' },
+        { id: 'theme-light', color: 'rgba(245, 245, 245, 1)' }
+    ];
+    
+    const currentTheme = localStorage.getItem('theme') || 'theme-dark-cyan';
+    
+    themes.forEach(theme => {
+        const btn = el('button', { 
+            class: `theme-btn ${theme.id}${currentTheme === theme.id ? ' active' : ''}`,
+            'aria-label': `Select ${theme.id} theme`,
+            'data-theme': theme.id
+        });
+        
+        btn.addEventListener('click', () => {
+            setTheme(theme.id);
+            // Update active state
+            container.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        });
+        
+        container.appendChild(btn);
+    });
+    
+    return container;
+}
+
+function setTheme(themeName) {
+    document.documentElement.className = themeName;
+    localStorage.setItem('theme', themeName);
+}
+
 export function renderTab(tabNumber) {
     const tabs = [$('div#tab01'), $('div#tab02'), $('div#tab03')];
     tabs.forEach((tab, index) => {
@@ -220,11 +255,16 @@ function createMainContent() {
     main.appendChild(createCircles());
     main.appendChild(createTopHeader());
     main.appendChild(createLangSwitcher());
+    main.appendChild(createThemeSelector());
 }
     
 
 /* Initialize */
 document.addEventListener("DOMContentLoaded", () => {
+    // Initialize theme first
+    const savedTheme = localStorage.getItem('theme') || 'theme-dark-cyan';
+    setTheme(savedTheme);
+    
     createMainContent();
     createTab01();
     createTab02();

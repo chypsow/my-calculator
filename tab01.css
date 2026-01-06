@@ -48,7 +48,7 @@
     font-family: var(--font-mono);
     font-size: .9rem;
     padding: .35rem .8rem;
-    background: linear-gradient(180deg,#020824,#10354b);
+    background: var(--import-export-bg);
     border-top: 2px solid rgba(139, 139, 139, 0.5);
     border-left: 2px solid rgba(139, 139, 139, 0.5);
     border-bottom: 1px solid rgb(0, 0, 0);
@@ -163,14 +163,14 @@ section{
 .info-box p{
     margin:0;
     font-size:1rem;
-    color:#dadada;
+    color:var(--text-color);
 }
 .info-box .output-overview, .info-box .output-tab01{
     font-family: var(--font-mono);
     margin-left:0.5rem;
     font-size:1rem;
     /*font-weight: bold;*/
-    color:var(--accent);
+    color:var(--output-fields-color);
 }
 /* Fieldset variants */
 
@@ -179,7 +179,7 @@ label {
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: normal;
     font-size: 1rem;
-    color: #ffffff;
+    color: var(--text-color);
     width: fit-content;
 }
 input , select{
@@ -190,7 +190,7 @@ input , select{
     border-radius:4px;
     border:1px solid var(--border);
     background-color: var(--input-bg);
-    color:#ffffff; 
+    color:var(--input-color); 
     /*outline:none;*/
 }
 select, .rente-type, .periode-eenheid{ 
@@ -284,7 +284,7 @@ table{
     margin:1.5rem 0;
     table-layout:fixed;
 }
-.table-header{ position:sticky; top:var(--ht-top-header); background:var(--bg-table-header) ; color:#000000; }
+.table-header{ position:sticky; top:var(--ht-top-header); background:var(--table-bg-header) ; color:#000000; }
 .table-header th, .table-inhoud td{ padding:.5rem .2rem; font-size:.8rem; text-align:center; border-bottom:1px solid #dcdcdc; overflow:hidden; text-overflow:ellipsis; white-space:normal; }*/
 
 /* Misc */
