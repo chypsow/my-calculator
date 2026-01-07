@@ -376,7 +376,7 @@ h1{
 }
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
+/*@media (max-width: 768px) {
     .theme-popup {
         width: 70vw;
         padding: 1.5rem 1rem;
@@ -386,7 +386,9 @@ h1{
     .theme-btn-popup {
         height: 60px;
     }
-}/* Footer */
+}*/
+
+/* Footer */
 footer{
     position:fixed; right:20px; bottom:20px; font-weight:bold; color:var(--accent); filter: brightness(0.7);
     font-family:var(--font-sans);
