@@ -218,14 +218,14 @@ h1{
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    z-index: 1001;
+    z-index: 1002;
 }
 
 .theme-btn {
     width: 24px;
     height: 24px;
     border-radius: 50%;
-    border: 2px solid transparent;
+    /*border: 2px solid transparent;*/
     cursor: pointer;
     transition: all 0.3s ease;
 }
