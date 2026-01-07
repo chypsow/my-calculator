@@ -264,7 +264,7 @@ input[type="date"] {
     border-radius:4px;
     background-color: rgba(27, 27, 27, 0.251);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    color: var(--accent);
+    color: var(--end-date-color);
     font-size: .9rem;
 }
 .eind-datum-hidden {

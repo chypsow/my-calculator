@@ -318,6 +318,7 @@ function autoFillInputs() {
     $('#periode').value = '180';
     $('#periodeEenheid').value = 'months';
     $('#startDatum').value = '2020-11-01';
+    $('#startDatum').dispatchEvent(new Event('change'));
     $('#currentDate').value = formatLocalDate(new Date());
     $('#startdatum-status').value = '2020-11-01';
     $('#einddatum-status').value = '2035-11-01';

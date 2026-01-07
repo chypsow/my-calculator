@@ -18,6 +18,7 @@
     --today-color: #d3d3d3;
     --checkbox-label-color: #e4e4e4;
     --calendar-accent: light;
+    --end-date-color: var(--accent);
     /*--glass-plus: rgba(255, 255, 255, 0.05);*/
     --label-color: var(--text-color);
     --border: rgba(150, 150, 150, 0.5);
@@ -79,6 +80,7 @@
     --top-header-color: #ffffff;
     --output-fields-color: rgb(214, 200, 240);
     --import-export-bg: var(--accent);
+    --end-date-color: #c1adff;
     /* H1 styling for light theme */
     --h1-color: rgb(103, 88, 138);
     --h1-shadow-1: rgba(147, 133, 179, 0.8);
