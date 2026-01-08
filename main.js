@@ -311,8 +311,6 @@ export function createFooter() {
     return footer;
 } 
 
-
-
 function createMainContent() {
     const main = $('main');
     main.appendChild(createCircles());
@@ -320,7 +318,6 @@ function createMainContent() {
     main.appendChild(createLangSwitcher());
     main.appendChild(createThemeMenuButton());
     main.appendChild(createThemeSelector());
-    main.appendChild(createFooter());
 }
     
 
@@ -330,6 +327,7 @@ document.addEventListener("DOMContentLoaded", () => {
     createTab01();
     createTab02();
     createTab03();
+    $('main').appendChild(createFooter());
     renderTab(activePage + 1);
     autoFillInputs();
 });
