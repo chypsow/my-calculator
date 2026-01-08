@@ -209,13 +209,7 @@ function createThemeMenuButton() {
 function createThemeSelector() {
     const container = el('div', { class: 'theme-popup-overlay', id: 'theme-popup-overlay' });
     const popup = el('div', { class: 'theme-popup' });
-    // button to close
-    const closeBtn = el('button', { class: 'theme-popup-close-btn', 'aria-label': 'Close theme menu' });
-    closeBtn.innerHTML = '&times;';
-    popup.appendChild(closeBtn);
-    closeBtn.addEventListener('click', () => {
-        closeThemePopup();
-    });
+    
     const themes = [
         { id: 'theme-dark-cyan', color: 'rgba(0, 217, 255, 1)' },
         { id: 'theme-dark-purple', color: 'rgba(114, 68, 199, 1)' },
@@ -238,6 +232,7 @@ function createThemeSelector() {
         // Mark active theme
         if (currentTheme === theme.id) {
             btn.classList.add('active');
+            setTheme(currentTheme);
         }
         
         btn.addEventListener('click', () => {
@@ -254,6 +249,12 @@ function createThemeSelector() {
         
         popup.appendChild(btn);
     });
+
+    // button to close
+    const closeBtn = el('button', { class: 'theme-popup-close-btn', 'aria-label': 'Close theme menu' });
+    closeBtn.innerHTML = '&times;';
+    popup.appendChild(closeBtn);
+    closeBtn.addEventListener('click', closeThemePopup);
     
     container.appendChild(popup);
     
@@ -279,7 +280,10 @@ function openThemePopup() {
     if (popup) {
         popup.classList.add('active');
         const btn = document.querySelector('.theme-menu-btn');
-        if (btn) btn.setAttribute('aria-expanded', 'true');
+        if (btn) {
+            btn.setAttribute('aria-expanded', 'true');
+            btn.style.display = 'none';
+        }
     }
 }
 
@@ -288,7 +292,10 @@ function closeThemePopup() {
     if (popup) {
         popup.classList.remove('active');
         const btn = document.querySelector('.theme-menu-btn');
-        if (btn) btn.setAttribute('aria-expanded', 'false');
+        if (btn) {
+            btn.setAttribute('aria-expanded', 'false');
+            btn.style.display = 'block';
+        }
     }
 }
 
@@ -296,6 +303,36 @@ function setTheme(themeName) {
     document.documentElement.className = themeName;
     localStorage.setItem('theme', themeName);
 }
+
+export function createFooter() {
+    const footer = el("footer", { class: "no-print" }, [
+        el("p", { html: `&#169; 2025 My Loan Calculator. All rights reserved. <br> POWERED BY CHYPSOW` })
+    ]);
+    return footer;
+} 
+
+
+
+function createMainContent() {
+    const main = $('main');
+    main.appendChild(createCircles());
+    main.appendChild(createTopHeader());
+    main.appendChild(createLangSwitcher());
+    main.appendChild(createThemeMenuButton());
+    main.appendChild(createThemeSelector());
+    main.appendChild(createFooter());
+}
+    
+
+/* Initialize */
+document.addEventListener("DOMContentLoaded", () => {
+    createMainContent();
+    createTab01();
+    createTab02();
+    createTab03();
+    renderTab(activePage + 1);
+    autoFillInputs();
+});
 
 export function renderTab(tabNumber) {
     const tabs = [$('div#tab01'), $('div#tab02'), $('div#tab03')];
@@ -324,27 +361,3 @@ function autoFillInputs() {
     $('#einddatum-status').value = '2035-11-01';
     $('#intervalInput').value = '1';
 }
-
-function createMainContent() {
-    const main = $('main');
-    main.appendChild(createCircles());
-    main.appendChild(createTopHeader());
-    main.appendChild(createLangSwitcher());
-    main.appendChild(createThemeMenuButton());
-    main.appendChild(createThemeSelector());
-}
-    
-
-/* Initialize */
-document.addEventListener("DOMContentLoaded", () => {
-    // Initialize theme first
-    const savedTheme = localStorage.getItem('theme') || 'theme-dark-cyan';
-    setTheme(savedTheme);
-    
-    createMainContent();
-    createTab01();
-    createTab02();
-    createTab03();
-    renderTab(activePage + 1);
-    autoFillInputs();
-});

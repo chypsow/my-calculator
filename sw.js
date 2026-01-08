@@ -2,8 +2,10 @@ const CACHE_NAME = 'my-loan-v1';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
+  './i18n.js',
   './main.js',
   './tab01.js',
+  './tab01DOM.js',
   './tab02.js',
   './tab03.js',
   './main.css',
