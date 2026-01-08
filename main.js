@@ -285,7 +285,7 @@ function closeThemePopup() {
         const btn = document.querySelector('.theme-menu-btn');
         if (btn) {
             btn.setAttribute('aria-expanded', 'false');
-            btn.style.display = 'block';
+            btn.style.display = '';
         }
     }
 }

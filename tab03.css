@@ -124,7 +124,7 @@
 
 .annual-report-table thead {
     position:sticky; 
-    top:var(--ht-top-header); 
+    top:2.9rem;
     background:var(--table-bg-header) ; 
     color:#000000;
 }

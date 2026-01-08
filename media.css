@@ -16,7 +16,7 @@
     .lang-select { margin: 6px; }
     /*.lening-overzicht{ column-count:1; }*/
     .top-header a { font-size: .9rem; }
-    /*.table-wrapper{ width:98%; padding:.75rem; }*/
+    .annual-report-table thead { top: 2.7rem; }
     .table-header th, .table-inhoud td{ font-size:.75rem; }
     .summary-output{ flex-direction:column; }
     .datum-sectie{ flex-direction:column; gap: 0;}
@@ -43,6 +43,7 @@
     .simulator{ width:98%; padding:.5rem .5rem 0 .5rem; }
     .top-header {flex-direction: column; gap:0; }
     .top-header a { text-align: center; padding: .75rem; }
+    .annual-report-table thead { top: 7.7rem; }
     .datums { flex-direction:column; align-items: flex-start; gap:.5rem; }
     .datums p span:first-child { font-size:.65rem; }
     .datums p span:nth-child(2) { font-size:.75rem; }
