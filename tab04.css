@@ -52,6 +52,7 @@
 }
 .input-group.teller input{
     background-color: #fffacd;
+    color: #000;
 }
 /* Yellow input highlights */
 /*input.meter-old,
@@ -69,7 +70,7 @@ input.tva-gas {
 
 .input-group input {
     padding: 10px 12px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border);
     border-radius: 4px;
     font-size: 1.2rem;
     background: var(--input-bg);
@@ -142,8 +143,9 @@ input.tva-gas {
     display: flex;
     justify-content: space-between;
     padding: 8px 10px;
-    background-color: white;
-    border-bottom: 1px solid #eee;
+    background: var(--table-bg-row);
+    border-bottom: 1px solid var(--border);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 1.1rem;
 }
 
@@ -153,12 +155,12 @@ input.tva-gas {
 
 .result-row span:first-child {
     font-weight: 500;
-    color: #333;
+    color: var(--label-color);
 }
 
 .result-row span:last-child {
     font-weight: 600;
-    color: #2196F3;
+    color: var(--accent);
 }
 
 /* Results Section */
@@ -188,8 +190,8 @@ input.tva-gas {
     gap: 2rem;
     align-items: center;
     padding: 12px 15px;
-    background: var(--accent);
-    border: 1px solid #ddd;
+    background: var(--table-bg-row);
+    border: 1px solid var(--border);
     /*background-color: white;*/
     border-radius: 4px;
     /*border-left: 4px solid #4CAF50;*/
@@ -213,47 +215,13 @@ input.tva-gas {
     font-size: 20px;
 }
 
-/* Buttons */
-.btn-calculate,
-.btn-export {
-    padding: 12px 24px;
-    margin: 10px 10px 10px 0;
-    border: none;
-    border-radius: 4px;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.btn-calculate {
-    background: var(--accent);
-    /*color: white;*/
-}
-
-.btn-calculate:hover {
-    background-color: #45a049;
-    box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
-}
-
-.btn-export {
-    background-color: #2196F3;
-    color: white;
-}
-
-.btn-export:hover {
-    background-color: #0b7dda;
-    box-shadow: 0 4px 8px rgba(33, 150, 243, 0.3);
-}
-
-
 
 /* Responsive */
-@media (max-width: 768px) {
+/*@media (max-width: 768px) {
    
 
     .result-row {
         flex-wrap: wrap;
         gap: 10px;
     }
-}
+}*/

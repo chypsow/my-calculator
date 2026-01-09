@@ -63,9 +63,12 @@ export function createTab04() {
         el('span', { 
             class: 'tax-item-tva' }),
     ]));
-    taxSection.appendChild(el('div', { class: 'info-text  result-row',
-        text: 'CL + RTT + FTE:'}, [
-            el('span', { class: 'tax-item-rtt' }),
+    taxSection.appendChild(el('div', { class: 'info-text  result-row'}, [
+        el('span', {
+            'data-i18n': 'invoice.cl-rtt-fte',
+            text: 'CL + RTT + FTE:'}),
+        el('span', { 
+            class: 'tax-item-rtt' }),
     ]));
     taxSection.appendChild(el('br'));
     taxSection.appendChild(el('div', { class: 'info-text  result-row'}, [
