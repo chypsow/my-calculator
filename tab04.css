@@ -1,0 +1,270 @@
+/* Tab04 - Invoice Calculator */
+
+.invoice-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    max-width:var(--max-width);
+    width:clamp(320px, 60%, 1200px);
+    margin:3rem auto;
+    padding:1.25rem;
+    background: var(--glass);
+    opacity: .98;
+    border-radius:var(--radius);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+.invoice-content button {
+    margin: 1rem 0;
+}
+
+/*.tab-content-inner {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}*/
+.results-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+.results-section .input-group {
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+}
+.results-section .input-group label {
+    color: var(--text-color);
+    font-size: 1.1rem;
+}
+/* Input Groups */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 0;
+    gap: 8px;
+}
+
+.input-group label {
+    color: var(--label-color);
+    font-size: 1.1rem;
+}
+
+.input-group input {
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1.2rem;
+    background: var(--input-bg);
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #4CAF50;
+    box-shadow: 0 0 4px rgba(76, 175, 80, 0.3);
+}
+
+.meter-sections {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+/* Invoice Sections */
+.invoice-section {
+    flex: 1 1 45%;
+    background: var(--card-bg);
+    border-left: 4px solid #2196F3;
+    padding: 1rem;
+    margin: 1.25rem 0;
+    border-radius: 4px;
+}
+
+.invoice-section h3 {
+    margin-top: 0;
+    color: #2196F3;
+    font-size: 16px;
+    border-bottom: 2px solid #2196F3;
+    padding-bottom: 8px;
+}
+
+.meter-electricity {
+    border-left-color: #ff6600;
+}
+
+.meter-electricity h3 {
+    color: #ff6600;
+    border-bottom-color: #ff6600;
+}
+
+.meter-gas {
+    border-left-color: #4CAF50;
+}
+
+.meter-gas h3 {
+    color: #4CAF50;
+    border-bottom-color: #4CAF50;
+}
+
+/* Readings */
+.readings {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+@media (max-width: 768px) {
+    .readings {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Result Rows */
+.result-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 10px;
+    background-color: white;
+    border-bottom: 1px solid #eee;
+    font-size: 1.1rem;
+}
+
+.result-row:last-child {
+    border-bottom: none;
+}
+
+.result-row span:first-child {
+    font-weight: 500;
+    color: #333;
+}
+
+.result-row span:last-child {
+    font-weight: 600;
+    color: #2196F3;
+}
+
+/* Results Section */
+.invoice-results {
+    background: var(--card-bg);
+    border: 2px solid #4CAF50;
+    border-radius: 6px;
+    padding: 1rem;
+    margin: 1.25rem 0;
+}
+
+.invoice-results h3 {
+    margin-top: 0;
+    color: #2e7d32;
+    text-align: center;
+}
+
+.result-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+}
+
+.result-item {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    align-items: center;
+    padding: 12px 15px;
+    background: var(--accent);
+    border: 1px solid #ddd;
+    /*background-color: white;*/
+    border-radius: 4px;
+    /*border-left: 4px solid #4CAF50;*/
+}
+
+.result-item span {
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: var(--label-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.result-item .value {
+    font-weight: 700;
+    font-size: 16px;
+    color: #2e7d32;
+}
+
+.result-item.grand-total {
+    /*border-left-color: #d32f2f;*/
+    /*background-color: #ffebee;
+    margin-top: 10px;*/
+}
+
+.result-item.grand-total .value {
+    color: #d32f2f;
+    font-size: 20px;
+}
+
+/* Buttons */
+.btn-calculate,
+.btn-export {
+    padding: 12px 24px;
+    margin: 10px 10px 10px 0;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-calculate {
+    background: var(--accent);
+    /*color: white;*/
+}
+
+.btn-calculate:hover {
+    background-color: #45a049;
+    box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
+}
+
+.btn-export {
+    background-color: #2196F3;
+    color: white;
+}
+
+.btn-export:hover {
+    background-color: #0b7dda;
+    box-shadow: 0 4px 8px rgba(33, 150, 243, 0.3);
+}
+
+/* Yellow input highlights */
+/*input.meter-old,
+input.meter-new,
+input.price-electricity,
+input.price-gas,
+input.tva-electricity,
+input.tva-gas {
+    background-color: #fffacd !important;
+}*/
+
+/* Responsive */
+@media (max-width: 768px) {
+    .invoice-section {
+        padding: 12px;
+        margin: 15px 0;
+    }
+
+    .invoice-section h3 {
+        font-size: 14px;
+    }
+
+    .result-row {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .btn-calculate,
+    .btn-export {
+        width: 100%;
+        margin: 10px 0;
+    }
+}
