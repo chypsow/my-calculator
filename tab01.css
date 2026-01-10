@@ -87,7 +87,7 @@ section{
     font-family: var(--font-mono);
     font-size: 1.2rem;
     font-weight: bold;
-    color: var(--accent);
+    color: var(--accent-plus);
 }
 .header-row-inputs{
     display: flex;
@@ -254,7 +254,7 @@ input[type="date"] {
     margin:0;
 }
 .datums p span:first-child{
-    color:#ffffff;
+    color: var(--text-color);
     font-size:1rem;
 }
 .datums p span:nth-child(2){
@@ -262,7 +262,7 @@ input[type="date"] {
     padding: .35rem .5rem;
     border: 1px solid var(--accent);
     border-radius:4px;
-    background-color: rgba(27, 27, 27, 0.251);
+    background: var(--input-bg);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: var(--end-date-color);
     font-size: .9rem;

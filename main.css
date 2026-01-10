@@ -12,6 +12,7 @@
     --bg-dark: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
     --bg-mid: #1a1a1a;
     --accent: rgb(0, 217, 255);
+    --accent-plus: var(--accent);
     --muted: #e0e0e0;
     --card-bg: linear-gradient(90deg, #0f3460 0%, #16213e 50%, #0f0f0f 100%);
     --glass: rgba(255, 255, 255, 0.212);
@@ -21,16 +22,19 @@
     --calendar-accent: light;
     --end-date-color: var(--accent);
     /*--glass-plus: rgba(255, 255, 255, 0.05);*/
+    --text-color: #eaeaea;
     --label-color: var(--text-color);
     --border: rgba(150, 150, 150, 0.5);
     --input-bg: rgba(27, 27, 27, 0.6);
     --input-color: #ebebeb;
     --ht-top-header: 3.25rem;
     --table-bg-header: linear-gradient(180deg,#e9e9e9 10%,#1b1b1b 360%);
-    --table-bg-row: #0e2b4e;
-    --table-color-row: #e4e4e4;
-    --table-tr-hover: #001731;
-    --text-color: #eaeaea;
+    /*--table-bg-row: #0e2b4e;*/
+    --table-bg-row: #ffffff;
+    /*--table-color-row: #e4e4e4;*/
+    /*--table-tr-hover: #001731;*/
+    --table-color-row: #333333;
+    --table-tr-hover: #c0c0c0;
     --top-header-color: #000000;
     --output-fields-color: var(--accent);
     --import-export-bg: var(--accent);
@@ -47,11 +51,12 @@
 :root.theme-dark-rose {
     --bg-body: linear-gradient(90deg, #600f0f 0%, #3e1616 50%, #0f0f0f 100%);
     --accent: #fad0c4;
+    --accent-plus: var(--accent);
     --card-bg: linear-gradient(90deg, #600f0f 0%, #3e1616 50%, #0f0f0f 100%);
     --bg-dark: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
     --output-fields-color: var(--accent);
     --top-header-color: #000000;
-    --table-bg-row: #4e2b2b;
+    /*--table-bg-row: #4e2b2b;*/
     /* H1 styling for roze theme */
     --h1-color: rgb(185, 143, 143);
     --h1-shadow-1: rgba(250, 208, 196, 0.8);
@@ -66,6 +71,7 @@
     --bg-dark: linear-gradient(180deg, #f5f5f5 0%, #ffffff 100%);
     --bg-mid: #ffffff;
     --accent: rgb(114, 68, 199);
+    --accent-plus: rgb(188, 151, 255);
     --muted: #333333;
     --card-bg: linear-gradient(90deg, #1e0f60 0%, #25163e 50%, #0f0f0f 100%);
     --glass: rgba(255, 255, 255, 0.212);
@@ -74,9 +80,9 @@
     --input-bg: #221f2e46;
     --input-color: rgb(214, 200, 240);
     /*--table-bg-header: linear-gradient(180deg, #e0e0e0 10%, #f5f5f5 360%);*/
-    --table-bg-row: rgb(51, 26, 109);
-    --table-color-row: #e2e2e2;
-    --table-tr-hover: rgb(29, 15, 61);
+    /*--table-bg-row: rgb(51, 26, 109);*/
+    /*--table-color-row: #e2e2e2;*/
+    /*--table-tr-hover: rgb(29, 15, 61);*/
     --text-color: #e2e2e2;
     --top-header-color: #ffffff;
     --output-fields-color: rgb(214, 200, 240);
@@ -94,22 +100,23 @@
     --bg-body: linear-gradient(90deg, #ffffff 0%, #f0f0f0 50%, #e0e0e0 100%);
     --bg-dark: linear-gradient(180deg, #ffffff 0%, #f5f5f5 100%);
     --bg-mid: #f9f9f9;
-    --accent: rgba(245, 127, 49, 0.884);
+    --accent: rgba(214, 98, 21, 0.884);
+    --accent-plus: var(--accent);
     --muted: #555555;
     --card-bg: linear-gradient(90deg, #fce8dd 0%, #f0f0f0 50%, #e9e9e9 100%);
-    --glass: rgb(62, 71, 102);
-    --today-color: #9c9c9c;
+    --glass: rgba(124, 135, 175, 0.342);
+    --today-color: #585858;
     --border: rgb(177, 177, 177);
     --checkbox-label-color: #333333;
     --input-bg: rgba(255, 255, 255, 0.8);
     --calendar-accent: dark;
     --input-color: #333333;
     /*--table-bg-header: linear-gradient(180deg, #c6c6c6 10%, #ffffff 360%);*/
-    --table-bg-row: #ffffff;
-    --table-color-row: #333333;
-    --table-tr-hover: #c0c0c0;
+    /*--table-bg-row: #ffffff;*/
+    /*--table-color-row: #333333;*/
+    /*--table-tr-hover: #c0c0c0;*/
     --label-color: #333333;
-    --text-color: #d4d4d4;
+    --text-color: #181818;
     --top-header-color: #202020;
     --output-fields-color: rgba(201, 80, 0, 0.952);
     --import-export-bg: var(--accent);

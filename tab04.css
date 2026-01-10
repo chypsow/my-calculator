@@ -48,7 +48,7 @@
 }
 .input-group.teller input{
     background-color: var(--accent);
-    color: #000;
+    color: var(--top-header-color);
 }
 
 .input-group label {
@@ -88,7 +88,7 @@
 
 .invoice-section h3 {
     margin-top: 0;
-    color: var(--accent);
+    color: var(--accent-plus);
     font-size: 1.3rem;
     border-bottom: 2px solid var(--accent);
     padding-bottom: 8px;
@@ -131,7 +131,7 @@
 
 .result-row span:last-child {
     font-weight: 600;
-    color: var(--accent);
+    color: var(--accent-plus);
 }
 
 /* Results Section */
