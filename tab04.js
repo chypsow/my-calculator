@@ -6,7 +6,48 @@ export function createTab04() {
     //tab04.appendChild(header);
     
     const content = el('div', { class: 'invoice-content' });
+
+    // 2 sections: Electricity and Gas
+    const meterSectionsDiv = el('div', { class: 'meter-sections' });
+    content.appendChild(meterSectionsDiv);
+
+    // Electricity section
+    const elecSection = createMeterSection('electricity', 'kWh', 0.176, 0.07, 4.9);
+    meterSectionsDiv.appendChild(elecSection);
     
+    // Gas section
+    const gasSection = createMeterSection('gas', 'm³', 0.231, 0.19, 0.75);
+    meterSectionsDiv.appendChild(gasSection);
+    
+    // Tax section
+    const taxSection = el('div', { class: 'tax-section' });
+    taxSection.appendChild(el('h3', {
+        'data-i18n': 'invoice.taxes',
+        text: t('invoice.taxes')
+    }));
+    taxSection.appendChild(el('div', { class: 'info-text  result-row'}, [
+        el('span', {
+            'data-i18n': 'invoice.tax-info',
+            text: t('invoice.tax-info')}),
+        el('span', { 
+            class: 'tax-item-tva' }),
+    ]));
+    taxSection.appendChild(el('div', { class: 'info-text  result-row'}, [
+        el('span', {
+            'data-i18n': 'invoice.cl-rtt-fte',
+            text: 'CL + RTT + FTE:'}),
+        el('span', { 
+            class: 'tax-item-rtt' }),
+    ]));
+    taxSection.appendChild(el('div', { class: 'info-text  result-row'}, [
+        el('span', {
+            'data-i18n': 'invoice.tax-totals',
+            text: t('invoice.tax-totals')}),
+        el('span', { 
+            class: 'tax-item-total' }),
+        ]));
+    content.appendChild(taxSection);
+
     // Billing period input + results section
     const resultsSection = el('div', { class: 'results-section' });
     //content.appendChild(resultsSection);
@@ -37,60 +78,6 @@ export function createTab04() {
     grandTotalDiv.appendChild(grandTotalValue);
     resultsSection.appendChild(grandTotalDiv);
     content.appendChild(resultsSection);
-
-    // 2 sections: Electricity and Gas
-    const meterSectionsDiv = el('div', { class: 'meter-sections' });
-    content.appendChild(meterSectionsDiv);
-
-    // Electricity section
-    const elecSection = createMeterSection('electricity', 'kWh', 0.176, 0.07, 4.9);
-    meterSectionsDiv.appendChild(elecSection);
-    
-    // Gas section
-    const gasSection = createMeterSection('gas', 'm³', 0.231, 0.19, 0.75);
-    meterSectionsDiv.appendChild(gasSection);
-    
-    // Tax section
-    const taxSection = el('div', { class: 'invoice-section tax-section' });
-    taxSection.appendChild(el('h3', {
-        'data-i18n': 'invoice.taxes',
-        text: t('invoice.taxes')
-    }));
-    taxSection.appendChild(el('div', { class: 'info-text  result-row'}, [
-        el('span', {
-            'data-i18n': 'invoice.tax-info',
-            text: t('invoice.tax-info')}),
-        el('span', { 
-            class: 'tax-item-tva' }),
-    ]));
-    taxSection.appendChild(el('div', { class: 'info-text  result-row'}, [
-        el('span', {
-            'data-i18n': 'invoice.cl-rtt-fte',
-            text: 'CL + RTT + FTE:'}),
-        el('span', { 
-            class: 'tax-item-rtt' }),
-    ]));
-    //taxSection.appendChild(el('br'));
-    taxSection.appendChild(el('div', { class: 'info-text  result-row'}, [
-        el('span', {
-            'data-i18n': 'invoice.tax-totals',
-            text: t('invoice.tax-totals')}),
-        el('span', { 
-            class: 'tax-item-total' }),
-        ]));
-    content.appendChild(taxSection);
-
-    // Calculate button
-    const calcButton = el('button', { 
-        class: 'accented-btn',
-        text: 'Calculate / Calculer / Berekenen'
-    });
-    calcButton.addEventListener('click', () => calculateInvoice(tab04));
-    //content.appendChild(calcButton);
-
-    // Results section
-    
-    //content.appendChild(resultsSection);
     
     // Export button
     const exportButton = el('button', {

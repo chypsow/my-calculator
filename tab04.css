@@ -1,8 +1,8 @@
 /* Tab04 - Invoice Calculator */
-
 .invoice-content {
-    max-width: 1200px;
-    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
     max-width:var(--max-width);
     width:clamp(320px, 60%, 1200px);
     margin:3rem auto;
@@ -16,12 +16,6 @@
     margin: 1rem 0;
 }
 
-/*.tab-content-inner {
-    background-color: white;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}*/
 .results-section {
     display: flex;
     flex-direction: row;
@@ -39,6 +33,7 @@
     color: var(--text-color);
     font-size: 1.1rem;
 }
+
 /* Input Groups */
 .input-group {
     display: flex;
@@ -55,15 +50,7 @@
     background-color: var(--accent);
     color: #000;
 }
-/* Yellow input highlights */
-/*input.meter-old,
-input.meter-new,
-input.price-electricity,
-input.price-gas,
-input.tva-electricity,
-input.tva-gas {
-    background-color: #fffacd !important;
-}*/
+
 .input-group label {
     color: var(--label-color);
     font-size: 1.1rem;
@@ -90,16 +77,16 @@ input.tva-gas {
     flex-wrap: wrap;
 }
 /* Invoice Sections */
-.invoice-section {
+.invoice-section, .tax-section {
     flex: 1 1 45%;
     background: var(--card-bg);
     border-left: 4px solid var(--accent);
     padding: 1rem;
-    margin: 1.25rem 0;
+    /*margin: 1.25rem 0;*/
     border-radius: var(--radius);
 }
 
-.invoice-section h3 {
+.invoice-section h3, .tax-section h3 {
     margin-top: 0;
     color: var(--accent);
     font-size: 1.3rem;
@@ -166,20 +153,6 @@ input.tva-gas {
 }
 
 /* Results Section */
-.invoice-results {
-    background: var(--card-bg);
-    border: 2px solid #4CAF50;
-    border-radius: 6px;
-    padding: 1rem;
-    margin: 1.25rem 0;
-}
-
-.invoice-results h3 {
-    margin-top: 0;
-    color: #2e7d32;
-    text-align: center;
-}
-
 .result-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -192,11 +165,9 @@ input.tva-gas {
     gap: 2rem;
     align-items: center;
     padding: 12px 15px;
-    background: var(--table-bg-row);
+    background: var(--card-bg);
     border: 1px solid var(--border);
-    /*background-color: white;*/
     border-radius: 4px;
-    /*border-left: 4px solid #4CAF50;*/
 }
 
 .result-item span {
@@ -206,24 +177,3 @@ input.tva-gas {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.result-item .value {
-    font-weight: 700;
-    font-size: 16px;
-    color: #2e7d32;
-}
-
-.result-item.grand-total .value {
-    color: #d32f2f;
-    font-size: 20px;
-}
-
-
-/* Responsive */
-/*@media (max-width: 768px) {
-   
-
-    .result-row {
-        flex-wrap: wrap;
-        gap: 10px;
-    }
-}*/
