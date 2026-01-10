@@ -52,7 +52,7 @@
     gap: 1rem;
 }
 .input-group.teller input{
-    background-color: #fffacd;
+    background-color: var(--accent);
     color: #000;
 }
 /* Yellow input highlights */
@@ -93,36 +93,36 @@ input.tva-gas {
 .invoice-section {
     flex: 1 1 45%;
     background: var(--card-bg);
-    border-left: 4px solid #2196F3;
+    border-left: 4px solid var(--accent);
     padding: 1rem;
     margin: 1.25rem 0;
-    border-radius: 4px;
+    border-radius: var(--radius);
 }
 
 .invoice-section h3 {
     margin-top: 0;
-    color: #2196F3;
+    color: var(--accent);
     font-size: 1.3rem;
-    border-bottom: 2px solid #2196F3;
+    border-bottom: 2px solid var(--accent);
     padding-bottom: 8px;
 }
 
 .meter-electricity {
-    border-left-color: #ff6600;
+    border-left-color: var(--accent);
 }
 
 .meter-electricity h3 {
-    color: #ff6600;
-    border-bottom-color: #ff6600;
+    color: var(--accent);
+    border-bottom-color: var(--accent);
 }
 
 .meter-gas {
-    border-left-color: #4CAF50;
+    border-left-color: var(--accent);
 }
 
 .meter-gas h3 {
-    color: #4CAF50;
-    border-bottom-color: #4CAF50;
+    color: var(--accent);
+    border-bottom-color: var(--accent);
 }
 
 /* Readings */
@@ -144,8 +144,9 @@ input.tva-gas {
     display: flex;
     justify-content: space-between;
     padding: 8px 10px;
-    background: var(--table-bg-row);
+    background: var(--glass);
     border-bottom: 1px solid var(--border);
+    border-radius: 4px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 1.1rem;
 }
@@ -156,7 +157,7 @@ input.tva-gas {
 
 .result-row span:first-child {
     font-weight: 500;
-    color: var(--label-color);
+    color: var(--text-color);
 }
 
 .result-row span:last-child {
@@ -199,7 +200,7 @@ input.tva-gas {
 }
 
 .result-item span {
-    font-weight: 800;
+    font-weight: 500;
     font-size: 1.2rem;
     color: var(--label-color);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;

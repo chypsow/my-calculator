@@ -1,5 +1,6 @@
 # Development files - local only, not committed to repository
+tools/
 node_modules/
 package-lock.json
 package.json
-tools/
+

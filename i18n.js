@@ -364,7 +364,7 @@ export const translations = {
     "invoice.consumption": "Verbruik:",
     "invoice.unit-price": "Eenheidsprijs (DT):",
     "invoice.total-hf": "Totaal (excl. vaste kosten):",
-    "invoice.total-ht": "Totaal (excl. belasting):",
+    "invoice.total-ht": "Totaal (excl. BTW):",
     "invoice.fixed-costs": "Vaste kosten:",
     "invoice.tva-percent": "BTW (%):",
     "invoice.tva-amount": "BTW bedrag:",
@@ -373,8 +373,8 @@ export const translations = {
     "invoice.cl-rtt-fte": "CL + RTT + FTE:",
     "invoice.total-taxes": "Totale belastingen:",
     "invoice.grand-total": "Totaal te betalen bedrag:",
-    "invoice.taxes": "Totale belastingen",
-    "invoice.tax-totals": "TOTALE BELASTINGEN:",
+    "invoice.taxes": "Totale taxen",
+    "invoice.tax-totals": "TOTALE TAXEN:",
     "invoice.tax-info": "BTW elektriciteit + gas:"
   }
 };
