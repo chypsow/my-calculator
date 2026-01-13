@@ -125,7 +125,11 @@ export const translations = {
     "invoice.tax-totals": "TOTAL TAX AMOUNTS:",
     "invoice.tax-info": "VAT electricity + gas:",
     "invoice.number-of-months": "Number of months",
-    "invoice.start-end-dates": "Start and end dates"
+    "invoice.start-end-dates": "Start and end dates",
+    "invoice.totals": "Totals",
+    "invoice.elect-ht": "Electricity excl. tax:",
+    "invoice.gas-ht": "Gas excl. tax:",
+    "invoice.totals-ht": "TOTAL Elect + Gas (excl. tax):"
   },
 
   fr: {
@@ -253,7 +257,11 @@ export const translations = {
     "invoice.tax-totals": "TOTAL TAXES:",
     "invoice.tax-info": "TVA électricité + gaz:",
     "invoice.number-of-months": "Nombre de mois",
-    "invoice.start-end-dates": "Dates de début et de fin"
+    "invoice.start-end-dates": "Dates de début et de fin",
+    "invoice.totals": "Totaux",
+    "invoice.elect-ht": "Électricité hors taxes:",
+    "invoice.gas-ht": "Gaz hors taxes:",
+    "invoice.totals-ht": "TOTAL Élect + Gaz (H.T.):"
   },
 
   nl: {
@@ -381,6 +389,10 @@ export const translations = {
     "invoice.tax-totals": "TOTALE TAXEN:",
     "invoice.tax-info": "BTW elektriciteit + gas:",
     "invoice.number-of-months": "Aantal maanden",
-    "invoice.start-end-dates": "Begin- en einddatums"
+    "invoice.start-end-dates": "Begin- en einddatums",
+    "invoice.totals": "Totalen",
+    "invoice.elect-ht": "Elektriciteit excl. belasting:",
+    "invoice.gas-ht": "Gas excl. belasting:",
+    "invoice.totals-ht": "TOTAAL Elect + Gas (excl. BTW):"
   }
 };

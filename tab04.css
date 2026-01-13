@@ -38,7 +38,7 @@
     font-weight: 500;
 }
 .billing-period-container {
-    flex: 1;
+    /*flex: 1;*/
     display: flex;
     flex-direction: column;
     /*align-items: last baseline;*/
@@ -84,7 +84,7 @@
     gap: .5rem;
 }
 .result-item {
-    flex: 1 1 30%;
+    /*/flex: 1;*/
     display: flex;
     justify-content: flex-start;
     gap: 2rem;
@@ -176,6 +176,13 @@
     display: flex;
     flex-direction: column;
 }
+.totals-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex: 1;
+    margin-bottom: 1rem;
+}
 .tax-section {
     display: flex;
     flex-direction: column;
@@ -229,6 +236,14 @@
 .result-row span:last-child {
     font-weight: 600;
     color: var(--accent-plus);
+}
+
+.result-row span.total-ht-all,
+.result-row span.tax-item-total,
+.result-item span{
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--accent);
 }
 
 

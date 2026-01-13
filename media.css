@@ -76,4 +76,8 @@
     .annual-report-table tbody tr { border-bottom: 1px solid #d3d3d3; background: transparent; }
     .annual-report-table tbody tr:hover { background: unset; }
     .annual-report-table tbody td { color: #4e4e4e; }
+    .invoice-section{ border-left: 4px solid var(--accent-plus); padding-left: .5rem; margin-bottom: 1rem; }
+    input[type="date"]::-webkit-calendar-picker-indicator {
+        display: none !important;
+    }
 }
