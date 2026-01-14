@@ -21,7 +21,8 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    gap: 20px;
+    align-items: flex-start;
+    gap: 1rem;
     flex-wrap: wrap;
     /*min-height: 8rem;*/
     /*padding-left: 1rem;*/
@@ -43,7 +44,7 @@
     flex-direction: column;
     /*align-items: last baseline;*/
     gap: .5rem;
-    min-height: 6rem;
+    /*min-height: 6rem;*/
 }
 
 .billing-period-header {
@@ -108,7 +109,7 @@
     justify-content: flex-start;
     gap: 2rem;
     /*align-items: end;*/
-    padding: 12px 15px;
+    /*padding: 12px 15px;*/
     /*background: var(--card-bg);
     border: 1px solid var(--border);*/
     border-radius: 4px;
@@ -260,6 +261,7 @@
 .result-row span.total-ht-all,
 .result-row span.tax-item-total,
 .result-item span{
+    margin-left: .5rem;
     font-size: 1.2rem;
     font-weight: 700;
     color: var(--output-fields-color);

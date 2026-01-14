@@ -25,7 +25,7 @@ export function createTab04() {
         text: t('invoice.billing-period-months'),
         class: 'billing-period-info hidden'
     }));
-    const billingPeriodSelect = el('select', { class: 'billing-period-select', id: 'billingPeriodSelect' }, [
+    const billingPeriodSelect = el('select', { class: 'billing-period-select no-print', id: 'billingPeriodSelect' }, [
         el('option', { value: 'months', text: t('invoice.number-of-months'), 'data-i18n': 'invoice.number-of-months' }),
         el('option', { value: 'dates', text: t('invoice.start-end-dates'), 'data-i18n': 'invoice.start-end-dates' })
     ]);
@@ -183,7 +183,7 @@ export function createTab04() {
         value: billingPeriod,
         step: '1',
         min: '1',
-        class: 'billing-period-input'
+        class: 'billing-period-input no-print'
         });
         input.addEventListener('change', () => {
             localStorage.setItem('invoiceBillingPeriod', input.value);
