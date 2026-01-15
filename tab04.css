@@ -27,37 +27,57 @@
     /*min-height: 8rem;*/
     /*padding-left: 1rem;*/
 }
-.results-section .input-group {
+/*.results-section .input-group {
     flex-direction: row;
     align-items: center;
     gap: 1rem;
     margin: 0;
-}
-.results-section .input-group label {
+}*/
+/*.results-section .input-group label {
     color: var(--text-color);
     font-size: 1rem;
     font-weight: 500;
+}*/
+.results-section .result-item {
+    flex: 1 1 20%;
+    display: flex;
+    justify-content: flex-start;
+    gap: 2rem;
+    white-space: nowrap;
+    /*align-items: end;*/
+    /*padding: 12px 15px;*/
+    /*background: var(--card-bg);
+    border: 1px solid var(--border);*/
+    border-radius: 4px;
 }
-.billing-period-container {
-    flex: 1 1 100%;
+
+.result-item span {
+    font-weight: 500;
+    font-size: 1.1rem;
+    color: var(--accent-plus);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.results-section .billing-period-container {
+    flex: 1 1 20%;
     display: flex;
     flex-direction: column;
     /*align-items: last baseline;*/
     gap: .5rem;
     /*min-height: 6rem;*/
 }
-.billing-period-months {
-    flex: 1 1 auto;
+.results-section .billing-period-months {
+    flex: 1 1 35%;
     display: flex;
-    flex-wrap: nowrap;
+    white-space: nowrap;
 }
-.billing-period-header {
+
+.billing-period-months .billing-period-header {
     display: flex;
     flex-direction: row;
     align-items: center;
 }
-.billing-period-header h3,
-.billing-period-header span {
+.billing-period-months .billing-period-header h3,
+.billing-period-months .billing-period-header span {
     margin: 0;
     color: var(--accent-plus);
     font-size: 1.3rem;
@@ -106,24 +126,6 @@
     padding-left: 0.5rem;
     font-size: 0.9rem;
     color: var(--muted);
-}
-.result-item {
-    /*/flex: 1;*/
-    display: flex;
-    justify-content: flex-start;
-    gap: 2rem;
-    /*align-items: end;*/
-    /*padding: 12px 15px;*/
-    /*background: var(--card-bg);
-    border: 1px solid var(--border);*/
-    border-radius: 4px;
-}
-
-.result-item span {
-    font-weight: 500;
-    font-size: 1.1rem;
-    color: var(--accent-plus);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* Input Groups */
