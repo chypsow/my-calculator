@@ -32,7 +32,6 @@
     padding: 1rem;
     background: var(--card-bg);
     border-radius: var(--radius);
-    flex: 1 1 45%;
 }
 .billing-period-result .grand-total {
     display: flex;
