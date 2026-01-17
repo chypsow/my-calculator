@@ -211,7 +211,7 @@
     display: flex;
     justify-content: space-between;
     padding: 8px 10px;
-    background: var(--glass);
+    background: var(--circle-bg);
     border-bottom: 1px solid var(--border);
     border-radius: 4px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;

@@ -4,7 +4,9 @@ Kort: zo test je de PWA lokaal en hoe gebruikers de app op hun telefoon kunnen t
 
 1) Lokale server (Service Worker werkt op `localhost` zonder HTTPS)
 
-- Met Node (aanbevolen):
+- Met Node (aanbevolen): 
+// alleen op workspaces: `live-server /workspaces/my-calculator --port=8000`
+// anders:
 ```
 npx http-server -c-1
 ```
