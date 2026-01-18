@@ -183,11 +183,14 @@ h1{
 /* Language Switcher Styles */
 .lang-select {
     display: none;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
     position: fixed;
     top: var(--top-fixed-position);
     right:8px;
     width: auto;
-    background-color: var(--accent);
+    background-color: transparent;
     color: var(--top-header-color);
     font-family: var(--font-sans);
     font-size: 1.1rem;
@@ -201,22 +204,28 @@ h1{
     transition: filter 0.2s ease;
 }
 .lang-select.visible {
-    display: block;
+    display: flex;
 }
-.lang-select:hover {
+/*.lang-select:hover {
     filter: brightness(0.8);
-}
+}*/
 
-.lang-select option {
+.lang-select button {
     background-color: #e0e0e0;
     color: #000000;
     padding: 0.5rem;
     border: none;
+    border-radius: 4px;
+    cursor: pointer;
 }
-
-.lang-select option:hover {
+.lang-select button.active {
     background-color: var(--accent);
-    color: #000000;
+    color: var(--top-header-color);
+    font-weight: bold;
+}
+.lang-select button:hover {
+    background-color: var(--accent);
+    color: var(--top-header-color);
 }
 
 .accented-btn {

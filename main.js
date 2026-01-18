@@ -166,35 +166,30 @@ function createTopHeader() {
 }
 
 function createLangSwitcher () {
-    const select = el('select', { class: 'lang-select', id: 'lang-select', 'aria-label': 'Select Language' });
+    const langCollection = el('div', { class: 'lang-select', id: 'lang-select', 'aria-label': 'Select Language' });
     const languages = [{ code: 'en', label: 'EN' }, { code: 'fr', label: 'FR' }, { code: 'nl', label: 'NL' }];
     
     languages.forEach(lang => {
-        const option = el('option', { value: lang.code, text: lang.label });
+        const btn = el('button', { text: lang.label });
         if (lang.code === currentLang) {
-            option.selected = true;
-            option.setAttribute('aria-selected', 'true');
+            btn.classList.add('active');
+            btn.setAttribute('aria-selected', 'true');
         } else {
-            option.setAttribute('aria-selected', 'false');
+            btn.setAttribute('aria-selected', 'false');
         }
-        select.appendChild(option);
-    });
-    
-    select.addEventListener('change', (e) => {
-        const newLang = e.target.value;
-        if (currentLang === newLang) return;
-        currentLang = newLang;
-        
-        // Set aria-selected on all options
-        Array.from(select.options).forEach(opt => {
-            opt.setAttribute('aria-selected', opt.value === newLang ? 'true' : 'false');
+        btn.addEventListener('click', () => {
+            applyLang(lang.code);
+            langCollection.querySelectorAll('button').forEach(b => {
+                b.classList.remove('active');
+                b.setAttribute('aria-selected', 'false');
+            });
+            btn.classList.add('active');
+            btn.setAttribute('aria-selected', 'true');
         });
-        
-        localStorage.setItem('lang', newLang);
-        applyLang(newLang);
+        langCollection.appendChild(btn);
     });
     
-    return select;
+    return langCollection;
 }
 
 function createThemeMenuButton() {
