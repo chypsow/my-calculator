@@ -4,13 +4,13 @@
     margin:2rem auto 0;
     padding:1rem 1rem 0 1rem;
     background: var(--glass);
-    opacity: .98;
+    /*opacity: .98;*/
     border-radius:var(--radius-wrapper);
     box-shadow: 0 4px 6px rgba(0,0,0,0.3);
 }
 .top-row{
     display: flex;
-    flex-direction: row;
+    flex-direction: row-reverse;
     justify-content: space-between;
     align-items: center;
     margin: 1.5rem 0;

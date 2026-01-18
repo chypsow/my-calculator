@@ -12,9 +12,7 @@
     border-radius:var(--radius-wrapper);
     box-shadow: 0 4px 6px rgba(0,0,0,0.3);
 }
-/*.invoice-content button {
-    margin: 1rem 0;
-}*/
+
 .results-section {
     display: flex;
     flex-direction: row;
@@ -68,17 +66,15 @@
     display: none;
 }
 .billing-period-select {
-    width: 16.5rem;
+    width: 16rem;
     padding: .5rem;
     font-size: 1rem;
-    /*border: 1px solid var(--border);*/
-    border: none;
+    border: 1px solid var(--border);
     border-radius: 4px;
     color: var(--text-color);
-    background-color: /*color-mix(in srgb, white 98%, black);*/ var(--input-bg);
+    background-color: var(--input-bg);
     font-family: var(--font-sans);
     outline: none;
-    /*box-shadow: 0 0 15px rgba(0,0,0,0.3);*/
 }
 .billing-period-group input {
     padding: .5rem;

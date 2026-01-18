@@ -23,8 +23,8 @@ function createTopRow() {
         ]);
     }
     return el("div", { class: "top-row" }, [
-        createCurrecyInput(),
-        createImportExportButtons()
+        createImportExportButtons(),
+        createCurrecyInput()
     ]);
 }
 
