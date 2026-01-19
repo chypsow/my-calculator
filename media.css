@@ -70,7 +70,7 @@
     .result-row { font-size:.9rem; }
     .result-row span.total-ht-all, .result-row span.tax-item-total { font-size:1rem; }
     .invoice-section h3 { font-size:1.1rem; }
-    .invoice-section { border-left: 4px solid var(--accent-plus); padding: .5rem; background: transparent; }
+    .invoice-section { border: 1px solid var(--border); padding: .5rem; background: transparent; }
 }
 
 /* Print styles */
