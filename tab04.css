@@ -127,7 +127,7 @@
     margin-left: 0.5rem;
 }
 .input-group.inline input{
-    padding: .4rem;
+    padding: .3rem .4rem;
     font-size: 1rem;
     font-family: var(--font-mono);
     width: 6rem;

@@ -184,7 +184,7 @@ export function createTab04() {
             if (isNaN(newValue)) {
                 newValue = parseFloat(currentValue);
             }
-            const newSpan = el('span', { class: `${powerOrFlow}-${meterType} editable`, text: `${newValue} ${powerOrFlow === 'power' ? 'kva' : 'm³'}` });
+            const newSpan = el('span', { class: `${powerOrFlow}-${meterType} editable`, text: `${newValue} ${powerOrFlow === 'power' ? 'kVA' : 'm³'}` });
             input.replaceWith(newSpan);
             meterSection.setAttribute(`data-${powerOrFlow}`, newValue);
         });
@@ -295,10 +295,17 @@ function resetResultsInvoice(tab04Container) {
 function createMeterSection(meterType, quantityType, defaultPower = 7, defaultFlow = 5) {
     const section = el('div', { 
         class: `invoice-section meter-${meterType}`,
-        'data-meter-type': meterType,
-        'data-power' : quantityType === 'power' ? defaultPower : '',
-        'data-flow' : quantityType === 'flow' ? defaultFlow : ''
+        'data-meter-type': meterType
     });
+
+    switch (meterType) {
+        case 'electricity':
+            section.setAttribute('data-power', defaultPower);
+            break;
+        case 'gas':
+            section.setAttribute('data-flow', defaultFlow);
+            break;
+    }
     
     const title = el('h3', {
         'data-i18n': `invoice.${meterType}`,
@@ -306,7 +313,7 @@ function createMeterSection(meterType, quantityType, defaultPower = 7, defaultFl
     });
     section.appendChild(title);
     
-    const unit = quantityType === 'power' ? 'kva' : 'm³';
+    const unit = quantityType === 'power' ? 'kVA' : 'm³';
     
     // Power - flow input
     const powerGroup = el('div', { class: 'input-group inline' });
@@ -448,8 +455,8 @@ export function calculateInvoice(tab04Container) {
     }
     
     const elecPrice = elecPriceCalc();
+    const elecFixedCosts = 0.7;
     const elecTVAPercent = elecTVAPercentCalc();
-    const elecFixedCosts = power * 0.7 * billingPeriodValue;
     
     // Gas calculations
     const gasOld = parseFloat(gasSection.querySelector('.meter-old').value) || 0;
@@ -466,18 +473,17 @@ export function calculateInvoice(tab04Container) {
     }
 
     const gasPrice = gasPriceCalc();
-    const gasFixedCosts = flow * 0.75 * billingPeriodValue;
-    
+    const gasFixedCosts = 0.15;
     const gasTVAPercent = 0.19;
     
     // Electricity calculations
     const elecTotalHT = (elecConsumption * elecPrice);
-    const elecFixed = elecFixedCosts * billingPeriodValue;
+    const elecFixed = power * elecFixedCosts * billingPeriodValue;
     const elecTVAAmount = elecTotalHT * elecTVAPercent + (elecFixed * gasTVAPercent);
     
     // Gas calculations
     const gasTotalHT = (gasConsumption * gasPrice);
-    const gasFixed = gasFixedCosts * billingPeriodValue;
+    const gasFixed = flow * gasFixedCosts * billingPeriodValue;
     const gasTVAAmount = (gasTotalHT + gasFixed) * gasTVAPercent;
     
     // Totals

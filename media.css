@@ -66,7 +66,8 @@
     .billing-period-months .billing-period-months-label span { font-size: 1rem; }
     .billing-period-result, .billing-period-container { flex: 1 1 100%; }
     /*.billing-period-container { padding: .5rem; }*/
-    .input-group.teller input { width:6.5rem; font-size:.9rem; }
+    .input-group.teller input,
+    .input-group.inline input { width:6.5rem; font-size:.9rem; }
     .result-row { font-size:.9rem; }
     .result-row span.total-ht-all, .result-row span.tax-item-total { font-size:1rem; }
     .invoice-section h3 { font-size:1.1rem; }
