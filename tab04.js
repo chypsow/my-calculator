@@ -715,7 +715,7 @@ function createKvaInfoModal() {
 
 // Export invoice data as CSV
 function exportInvoiceData() {
-    const tab04Container = document.querySelector('#tab04');
+    const tab04Container = $('#tab04');
 
     // Billing period
     const billingPeriod = tab04Container.querySelector('.number-of-months').textContent;
@@ -751,7 +751,6 @@ function exportInvoiceData() {
     const taxRTT = tab04Container.querySelector('.tax-item-rtt').textContent;
     const taxTVA = tab04Container.querySelector('.tax-item-tva').textContent;
     const taxTotal = tab04Container.querySelector('.tax-item-total').textContent;
-
 
     // Grand total
     const grandTotalValue = tab04Container.querySelector('#grandTotalValue').textContent;
