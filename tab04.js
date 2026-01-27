@@ -665,24 +665,24 @@ function createKvaInfoModal() {
     
     // 1-Phase data
     const onePhaseData = [
-        ['5A', '1 100 VA', '1,1 kVA ≈ 1kVA'],
-        ['10A', '2 200 VA', '2,2 kVA ≈ 2kVA'],
-        ['15A', '3 300 VA', '3,3 kVA ≈ 3kVA'],
-        ['20A', '4 400 VA', '4,4 kVA ≈ 4kVA'],
-        ['30A', '6 600 VA', '6,6 kVA ≈ 7kVA'],
-        ['45A', '9 900 VA', '9,9 kVA ≈ 10kVA'],
-        ['63A', '13 860 VA', '13,9 kVA ≈ 14kVA']
+        ['5A', '220 x 5 = 1 100 VA', '1,1 kVA ≈ 1kVA'],
+        ['10A', '220 x 10 = 2 200 VA', '2,2 kVA ≈ 2kVA'],
+        ['15A', '220 x 15 = 3 300 VA', '3,3 kVA ≈ 3kVA'],
+        ['20A', '220 x 20 = 4 400 VA', '4,4 kVA ≈ 4kVA'],
+        ['30A', '220 x 30 = 6 600 VA', '6,6 kVA ≈ 7kVA'],
+        ['45A', '220 x 45 = 9 900 VA', '9,9 kVA ≈ 10kVA'],
+        ['63A', '220 x 63 = 13 860 VA', '13,9 kVA ≈ 14kVA']
     ];
     
     // 3-Phase data
     const threePhaseData = [
-        ['5A', '3 300 VA', '3,3 kVA ≈ 3kVA'],
-        ['10A', '6 600 VA', '6,6 kVA ≈ 7kVA'],
-        ['15A', '9 900 VA', '9,9 kVA ≈ 10kVA'],
-        ['20A', '13 200 VA', '13,2 kVA ≈ 13kVA'],
-        ['30A', '19 800 VA', '19,8 kVA ≈ 20kVA'],
-        ['50A', '33 000 VA', '33.0 kVA = 33 kVA'],
-        ['63A', '41 580 VA', '41,6 kVA ≈ 42kVA']
+        ['5A', '660 x 5 = 3 300 VA', '3,3 kVA ≈ 3kVA'],
+        ['10A', '660 x 10 = 6 600 VA', '6,6 kVA ≈ 7kVA'],
+        ['15A', '660 x 15 = 9 900 VA', '9,9 kVA ≈ 10kVA'],
+        ['20A', '660 x 20 = 13 200 VA', '13,2 kVA ≈ 13kVA'],
+        ['30A', '660 x 30 = 19 800 VA', '19,8 kVA ≈ 20kVA'],
+        ['50A', '660 x 50 = 33 000 VA', '33.0 kVA = 33 kVA'],
+        ['63A', '660 x 63 = 41 580 VA', '41,6 kVA ≈ 42kVA']
     ];
     
     // Add sections
