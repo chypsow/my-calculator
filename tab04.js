@@ -546,7 +546,7 @@ export function calculateInvoice(tab04Container) {
     const unitPrice = 0.005;
     const contributionCL = elecConsumption * unitPrice;
     const contributionFTEcalc = () => {
-        if (averageConsumption <= 100) return 0;
+        //if (averageConsumption <= 100) return 0;
         return elecConsumption * unitPrice;
     }
     const contributionFTE = contributionFTEcalc();
@@ -595,6 +595,7 @@ export function calculateInvoice(tab04Container) {
     // Update grand total
     tab04Container.querySelector('#grandTotalValue').textContent = createFmtCurrency('TND').format(grandTotal);
 }
+
 // Helper function to create kVA table sections
 function createKvaTableSection(title, formula, voltage, factor, data) {
     const section = el('div', { class: 'kva-section' });

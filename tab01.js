@@ -153,12 +153,12 @@ function formatDuration(remainingMonths) {
     const maanden = remainingMonths % 12;
     let html = '';
     if (jaren > 0) {
-        html += `${jaren} <span class="duration-label" data-i18n="label.years" >${t('label.years')}</span>`;
+        html += `${jaren}<span class="duration-label" data-i18n="label.years" >${t('label.years')}</span>`;
         if (maanden > 0) {
-            html += ` ${maanden} <span class="duration-label" data-i18n="label.months">${t('label.months')}</span>`;
+            html += ` ${maanden}<span class="duration-label" data-i18n="label.months">${t('label.months')}</span>`;
         }
     } else {
-        html += `${maanden} <span class="duration-label" data-i18n="label.months">${t('label.months')}</span>`;
+        html += `${maanden}<span class="duration-label" data-i18n="label.months">${t('label.months')}</span>`;
     }
     return html;
 }
