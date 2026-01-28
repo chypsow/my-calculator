@@ -2,7 +2,7 @@ import { $, el, createHeader, fmtCurrency, fmtDate, t } from './main.js';
 import { parseInputs, updateSummary, monthlyRate, computePayment } from './tab01.js';
 
 export function createTab03() {
-    const tab03 = el('div', { id: 'tab03' });
+    const tab03 = el('div', { id: 'tab03', class: 'tab-content' });
     tab03.append(
         createHeader('header.loan-table'),
         createReportContainer(),

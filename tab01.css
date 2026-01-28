@@ -1,7 +1,7 @@
 .simulator{
     max-width:var(--max-width);
-    width:clamp(320px, 60%, 950px);
-    margin:2rem auto 0;
+    width:clamp(320px, 60%, 1050px);
+    margin:0 auto;
     padding:1.5rem;
     background: var(--glass);
     border-radius:var(--radius-wrapper);
@@ -12,7 +12,7 @@
     flex-direction: row-reverse;
     justify-content: space-between;
     align-items: center;
-    margin: 1.5rem 0;
+    /*margin-bottom: 1.5rem;*/
 }
 
 /* bank name input */
@@ -64,9 +64,33 @@
 .main-section{
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     gap: 2rem;
 }
-.header-row-output{
+.top-section {
+    display: flex;
+    justify-content: space-between;
+   /* align-items: flex-start;*/
+    gap: 2rem;
+}
+.left-section,
+.right-section{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+.overzicht.overzicht-simulator {
+    column-count: 1;
+    margin-bottom: 0;
+}
+.overzicht-inhoud.overzicht-inhoud-simulator {
+    min-width: 400px;
+    column-count: 1;
+}
+/*.overzicht-inhoud.overzicht-inhoud-simulator.hidden {
+    visibility: hidden;
+}*/
+.header-row-output {
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -93,6 +117,7 @@
 }
 .header-row-inputs h2{
     color: var(--text-color);
+    /*margin-top: 0;*/
 }
 .output-fields h2{
     color: var(--label-color);
@@ -104,8 +129,12 @@
     color: var(--today-color);
 }
 .input-fields{
+    /*box-shadow: 0 0 15px rgba(155,155,155,0.3);*/
+    border: var(--border);
+    /*padding: 1rem;*/
     margin:0;
     width:100%;
+    min-width: 475px;
 }
 .form-inhoud{
     border-top: 1px solid var(--border);
@@ -114,17 +143,9 @@
     flex-direction:column;
     gap:.5rem;
 }
-.summary-output{
-    width: 100% ;
-    display:flex;
-    flex-direction:column;
-    /*gap:1rem;*/
-    justify-content:space-between;
-    flex-wrap:wrap;
-}
 .output-fields{
     background: var(--card-bg);
-    /*margin-top: 1rem;*/
+   box-shadow: 0 0 15px rgba(155,155,155,0.3);
     padding:1rem;
     border-radius:var(--radius);
 }
@@ -226,9 +247,9 @@ input[type="date"] {
 .datums {
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 1.5rem;
+    flex-direction: column  ;
+    align-items: start;
+    gap: .75rem;
 }
 .datums p{
     margin:0;
@@ -239,7 +260,7 @@ input[type="date"] {
 }
 .datums p span:nth-child(2){
     font-weight: bold;
-    padding: .35rem .5rem;
+    padding: .3rem .5rem;
     border: 1px solid var(--accent);
     border-radius:4px;
     background: var(--input-bg);
@@ -248,7 +269,7 @@ input[type="date"] {
     font-size: .9rem;
 }
 .eind-datum-hidden {
-    display: none;
+   visibility: hidden;
 }   
 
 /* Compact layout for rente + select */

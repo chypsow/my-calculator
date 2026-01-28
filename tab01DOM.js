@@ -3,7 +3,7 @@ import { el, fmtDate, t } from './main.js';
 // Create Elements
 export function createSimulatorDOM() {
     const container = el("div", { class: "simulator" }, [
-        createTopRow(),
+        //createTopRow(),
         createMainSection(),
     ]);
     return container;
@@ -30,15 +30,18 @@ function createTopRow() {
 
 function createMainSection() {
     return el("section", { class: "main-section" }, [
-        createInputFieldset(),
-        //createBerekenButton(),
-        createSummaryFieldset()
+        createTopRow(),
+        el('div', { class: 'top-section' }, [
+            createInputFieldset(),
+            createOverviewContainer()
+        ]),
+        createOutputFieldset()
     ]);
 }
 
-function createBerekenButton() {
+/*function createBerekenButton() {
     return el('button', { id: 'berekenBtn-1', class: 'accented-btn no-print', "data-i18n": "button.calculate", text: t('button.calculate') });
-}
+}*/
 
 function createInputFieldset() {
     const bedragInput = () => {
@@ -74,7 +77,10 @@ function createInputFieldset() {
             el("label", {
                 html: `<span data-i18n="label.start-date">${t('label.start-date')}</span>&nbsp;<input type="date" id="startDatum" class="invoer">`
             }),
-            el("p", { id: "eindDatum-container", html: `<span data-i18n="label.end-date">${t('label.end-date')}</span>&nbsp;&nbsp;` , class: "eind-datum-hidden" }, [el("span", { id: "eindDatum" })])
+            el("p", { 
+                id: "eindDatum-container", 
+                html: `<span data-i18n="label.end-date">${t('label.end-date')}</span>&nbsp;&nbsp;` 
+            }, [el("span", { id: "eindDatum", class: "eind-datum-hidden" })])
         ])
     };
     return el("div", { class: "input-fields card-light" }, [
@@ -88,20 +94,12 @@ function createInputFieldset() {
     ]);
 }
 
-function createSummaryFieldset() {
-    return el("div", { class: "summary-output" }, [
-        createLeftSummaryFieldset(),
-        //  createBerekenButton(),
-        createRightSummaryFieldset()
-    ]);
-}
-
-function createLeftSummaryFieldset() {
-    return el("div", { class: "overzicht" }, [
+function createOverviewContainer() {
+    return el("div", { class: "overzicht overzicht-simulator" }, [
         el("div", { class: 'overzicht-header' }, [
             el("h2", { "data-i18n": "section.loan-overview", text: t('section.loan-overview') }),
         ]),
-        el("div", { class: "overzicht-inhoud" }, [
+        el("div", { class: "overzicht-inhoud overzicht-inhoud-simulator" }, [
             el("div", { html: `
                 <p> <span data-i18n="output.loan-amount">${t('output.loan-amount')}</span>
                     <span class="output-overview loan-amount"></span>
@@ -128,7 +126,7 @@ function createLeftSummaryFieldset() {
     ]);
 }
 
-function createRightSummaryFieldset() {
+function createOutputFieldset() {
     return el("div", { class: "output-fields" }, [
         el("div", { class: "header-row-output", html: `
             <button id="berekenBtn-1" class="accented-btn no-print" data-i18n="button.calculate-status">${t('button.calculate-status')}</button>

@@ -3,7 +3,7 @@ import { createSimulatorDOM } from './tab01DOM.js';
 import { setTableVisibility } from './tab03.js';
 
 export function createTab01() {
-    const tab01 = el('div', { id: 'tab01' });
+    const tab01 = el('div', { id: 'tab01', class: 'tab-content' });
     tab01.append(
         createHeader('header.loan-overview'),
         createSimulatorDOM()
@@ -25,9 +25,9 @@ export function createTab01() {
             const endDate = new Date(startDate.getFullYear(), startDate.getMonth() + adjustedPeriode, startDate.getDate());
             $("#eindDatum").textContent = fmtDate(endDate);
             $("#eindDatum").setAttribute("data-prev-date", fmtDate(endDate));
-            $("#eindDatum-container").classList.remove("eind-datum-hidden");
+            $("#eindDatum").classList.remove("eind-datum-hidden");
         } else {
-            $("#eindDatum-container").classList.add("eind-datum-hidden");
+            $("#eindDatum").classList.add("eind-datum-hidden");
         }
     }
 
@@ -61,7 +61,7 @@ export function createTab01() {
         const startDate = $("#startDatum").valueAsDate;
         let periode = parseInt($("#periode").value || "0", 10);
         if (startDate && periode > 0) {
-            $("#eindDatum-container").classList.remove("eind-datum-hidden");
+            $("#eindDatum").classList.remove("eind-datum-hidden");
             //let periode = parseInt($("#periode").value || "0", 10);
             const periodeEenheid = $("#periodeEenheid").value;
             if (periodeEenheid === "years") {
@@ -80,7 +80,7 @@ export function createTab01() {
             $all(".startDateDisplay").forEach(elm => elm.textContent = fmtDate(startDate));
             $all(".endDateDisplay").forEach(elm => elm.textContent = fmtDate(endDate));
         } else {
-            $("#eindDatum-container").classList.add("eind-datum-hidden");
+            $("#eindDatum").classList.add("eind-datum-hidden");
            
         }
         
@@ -196,6 +196,11 @@ export function updateSummary(tab = '01') {
     $all('.endDateDisplay').forEach(elm => elm.textContent = fmtDate(endDate));
 
     console.log(`calculation within updateSummary called from tab${tab} complete`);
+
+    //const overzichtSimulator = $('.overzicht-inhoud-simulator');
+    /*if (overzichtSimulator.classList.contains('hidden')) {
+        overzichtSimulator.classList.remove('hidden');
+    }*/
     return inputs;
 }
 
@@ -273,6 +278,7 @@ export function parseInputs() {
 }
 
 function resetOutputs() {
+    //$('.overzicht-inhoud-simulator').classList.add('hidden');
     resetOutputsOverview();
     resetOutputsTab01();
     resetOutputsTab02();

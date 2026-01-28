@@ -327,18 +327,12 @@ export function createFooter() {
     return footer;
 } 
 
-function createMainContent() {
-    const main = $('main');
-    main.appendChild(createCircles());
-    main.appendChild(createTopHeader());
-    main.appendChild(createLangSwitcher());
-    main.appendChild(createThemeMenuButton());
-    main.appendChild(createThemeSelector());
-}
-
 // Event listener for exportInvoiceData
 document.addEventListener('keydown', (e) => {
     if (e.key === 'e' && (e.ctrlKey || e.metaKey)) {
+        // check if tab04 is active
+        if (activePage !== 3) return;
+        // Prevent default browser action
         e.preventDefault();
         window.dispatchEvent(new Event('exportInvoiceData'));
     }
@@ -346,12 +340,19 @@ document.addEventListener('keydown', (e) => {
 
 /* Initialize */
 document.addEventListener("DOMContentLoaded", () => {
-    createMainContent();
+    const main = $('main');
+    main.append(
+        createCircles(),
+        createTopHeader(),
+        createLangSwitcher(),   
+        createThemeMenuButton(),
+        createThemeSelector()
+    );
     getTabIds().forEach(tabId => {
         const creator = getTabCreator(tabId);
         if (typeof creator === 'function') creator();
     });
-    $('main').appendChild(createFooter());
+    main.appendChild(createFooter());
     renderTab(activePage + 1);
 });
 
@@ -361,7 +362,7 @@ export function renderTab(tabNumber) {
         const tab = document.getElementById(tabId);
         if (tab) {
             if (index === tabNumber - 1) {
-                tab.style.display = 'block';
+                tab.style.display = 'flex';
             } else {
                 tab.style.display = 'none';
             }   

@@ -51,6 +51,7 @@
     --accent: #fad0c4;
     --accent-plus: var(--accent);
     --card-bg: linear-gradient(90deg, #600f0f 0%, #3e1616 50%, #0f0f0f 100%);
+    
     --bg-dark: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
     --output-fields-color: var(--accent);
     --top-header-color: #000000;
@@ -134,8 +135,8 @@ header{
     padding:1.5rem;
     border-radius:var(--radius);
     letter-spacing: 5px;
-    max-width: var(--max-width);
-    width: clamp(320px, 60%, 950px);
+    /*max-width: var(--max-width);*/
+    width: clamp(320px, 80%, 950px);
     margin: 1.5rem auto;
 }
 h1{ 
@@ -181,7 +182,10 @@ h1{
     background-color: var(--accent);
     color: var(--top-header-color);
 }
-
+.tab-content {
+    display: none;
+    flex-direction: column;
+}
 /* Language Switcher Styles */
 .lang-select {
     display: flex;

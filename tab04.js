@@ -1,7 +1,7 @@
 import { $, el, createHeader, createFmtCurrency, t } from './main.js';
 
 export function createTab04() {
-    const tab04 = el('div', { id: 'tab04' });
+    const tab04 = el('div', { id: 'tab04', class: 'tab-content' });
     const header = createHeader('header.invoice-calculator');
     tab04.appendChild(header);
     
@@ -365,7 +365,7 @@ function createMeterSection(meterType, quantityType) {
             type: 'button',
             'data-i18n-title': 'kva.info-button-title'
         }, [
-            el('i', { class: 'fa fa-info' })
+            el('i', { class: 'fa-solid fa-info-circle' })
         ]);
         infoBtn.addEventListener('click', (e) => {
             e.stopPropagation();

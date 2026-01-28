@@ -11,6 +11,7 @@
     margin-bottom: 2rem;
     padding: 1rem;
     background: var(--card-bg);
+    box-shadow: 0 0 15px rgba(155,155,155,0.3);
     border-radius: var(--radius);
 }
 .overzicht-header {
@@ -21,6 +22,7 @@
 }
 .overzicht-header h2 {
     color: var(--label-color);
+    margin-top: 0;
 }
 .overzicht-header span {
     font-family: var(--font-mono);
@@ -30,7 +32,7 @@
 .overzicht-inhoud {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin-top: 1rem;
-    column-count: 2;
+    column-count: clamp(1, (100cqw / 25rem), 2);
 }
 .overzicht-inhoud p {
     margin: 0;

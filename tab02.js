@@ -2,7 +2,7 @@ import { $, el, formatLocalDate, createHeader, fmtCurrency, $all, fmtDate, t } f
 import { computeRemaining, updateSummary, hasMonthYearChanged } from './tab01.js';
 
 export function createTab02() {
-    const tab02 = el('div', { id: 'tab02' });
+    const tab02 = el('div', { id: 'tab02', class: 'tab-content' });
     tab02.append(
         createHeader('header.loan-status'),
         createCalculatorDOM()
