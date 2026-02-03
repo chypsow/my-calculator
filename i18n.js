@@ -147,7 +147,7 @@ export const translations = {
     "kva.single-phase.formula": "Power (VA) = U × I",
     "kva.three-phase.title": "4 wires: 3L + 1N (Three-phase)",
     "kva.three-phase.formula": "Power (VA) = √3 × U × I",
-    "kva.table.intensity": "Current (A)",
+    "kva.table.intensity": "Max. counter current (A)",
     "kva.table.apparent": "Apparent Power (VA)",
     "kva.table.kva": "Apparent Power (kVA)",
     "kva.factor": "=> Factor ="
@@ -300,7 +300,7 @@ export const translations = {
     "kva.single-phase.formula": "Puissance (VA) = U × I",
     "kva.three-phase.title": "4 fils : 3L + 1N (Triphasé)",
     "kva.three-phase.formula": "Puissance (VA) = √3 × U × I",
-    "kva.table.intensity": "Intensité (A)",
+    "kva.table.intensity": "Intensité max. du compteur (A)",
     "kva.table.apparent": "Puissance Apparente (VA)",
     "kva.table.kva": "Puissance Apparente (kVA)",
     "kva.factor": "=> Facteur ="
@@ -453,7 +453,7 @@ export const translations = {
     "kva.single-phase.formula": "Vermogen (VA) = U × I",
     "kva.three-phase.title": "4 draden: 3L + 1N (Driefasig)",
     "kva.three-phase.formula": "Vermogen (VA) = √3 × U × I",
-    "kva.table.intensity": "Stroom (A)",
+    "kva.table.intensity": "Max. tellerstroom (A)",
     "kva.table.apparent": "Schijnbaar Vermogen (VA)",
     "kva.table.kva": "Schijnbaar Vermogen (kVA)",
     "kva.factor": "=> Factor ="
