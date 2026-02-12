@@ -204,7 +204,7 @@ export function createTab04() {
             if (isNaN(newValue)) {
                 newValue = parseFloat(currentValue);
             }
-            const newSpan = el('span', { class: `${quantityType}-${meterType} editable`, text: `${newValue} ${quantityType === 'power' ? 'kVA' : 'm³'}` });
+            const newSpan = el('span', { class: `${quantityType}-${meterType} editable`, text: `${newValue} ${quantityType === 'power' ? 'kVA' : 'm³/h'}` });
             input.replaceWith(newSpan);
             localStorage.setItem(`invoice${quantityType === 'power' ? 'ElectricityPower' : 'GasFlow'}`, newValue);
         });
@@ -348,7 +348,7 @@ function createMeterSection(meterType, quantityType) {
     });
     section.appendChild(title);
     
-    const unit = quantityType === 'power' ? 'kVA' : 'm³';
+    const unit = quantityType === 'power' ? 'kVA' : 'm³/h';
     
     // Power - flow input
     const powerGroup = el('div', { class: 'input-group inline' });
