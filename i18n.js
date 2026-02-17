@@ -2,15 +2,18 @@
 export const translations = {
   en: {
     // Headers & sections
-    "tab.simulator": "LOAN SIMULATOR",
-    "tab.calculator": "LOAN CALCULATOR",
-    "tab.table": "LOAN TABLES",
+    "tab.loan": "LOAN SIMULATOR",
+    //"tab.calculator": "LOAN CALCULATOR",
+    //"tab.table": "AMORTIZATION TABLES",
     "tab.invoice": "INVOICE SIMULATOR",
+    "tab.salary": "SALARY SIMULATOR",
+    "header.salary-simulator": "SALARY SIMULATOR",
     "header.loan-overview": "LOAN SIMULATOR",
     "header.loan-status": "CALCULATION OF PAID CAPITAL & INTERESTS BETWEEN 2 DATES",
     "header.loan-table": "AMORTIZATION TABLE",
     "header.invoice-calculator": "STEG INVOICE SIMULATOR",
-
+    "section.calculator1": "Calculator 1",
+    "section.calculator2": "Calculator 2",
     // Tab01 - Input labels
     "label.loan-amount": "Loan amount",
     "label.interest-rate": "Annual interest rate (%):",
@@ -59,7 +62,7 @@ export const translations = {
     "output.total-paid": "Total paid:",
 
     // Tab03 - Table headers & Labels
-    "section.table-instructions-header": "Table Configuration:",
+    "section.table-instructions-header": "Amortization Table Configuration:",
     "section.table-instructions": "Enter the interval in months and select the columns you want to display in the table.",
     "label.interval": "Interval (months):",
     "table.interval-date": "Date",
@@ -76,14 +79,17 @@ export const translations = {
     "table.cumulative-interest": "Cumul. interests",
     "table.cumulative-principal": "Cumul. principal",
     "table.cumulative-payment": "Cumul. payments",
+    "table.generator": "Amortization Table Generator",
 
     // Buttons
     "button.import": "Import",
     "button.export": "Export",
     "button.calculate-status": "Calculate Loan status on:",
-    "button.calculate": "Calculate",
-    "button.generate": "Generate Table",    "button.select-all": "Select all",
-    "button.deselect-all": "Deselect all",    "button.amortization-table": "Amortization Table",
+    "button.calculate": "Calculate the paid capital and paid interests between two dates",
+    "button.generate": "Generate Table",
+    "button.select-all": "Select all",
+    "button.deselect-all": "Deselect all",
+    "button.amortization-table": "Amortization Table",
     "button.print": "Print",
     "button.today": "Today",
     "button.hide": "Hide table",
@@ -155,14 +161,18 @@ export const translations = {
 
   fr: {
     // Headers & sections
-    "tab.simulator": "SIMULATEUR DE CRÉDIT",
-    "tab.calculator": "CALCULATEUR DE CRÉDIT",
-    "tab.table": "TABLEAUX DE CRÉDIT",
+    "tab.loan": "SIMULATEUR DE CRÉDIT",
+    //"tab.calculator": "CALCULATEUR DE CRÉDIT",
+    //"tab.table": "TABLEAUX D'AMORTISSEMENT",
     "tab.invoice": "SIMULATEUR DE FACTURE",
+    "tab.salary": "SIMULATEUR DE SALAIRE",
+    "header.salary-simulator": "SIMULATEUR DE SALAIRE",
     "header.loan-overview": "SIMULATEUR DE CRÉDIT",
     "header.loan-status": "CALCUL DU CAPITAL PAYÉ & DES INTÉRÊTS PAYÉS ENTRE 2 DATES",
     "header.loan-table": "TABLEAU D'AMORTISSEMENT",
     "header.invoice-calculator": "SIMULATEUR DE FACTURE STEG",
+    "section.calculator1": "Calculateur 1",
+    "section.calculator2": "Calculateur 2",
 
     // Tab01 - Input labels
     "label.loan-amount": "Montant du crédit",
@@ -212,7 +222,7 @@ export const translations = {
     "output.total-paid": "Total payé:",
 
     // Tab03 - Table headers & Labels
-    "section.table-instructions-header": "Configuration du tableau :",
+    "section.table-instructions-header": "Configuration du tableau d'amortissement:",
     "section.table-instructions": "Saisissez l'intervalle en mois et sélectionnez les colonnes que vous souhaitez afficher dans le tableau.",
     "label.interval": "Intervalle (mois):",
     "table.interval-date": "Date",
@@ -229,14 +239,17 @@ export const translations = {
     "table.cumulative-interest": "Intérêts cumulés",
     "table.cumulative-principal": "Principal cumulé",
     "table.cumulative-payment": "Paiements cumulés",
+    "table.generator": "Générateur de tableau d'amortissement",
 
     // Buttons
     "button.import": "Importer",
     "button.export": "Exporter",
     "button.calculate-status": "Calculer le statut du crédit le:",
-    "button.calculate": "Calculer",
-    "button.generate": "Générer le tableau",    "button.select-all": "Tout sélectionner",
-    "button.deselect-all": "Tout désélectionner",    "button.amortization-table": "Tableau d'amortissement",
+    "button.calculate": "Calculer le capital payé et les intérêts payés entre deux dates",
+    "button.generate": "Générer le tableau",
+    "button.select-all": "Tout sélectionner",
+    "button.deselect-all": "Tout désélectionner",    
+    "button.amortization-table": "Tableau d'amortissement",
     "button.print": "Imprimer",
     "button.today": "Aujourd'hui",
     "button.hide": "Cacher le tableau",
@@ -308,14 +321,18 @@ export const translations = {
 
   nl: {
     // Headers & sections
-    "tab.simulator": "LENING SIMULATOR",
-    "tab.calculator": "LENING CALCULATOR",
-    "tab.table": "LENING TABELLEN",
+    "tab.loan": "LENING SIMULATOR",
+    //"tab.calculator": "LENING CALCULATOR",
+    //"tab.table": "AFLOSSINGSTABELLEN",
     "tab.invoice": "FACTUUR SIMULATOR",
+    "tab.salary": "LOON SIMULATOR",
+    "header.salary-simulator": "LOON SIMULATOR",
     "header.loan-overview": "LENING SIMULATOR",
     "header.loan-status": "BEREKENING VAN AFGELOST KAPITAAL & RENTE TUSSEN 2 DATUMS",
     "header.loan-table": "AFLOSSINGSTABEL",
     "header.invoice-calculator": "STEG FACTUUR SIMULATOR",
+    "section.calculator1": "Calculator 1",
+    "section.calculator2": "Calculator 2",
 
     // Tab01 - Input labels
     "label.loan-amount": "Te lenen bedrag",
@@ -365,7 +382,7 @@ export const translations = {
     "output.total-paid": "Totaal afbetaald:",
 
     // Tab03 - Table headers & Labels
-    "section.table-instructions-header": "Tabelconfiguratie:",
+    "section.table-instructions-header": "Configuratie van de aflossingstabel:",
     "section.table-instructions": "Voer het interval in maanden in en selecteer de kolommen die u in de tabel wilt weergeven.",
     "label.interval": "Interval (maanden):",
     "table.interval-date": "Datum",
@@ -382,12 +399,13 @@ export const translations = {
     "table.cumulative-interest": "Cumul. interesten",
     "table.cumulative-principal": "Cumul. afbetaald KPT",
     "table.cumulative-payment": "Cumul. aflossing",
+    "table.generator": "Aflossingstabel Generator",
 
     // Buttons
     "button.import": "Importeren",
     "button.export": "Exporteren",
     "button.calculate-status": "Bereken lening status op:",
-    "button.calculate": "Berekenen",
+    "button.calculate": "Bereken het afbetaald kapitaal en de betaalde rente tussen twee datums",
     "button.generate": "Genereer tabel",    "button.select-all": "Alles selecteren",
     "button.deselect-all": "Alles deselecteren",    "button.amortization-table": "Aflossingstabel",
     "button.print": "Afdrukken",

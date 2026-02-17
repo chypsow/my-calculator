@@ -1,12 +1,15 @@
 /* Compact responsiveness */
 @media (max-width:1700px) {
-    .simulator { width: 70%; }
+    .simulator-wrapper,
+    .toggle-buttons { width: 70%; }
 }
 @media (max-width:1400px){
-    section{ flex-direction:column; gap:1rem; }
-    fieldset{ width:100%; }
+    .input-section { flex-direction:column; gap:1rem; }
+    fieldset { width:100%; }
     footer { display: none; }
-    .simulator, .calculator, .generator, .invoice-content{ width:90%; }
+    .simulator-wrapper,
+    .toggle-buttons,
+    .invoice-content{ width:90%; }
     .table-header th, .table-inhoud td{ font-size:.85rem; white-space:nowrap; }
     .circles-wrapper{ display: none; }
     .invoice-section { flex: 1 1 45%; }
@@ -20,10 +23,10 @@
     .top-header.active { display: flex; }
     .top-header a { text-align: left; padding: .75rem; }
     .top-header a:not(.active):hover { background: rgb(73, 82, 117); }
-    .top-section { flex-direction: column; gap: 1.5rem; }
+    .main-section { flex-direction: column; gap: 1.5rem; }
     .annual-report-table thead { top: 0; }
     .table-header th, .table-inhoud td{ font-size:.75rem; }
-    .main-section{ gap:1rem; }
+    /*.main-section{ gap:1rem; }*/
     .overzicht-inhoud,
     .overzicht-inhoud.overzicht-inhoud-simulator
      { column-count: 2; }
@@ -51,7 +54,9 @@
     .lang-select button { font-size: .9rem; padding-top: .3rem; padding-bottom: .4rem; }
     .theme-menu-btn { font-size: 1.25rem; padding-bottom: .15rem; }
     .theme-popup { padding-top: .5rem;}
-    .simulator, .calculator, .generator, .invoice-content{ width:100%; border-radius: 0; box-shadow: none; background: transparent; padding: 1rem; }
+    .simulator-wrapper,
+    .toggle-buttons, 
+    .invoice-content{ width:100%; border-radius: 0; box-shadow: none; background: transparent; padding: 1rem; }
     .datums { flex-direction:column; align-items: flex-start; gap:.5rem; }
     .datums p span:first-child { font-size:.65rem; }
     .datums p span:nth-child(2) { font-size:.75rem; }
@@ -71,6 +76,7 @@
     .output-sectie,
     .billing-period-container,
     .billing-period-result {padding:0px; background:transparent;}
+    .output-sectie { box-shadow: none; }
     .uitleg-tekst{ font-size:.75rem; }
     .kies-datum { font-size: 1rem; }
     .sectie-header p span:first-child { font-size: .8rem; }
@@ -112,16 +118,17 @@
     header{ margin-top:0; margin-bottom:0; }
     footer{ display:none; }
     table{ table-layout:auto ; width:100%; }
+    input, select, input[type="date"] { background-color: transparent; }
     input[type="date"]::-webkit-calendar-picker-indicator {display: none; }
     .no-print{ display:none; }
     .on-print{ display:block; }
     .header-row-output{ margin-bottom: .5rem;}
-    .lang-select{ display: none; }
-    .simulator, .calculator, .generator{ width:100%; margin:0; padding:0; box-shadow:none; background:transparent; }
+    .simulator-wrapper { /*width:100%; margin:0;*/ padding:0; box-shadow:none; background:transparent; }
     .top-row{ flex-direction:row; }
     .overzicht, .output-sectie, .output-fields { padding: 0; background: transparent; box-shadow: none; }
+    .config-container { gap: 0;}
     .table-header th{ font-size:0.7rem ; color:#000; border-color:#000; }
-    .lening-overzicht{ padding:0; list-style-type: none; column-count: 2; }
+    .lening-overzicht{ padding:0; list-style-type: none; column-count: 2; margin: 0;}
     .lening-overzicht li, .lening-overzicht li span{ color:#000; font-family: 'cambria', serif; font-size: .9rem; }
     .lening-overzicht li{ color: #929292; padding: .2rem 0; }
     .lening-overzicht li span{ font-weight: bold; margin-left: .5rem; }

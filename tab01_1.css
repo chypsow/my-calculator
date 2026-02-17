@@ -1,13 +1,21 @@
-.simulator{
-    max-width:var(--max-width);
+.simulator-wrapper {
+    /*max-width:var(--max-width);*/
     width:clamp(320px, 60%, 1050px);
-    margin:0 auto;
+    margin:1rem auto;
     padding:1.5rem;
     background: var(--glass);
     border-radius:var(--radius-wrapper);
     box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    overflow: hidden;
 }
-.top-row{
+.simulator-wrapper.hidden {
+    display: none;
+}
+/*.simulator-wrapper.calculator-1,
+.simulator-wrapper.calculator-2 {
+    padding: 0;
+}*/
+.top-row {
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-between;
@@ -16,7 +24,7 @@
 }
 
 /* bank name input */
-.top-row input{
+.top-row input {
     padding: .3rem .5rem;
     font-size: 1rem;
     border-radius: 4px;
@@ -26,23 +34,20 @@
     background-color: var(--input-bg);
 }
 
-/*.currency-input select{
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-}*/
-.top-row span{
+.top-row span {
     margin-right: 1rem;
     font-size: 1.2rem;
     font-weight: bold;
     color: var(--text-color);
 }
 /* Buttons */
-.import-export-buttons{
+.import-export-buttons {
     
     display: flex;
     justify-content: flex-end;
     gap: 1rem;
 }
-.import-export-buttons button{
+.import-export-buttons button {
     min-width: 7.5rem;
     font-family: var(--font-mono);
     font-size: .9rem;
@@ -58,23 +63,28 @@
     transition: background-color 0.3s, filter 0.3s;
 }
 
-.import-export-buttons button:hover{ cursor: pointer; filter: brightness(0.9); }
+.import-export-buttons button:hover { cursor: pointer; filter: brightness(0.9); }
 
 /* Form section */
-.main-section{
+.input-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.input-fields {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 2rem;
+    /*gap: 2rem;*/
+    min-width: 455px;
 }
-.top-section {
+.main-section {
     display: flex;
     justify-content: space-between;
-   /* align-items: flex-start;*/
     gap: 2rem;
 }
 .left-section,
-.right-section{
+.right-section {
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -82,6 +92,7 @@
 .overzicht.overzicht-simulator {
     column-count: 1;
     margin-bottom: 0;
+    width: 100%;
 }
 .overzicht-inhoud.overzicht-inhoud-simulator {
     min-width: 365px;
@@ -105,6 +116,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-bottom: 1px solid var(--border);
 }
 .header-row-inputs h2{
     color: var(--text-color);
@@ -119,16 +131,9 @@
     font-weight: normal;
     color: var(--today-color);
 }
-.input-fields{
-    /*box-shadow: 0 0 15px rgba(155,155,155,0.3);*/
-    border: var(--border);
-    /*padding: 1rem;*/
-    margin:0;
-    width:100%;
-    min-width: 455px;
-}
+
 .form-inhoud{
-    border-top: 1px solid var(--border);
+    /*border-top: 1px solid var(--border);*/
     padding-top:1rem;
     display:flex;
     flex-direction:column;
@@ -264,20 +269,72 @@ input[type="date"] {
 }   
 
 /* Compact layout for rente + select */
-.label-select{ display:flex; align-items:center; gap:.5rem; }
+.label-select { display:flex; align-items:center; gap:.5rem; }
 
-.button-group{
+.button-group {
     display:flex;
     gap:1rem;
     justify-content:space-between;
 }
-.button-group button[disabled]{
+/*.button-group button[disabled]{
     cursor: default;
     opacity: 0.4;
 }
 .button-group button[disabled]:hover{
     filter: none;
+}*/
+.toggle-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    width:clamp(320px, 60%, 1050px);
+    margin:1rem auto;
 }
-
+.accented-btn.toggle-btn {
+    padding: .8rem 1.5rem;
+    font-size: 1.2rem;
+    border-radius: 1.5rem;
+    width: 100%;
+    text-align: center;
+    border: none;
+    background-color: var(--glass);
+    /*color: var(--muted-text);*/
+}
+.accented-btn.toggle-btn.active {
+    background-color: var(--accent);
+    /*color: var(--button-color);*/
+}
+.accented-btn {
+    width: fit-content;
+    font-family: var(--mono-font);
+    padding: .3rem 1.5rem;
+    font-size: 1.2rem;
+    border-radius: 4px;
+    border-top: 2px solid rgba(139, 139, 139, 0.5);
+    border-left: 2px solid rgba(139, 139, 139, 0.5);
+    border-bottom: 1px solid rgb(0, 0, 0);
+    border-right: 1px solid rgb(0, 0, 0);
+    background-color: rgb(214, 214, 214);
+    background-color: var(--accent);
+    color: var(--button-color);
+    cursor: pointer;
+    white-space: wrap;
+    text-align: left;
+    transition: background-color 0.3s, filter 0.3s;
+}
+.accented-btn:hover {
+    /*background-color: var(--accent);*/
+    filter: brightness(0.9);
+}
+.calculator-title {
+    font-family: var(--font-sans);
+    font-size: 1.4rem;
+    /*color: var(--top-header-color);*/
+    /*background-color: #343d5c;*/
+    /*padding: 1rem 1rem;*/
+    margin-top: 0;
+    text-align: left;
+    
+}
 
 

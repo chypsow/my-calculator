@@ -3,27 +3,9 @@ import { translations } from './i18n.js';
 import { createTab01 } from './tab01.js';
 import { createTab02 } from './tab02.js';
 import { createTab03 } from './tab03.js';
-import { createTab04 } from './tab04.js';
-
-// Main tabs
-const tabCreators = new Map([
-    ['tab01', { label: 'tab.simulator', creator: createTab01 }],
-    ['tab02', { label: 'tab.calculator', creator: createTab02 }],
-    ['tab03', { label: 'tab.table', creator: createTab03 }],
-    ['tab04', { label: 'tab.invoice', creator: createTab04 }]
-]);
-
-// Helper functions
-const getTabIds = () => Array.from(tabCreators.keys());
-const getTabLabel = (tabId) => tabCreators.get(tabId)?.label;
-const getTabCreator = (tabId) => tabCreators.get(tabId)?.creator;
 
 // Current language
 let currentLang = localStorage.getItem('lang') || 'fr';
-export let activePage = localStorage.getItem('activePage') ? parseInt(localStorage.getItem('activePage')) : 0;
-if (isNaN(activePage) || activePage < 0 || activePage >= tabCreators.size) {
-    activePage = 0;
-}
 
 // Utility functions for DOM manipulation and formatting
 export const $ = selector => document.querySelector(selector);
@@ -137,6 +119,23 @@ function createCircles() {
     return container;
 }
 
+// Main tabs
+const tabCreators = new Map([
+    ['tab01', { label: 'tab.loan', creator: createTab01 }],
+    ['tab02', { label: 'tab.invoice', creator: createTab02 }],
+    ['tab03', { label: 'tab.salary', creator: createTab03 }]
+]);
+
+export let activePage = localStorage.getItem('activePage') ? parseInt(localStorage.getItem('activePage')) : 0;
+if (isNaN(activePage) || activePage < 0 || activePage >= tabCreators.size) {
+    activePage = 0;
+}
+
+// Helper functions
+const getTabIds = () => Array.from(tabCreators.keys());
+const getTabLabel = (tabId) => tabCreators.get(tabId)?.label;
+const getTabCreator = (tabId) => tabCreators.get(tabId)?.creator;
+
 function createTopHeader() {
     const header = el('nav', { id: 'topHeader', class: 'top-header no-print' });
 
@@ -169,7 +168,7 @@ function createTopHeader() {
 }
 
 function createLangSwitcher () {
-    const langCollection = el('div', { class: 'lang-select', id: 'lang-select', 'aria-label': 'Select Language' });
+    const langCollection = el('div', { class: 'lang-select no-rint', id: 'lang-select', 'aria-label': 'Select Language' });
     const languages = [{ code: 'en', label: 'EN' }, { code: 'fr', label: 'FR' }, { code: 'nl', label: 'NL' }];
     
     languages.forEach(lang => {
@@ -331,7 +330,7 @@ export function createFooter() {
 document.addEventListener('keydown', (e) => {
     if (e.key === 'e' && (e.ctrlKey || e.metaKey)) {
         // check if tab04 is active
-        if (activePage !== 3) return;
+        if (activePage !== 1) return;
         // Prevent default browser action
         e.preventDefault();
         window.dispatchEvent(new Event('exportInvoiceData'));

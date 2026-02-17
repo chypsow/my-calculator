@@ -1,16 +1,20 @@
 import { $, $all, formatLocalDate, createHeader, fmtCurrency, fmtDate, fmtDecimal, t, el, getCurrency, currencyState } from './main.js';
-import { createSimulatorDOM } from './tab01DOM.js';
-import { setTableVisibility } from './tab03.js';
+import { createSimulatorDOM, createCalculator1DOM, createCalculator2DOM, createToggleButtons } from './tab01_DOM.js';
+import { setTableVisibility, createReportContainer, printData, generateTable } from './tab01_Table.js';
 
 export function createTab01() {
     const tab01 = el('div', { id: 'tab01', class: 'tab-content' });
     tab01.append(
         createHeader('header.loan-overview'),
-        createSimulatorDOM()
+        createSimulatorDOM(),
+        createToggleButtons(),
+        createCalculator1DOM(),
+        createCalculator2DOM(),
+        createReportContainer()
     );
     $('main').appendChild(tab01);
     
-    // Event listeners/* Events */
+    // Event listeners for tab01-1 and tab01-2
     function handlePeriodAndUnitChange() {
         // Update end date preview
         const startDate = $("#startDatum").valueAsDate;
@@ -85,7 +89,7 @@ export function createTab01() {
         
         resetOutputs();
         if (shouldRecalculate) {
-            console.log("startDatum changed + recalculation needed");
+            //console.log("startDatum changed + recalculation needed");
             updateSummary();
         }
     });
@@ -97,11 +101,43 @@ export function createTab01() {
         }
     });
 
+    // Events for buttons and date changes in tab01-2
+    // Create reusable toggle function
+    const createToggleListener = (buttonSelector, contentSelector) => () => {
+        const button = $(buttonSelector);
+        const content = $(contentSelector);
+        if (!button || !content) {
+            console.warn(`Toggle elements not found: ${buttonSelector}, ${contentSelector}`);
+            return;
+        }
+        button.classList.toggle('active');
+        content.classList.toggle('hidden');
+    };
+
+    // Register toggle listeners
+    const toggleConfigs = [
+        { button: '#toggleCalculator1', content: '.calculator-1' },
+        { button: '#toggleCalculator2', content: '.calculator-2' },
+        { button: '#toggleTableGenerator', content: '.table-generator' }
+    ];
+
+    toggleConfigs.forEach(({ button, content }) => {
+        const btnElement = $(button);
+        if (btnElement) {
+            btnElement.addEventListener('click', createToggleListener(button, content));
+        }
+    });
     $("#berekenBtn-1").addEventListener("click", calculateRemainingCapitalAndInterest);
+    $('#berekenBtn-2').addEventListener('click', calculateTotals);
     $("#importBtn").addEventListener("click", importData);
     $("#exportBtn").addEventListener("click", exportData);
+    $('#startdatum-status').addEventListener('change', function() {
+        if (hasMonthYearChanged(this)) $all('.output-tab02').forEach(el => el.textContent = '');
+    });
 
-    
+    $('#einddatum-status').addEventListener('change', function() {
+        if (hasMonthYearChanged(this)) $all('.output-tab02').forEach(el => el.textContent = '');
+    });
 
     // Currency select listener - update currency when changed
     $("#currencySelect").addEventListener("change", () => {
@@ -118,6 +154,23 @@ export function createTab01() {
     currencyState.setCurrency(savedCurrency);
     $("#currencySelect").value = savedCurrency;
     $all(".currency-symbol").forEach(elm => elm.textContent = `(${savedCurrency}):`);
+
+    // event listeners for tab01-3
+    setTableVisibility(false);
+    
+    $('#generateBtn').addEventListener('click', () => {
+        generateTable();
+    });
+
+    $('#afdrukken').addEventListener('click', printData);
+
+    $('#selectAllBtn').addEventListener('click', () => {
+        document.querySelectorAll('.column-checkbox').forEach(checkbox => checkbox.checked = true);
+    });
+
+    $('#deselectAllBtn').addEventListener('click', () => {
+        document.querySelectorAll('.column-checkbox').forEach(checkbox => checkbox.checked = false);
+    });
 }
 
 //make function to check if date changed month/year only
@@ -194,7 +247,7 @@ export function updateSummary(tab = '01') {
     $all('.startDateDisplay').forEach(elm => elm.textContent = fmtDate(startDate));
     $all('.endDateDisplay').forEach(elm => elm.textContent = fmtDate(endDate));
 
-    console.log(`calculation within updateSummary called from tab${tab} complete`);
+    //console.log(`calculation within updateSummary called from tab${tab} complete`);
     return inputs;
 }
 
@@ -223,7 +276,6 @@ function calculateRemainingCapitalAndInterest() {
     $("#afbetaaldeRente-1").textContent = fmtCurrency.format((betaling * periode - bedrag) - remaining.interest);
     $("#totaalBetaald-1").textContent = fmtCurrency.format(betaling * (periode - remaining.period));
 }
-
 export function computeRemaining(bedrag, jkp, periode, type, startDate, currentDate = new Date()) {
     const i = monthlyRate(jkp, type);
     const betaling = computePayment(bedrag, i, periode);
@@ -251,7 +303,6 @@ export function computeRemaining(bedrag, jkp, periode, type, startDate, currentD
         period: period
     };
 }
-
 export function parseInputs() {
     const bedrag = parseFloat($("#teLenenBedrag").value.replace(',', '.'));
     const jkp = parseFloat($("#jkp").value.replace(',', '.'));
@@ -269,7 +320,6 @@ export function parseInputs() {
     }
     return { bedrag, jkp, periode, renteType, startDate };
 }
-
 function resetOutputs() {
     resetOutputsOverview();
     resetOutputsTab01();
@@ -280,12 +330,11 @@ function resetOutputsOverview() {
     $all(".output-overview").forEach(o => o.textContent = "");
 }
 function resetOutputsTab01() {
-    $all(".output-tab01").forEach(o => o.textContent = "");
+    $all(".output-tab01-1").forEach(o => o.textContent = "");
 }
 function resetOutputsTab02() {
-    $all(".output-tab02").forEach(o => o.textContent = "");
+    $all(".output-tab01-2").forEach(o => o.textContent = "");
 }
-
 export function monthlyRate(jkp, type) {
     if (type === "1") { // effectief
         return Math.pow(1 + jkp / 100, 1 / 12) - 1;
@@ -293,13 +342,56 @@ export function monthlyRate(jkp, type) {
         return jkp / 100 / 12;
     }
 }
-
 export function computePayment(principal, monthlyI, periods) {
     if (monthlyI <= 0) return principal / periods;
     const denom = 1 - Math.pow(1 + monthlyI, -periods);
     return principal * (monthlyI / denom);
 }
+function calculateTotals() {
+    const inputs = updateSummary('02');
+    if (!inputs) return;
+    const { bedrag, jkp, periode, renteType: type, startDate } = inputs;
 
+    const datum1Input = $('#startdatum-status').value;
+    const datum2Input = $('#einddatum-status').value;
+    const datum1 = new Date(datum1Input);
+    const datum2 = new Date(datum2Input);
+    if (isNaN(datum1.getTime()) || isNaN(datum2.getTime())) {
+        alert(t('message.valid-dates'));
+        return;
+    }
+
+    // ensure datum1 en datum2 are between startDate and endDate of the loan
+    const endDate = new Date(startDate.getFullYear(), startDate.getMonth() + periode, startDate.getDate());
+    const firstDate = datum1 < datum2 ? new Date(datum1) : new Date(datum2);
+    const lastDate = datum1 < datum2 ? new Date(datum2) : new Date(datum1);
+    if (firstDate < startDate) {
+        firstDate.setTime(startDate.getTime());
+        //adjust input field to reflect change
+        $('#startdatum-status').value = formatLocalDate(firstDate);
+        //attribute to avoid triggering change event
+        $('#startdatum-status').setAttribute("data-prev-date", formatLocalDate(firstDate));
+    }
+    if (lastDate > endDate) {
+        lastDate.setTime(endDate.getTime());
+        //adjust input field to reflect change
+        $('#einddatum-status').value = formatLocalDate(lastDate);
+        //attribute to avoid triggering change event
+        $('#einddatum-status').setAttribute("data-prev-date", formatLocalDate(lastDate));
+    }
+   
+    // deduct one month from first date to include correct month in calculation
+    if(firstDate.getMonth() > startDate.getMonth() || firstDate.getFullYear() > startDate.getFullYear()) {
+        firstDate.setMonth(firstDate.getMonth() - 1);
+    }
+    const remainingAtFirstDate = computeRemaining(bedrag, jkp, periode, type, startDate, firstDate);
+    const remainingAtLastDate = computeRemaining(bedrag, jkp, periode, type, startDate, lastDate);
+    const capitalPaid = remainingAtFirstDate.capital - remainingAtLastDate.capital;
+    const interestPaid = remainingAtFirstDate.interest - remainingAtLastDate.interest;
+    $('#totaal-kapitaal').textContent = fmtCurrency.format(capitalPaid);
+    $('#totaal-rente').textContent = fmtCurrency.format(interestPaid);
+    $('#totaal-afbetaald').textContent = fmtCurrency.format(capitalPaid + interestPaid);
+}
 function importData() {
     let fileInput = document.createElement('input');
     fileInput.type = 'file';
@@ -330,7 +422,6 @@ function importData() {
     };
     fileInput.click();
 }
-
 function exportData() {
     const inputs = parseInputs();
     if (!inputs) {
