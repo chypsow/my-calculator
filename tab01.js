@@ -101,32 +101,35 @@ export function createTab01() {
         }
     });
 
-    // Events for buttons and date changes in tab01-2
-    // Create reusable toggle function
-    const createToggleListener = (buttonSelector, contentSelector) => () => {
-        const button = $(buttonSelector);
-        const content = $(contentSelector);
-        if (!button || !content) {
-            console.warn(`Toggle elements not found: ${buttonSelector}, ${contentSelector}`);
-            return;
-        }
-        button.classList.toggle('active');
-        content.classList.toggle('hidden');
-    };
-
-    // Register toggle listeners
+    // Events for buttons to toggle between calculators and table generator
     const toggleConfigs = [
         { button: '#toggleCalculator1', content: '.calculator-1' },
         { button: '#toggleCalculator2', content: '.calculator-2' },
         { button: '#toggleTableGenerator', content: '.table-generator' }
     ];
 
-    toggleConfigs.forEach(({ button, content }) => {
-        const btnElement = $(button);
+    const handleToggle = (event) => {
+        const clickedButton = event.currentTarget;
+
+        toggleConfigs.forEach(config => {
+            const button = $(config.button);
+            const content = $(config.content);
+
+            if (button && content) {
+                const isActive = button === clickedButton;
+                button.classList.toggle('active', isActive);
+                content.classList.toggle('hidden', !isActive);
+            }
+        });
+    };
+
+    toggleConfigs.forEach(config => {
+        const btnElement = $(config.button);
         if (btnElement) {
-            btnElement.addEventListener('click', createToggleListener(button, content));
+            btnElement.addEventListener('click', handleToggle);
         }
     });
+
     $("#berekenBtn-1").addEventListener("click", calculateRemainingCapitalAndInterest);
     $('#berekenBtn-2').addEventListener('click', calculateTotals);
     $("#importBtn").addEventListener("click", importData);

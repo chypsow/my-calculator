@@ -168,7 +168,7 @@ function createTopHeader() {
 }
 
 function createLangSwitcher () {
-    const langCollection = el('div', { class: 'lang-select no-rint', id: 'lang-select', 'aria-label': 'Select Language' });
+    const langCollection = el('div', { class: 'lang-select no-print', id: 'lang-select', 'aria-label': 'Select Language' });
     const languages = [{ code: 'en', label: 'EN' }, { code: 'fr', label: 'FR' }, { code: 'nl', label: 'NL' }];
     
     languages.forEach(lang => {
