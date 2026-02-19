@@ -363,7 +363,11 @@ function createMeterSection(meterType, quantityType) {
             type: 'button',
             'data-i18n-title': 'kva.info-button-title'
         }, [
-            el('i', { class: 'fa-solid fa-info-circle' })
+            el('span', {
+                class: 'kva-info-icon',
+                'aria-hidden': 'true',
+                html: '<svg viewBox="0 0 24 24" focusable="false"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1"></circle><line x1="12" y1="10" x2="12" y2="16" stroke="currentColor" stroke-width="2" stroke-linecap="round"></line><circle cx="12" cy="7" r="1.25" fill="currentColor"></circle></svg>'
+            })
         ]);
         infoBtn.addEventListener('click', (e) => {
             e.stopPropagation();

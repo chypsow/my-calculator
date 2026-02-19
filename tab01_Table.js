@@ -238,7 +238,7 @@ function createAnnualReportTable(inputs, interval, selectedColumns) {
 
 
 // DOM Creation Functions
-export function createReportContainer() {
+export function createTableContainer() {
     return el('div', { class: 'simulator-wrapper hidden table-generator' }, [
         createTitle('table.generator'),
         createConfigContainer(),

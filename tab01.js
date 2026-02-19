@@ -1,6 +1,6 @@
 import { $, $all, formatLocalDate, createHeader, fmtCurrency, fmtDate, fmtDecimal, t, el, getCurrency, currencyState } from './main.js';
 import { createSimulatorDOM, createCalculator1DOM, createCalculator2DOM, createToggleButtons } from './tab01_DOM.js';
-import { setTableVisibility, createReportContainer, printData, generateTable } from './tab01_Table.js';
+import { setTableVisibility, createTableContainer, printData, generateTable } from './tab01_Table.js';
 
 export function createTab01() {
     const tab01 = el('div', { id: 'tab01', class: 'tab-content' });
@@ -10,7 +10,7 @@ export function createTab01() {
         createToggleButtons(),
         createCalculator1DOM(),
         createCalculator2DOM(),
-        createReportContainer()
+        createTableContainer()
     );
     $('main').appendChild(tab01);
     
